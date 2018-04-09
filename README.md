@@ -9,7 +9,7 @@
 </p>
 <!-- markdownlint-enable MD033 -->
 
-# PollMe Vue based Web Application
+# PollMe Vue
 
 > The VueJS version of the PollMe webapp
 
