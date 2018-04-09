@@ -28,7 +28,9 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
+    "lint": "npm run lint:js && npm run lint:md",
+    "lint:js": "eslint --ext .js,.vue src test/unit test/e2e/specs",
+    "lint:md": "markdownlint *.md docs/**",
     "build": "node build/build.js"
   },
   "dependencies": {
@@ -68,6 +70,7 @@
     "html-webpack-plugin": "^2.30.1",
     "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
+    "markdownlint-cli": "^0.8.1",
     "nightwatch": "^0.9.12",
     "node-notifier": "^5.1.2",
     "optimize-css-assets-webpack-plugin": "^3.2.0",

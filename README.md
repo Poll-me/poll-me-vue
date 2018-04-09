@@ -13,8 +13,8 @@
 
 > The VueJS version of the PollMe webapp
 
-This is the awesome app with with you be able to collect in the most easy way any kind of
-opinion or preferece from anyone.
+This is the awesome app with with you be able to collect in the most easy way
+any kind of opinion or preferece from anyone.
 
 For example:
 
@@ -33,8 +33,8 @@ and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 ## Start working with the project
 
-To contribute you just need to clone the repo and install the node dependencies, then you
-can run any package script.
+To contribute you just need to clone the repo and install the node dependencies,
+then you can run any package script.
 
 ```bash
 # Clone the repo and enter inside
@@ -51,12 +51,13 @@ npm start
 
 ## Development flow
 
-You must follow [this](docs/dev-flow.md) guidelines in order to contribute to the project in any way.
+You must follow [this](docs/dev-flow.md) guidelines in order to contribute to
+the project in any way.
 
 ## Package scripts
 
-As the project do not have a task builder like Grunt or Gulp we need to use the npm package scripts
-to run the tasks that manage the workflow of the project.
+As the project do not have a task builder like Grunt or Gulp we need to use the
+npm package scripts to run the tasks that manage the workflow of the project.
 
 ``` bash
 # serve with hot reload at localhost:8080
