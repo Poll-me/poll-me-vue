@@ -1,8 +1,26 @@
 {
   "name": "poll-me-vue",
-  "version": "1.0.0",
-  "description": "The VueJS version of the PollMe webapp",
+  "version": "0.0.0",
+  "description": "The VueJS version of the PollMe web app",
+  "keywords": [
+    "vue",
+    "webpack",
+    "typescript",
+    "poll",
+    "pwa"
+  ],
+  "homepage": "https://github.com/Poll-me/poll-me-vue",
+  "bugs": {
+    "url": "https://github.com/Poll-me/poll-me-vue/issues",
+    "email": "arribasjavier@gmail.com"
+  },
+  "license": "MIT",
   "author": "Francisco Javier Arribas Fernández <arribasjavier@gmail.com>",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Poll-me/poll-me-vue"
+  },
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -80,6 +98,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 10"
   ]
 }
