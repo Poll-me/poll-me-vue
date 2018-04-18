@@ -1,15 +1,17 @@
 <template>
-  <div  class="container mx-auto text-center mt-8">
+  <MainLayout>
     <img class="mb-8" src="/static/img/favicon/android-chrome-192x192.png">
     <router-view/>
-  </div>
+  </MainLayout>
 </template>
 
 <script>
 import '@/assets/css/main.css';
+import MainLayout from './components/layouts/MainLayout';
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: { MainLayout }
 };
 </script>
 
