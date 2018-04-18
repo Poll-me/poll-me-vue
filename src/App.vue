@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div  class="container mx-auto text-center mt-8">
+    <img class="mb-8" src="/static/img/favicon/android-chrome-192x192.png">
     <router-view/>
   </div>
 </template>
 
 <script>
+import '@/assets/css/main.css';
+
 export default {
   name: 'App'
 };
