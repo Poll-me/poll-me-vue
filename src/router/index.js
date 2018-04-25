@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -12,7 +13,7 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/user',
+      path: '/user/:route?',
       component: () => import('@/user')
     }
   ]
