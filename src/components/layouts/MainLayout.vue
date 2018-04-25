@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <div class="h-full flex flex-col">
     <header>
       <slot name="header"></slot>
@@ -13,12 +13,3 @@
     </footer>
   </div>
 </template>
-<script>
-export default {
-  name: 'MainLayout'
-};
-</script>
-<style scoped>
-
-</style>
-
