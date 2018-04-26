@@ -1,11 +1,16 @@
 import Vue from 'vue';
+import store from '@/store';
 import HelloWorld from '@/components/HelloWorld';
 
 describe('HelloWorld.vue', () => {
-  it('should render correct contents', () => {
+  let component;
+
+  beforeEach(() => {
     const Constructor = Vue.extend(HelloWorld);
-    const vm = new Constructor().$mount();
-    expect(vm.$el.querySelector('.hello h1').textContent)
-      .toEqual('Welcome to Your Vue.js App');
+    component = new Constructor({ store }).$mount();
+  });
+
+  it('should render correct contents', () => {
+    expect(component.$el.textContent).toEqual('Hello world!!');
   });
 });
