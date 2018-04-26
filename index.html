@@ -2,11 +2,43 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>poll-me-vue</title>
+    <title>PollMe</title>
+    <meta name="description" content="PollMe WebApp">
+
+    <!-- <link> tags for "apple-touch-icon" (AKA Web Clips). -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/apple-touch-icon.png">
+
+    <!-- <link> tags for safari web app icons -->
+    <link rel="mask-icon" color="#d8403f" href="/static/img/favicon/safari-pinned-tab.svg">
+
+    <!-- <link> tags for android web app icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/img/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/static/img/favicon/android-chrome-512x512.png">
+
+    <!-- <link> tags for favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+
+    <!-- <link> tags for a Web App Manifest -->
+    <link rel="manifest" href="/static/meta/manifest.json">
+
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="msapplication-TileImage" content="/static/img/favicon/mstile-144x144.png">
+    <meta name="msapplication-config" content="/static/meta/browserconfig.xml">
+    <meta name="theme-color" content="#d8403f">
+
+    <base href="/">
   </head>
   <body>
     <div id="app"></div>
+    <!-- Todo: only include in production -->
+    <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
     <!-- built files will be auto injected -->
+    <noscript>
+      This site needs JavaScript enabled to owrk properly.
+    </noscript>
   </body>
 </html>
