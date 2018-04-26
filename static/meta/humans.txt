@@ -9,9 +9,9 @@
 # THANKS
 
   <name> -- <github>
-  PollMe -- @PollMe  
+  PollMe -- @PollMe
 
 # TECHNOLOGY COLOPHON
 
   HTML5, CSS3
-  Angular2, TypeScript, Webpack
+  VueJS, Javascript ES6, Webpack
