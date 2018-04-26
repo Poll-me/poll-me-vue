@@ -1,15 +1,15 @@
 import Router from 'vue-router';
-import UserLogin from '../UserLogin';
+import UserProfile from '../UserProfile';
 
 export default new Router({
   base: '/user',
   mode: 'history',
   routes: [
     {
-      path: '/login',
+      path: '/profile',
       alias: '/',
-      name: 'login',
-      component: UserLogin
+      name: 'profile',
+      component: UserProfile
     }
   ]
 });

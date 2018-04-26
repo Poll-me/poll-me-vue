@@ -1,8 +1,8 @@
 <template>
-  <div>Hello Login!!</div>
+  <div>Hello Profile!!</div>
 </template>
 <script>
 export default {
-  name: 'UserLogin'
+  name: 'UserProfile'
 };
 </script>
