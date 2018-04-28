@@ -7,3 +7,7 @@ html, body {
 body {
   @apply .font-sans;
 }
+
+img {
+  @apply .block;
+}

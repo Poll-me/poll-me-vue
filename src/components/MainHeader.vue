@@ -4,7 +4,7 @@
       <div class="w-10">
         <img src="/static/img/favicon/favicon-64x64.png" alt="header-logo" />
       </div>
-      <div class="flex-1 flex items-center justify-center text-white text-2xl">
+      <div class="flex-1 flex items-center justify-center text-white text-2xl font-medium">
         PollMe
       </div>
     </div>
