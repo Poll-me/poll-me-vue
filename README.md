@@ -4,12 +4,14 @@
     <img width="192" alt="PollMe WebApp" src="static/img/favicon/android-chrome-192x192.png">
   </a>
   <a href="https://vuejs.org" target="_blank">
-    <img width="192" alt="Vue JS" src="src/assets/logo.png">
+    <img width="192" alt="Vue JS" src="static/vue-logo.png">
   </a>
 </p>
 <!-- markdownlint-enable MD033 -->
 
 # PollMe Vue
+
+[![Build Status](https://travis-ci.org/Poll-me/poll-me-vue.svg?branch=develop)](https://travis-ci.org/Poll-me/poll-me-vue)
 
 > The VueJS version of the PollMe webapp
 
