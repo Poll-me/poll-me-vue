@@ -1,6 +1,8 @@
 <template>
   <MainLayout>
-    <img class="mb-8" src="/static/img/favicon/android-chrome-192x192.png">
+    <template slot="header">
+      <MainHeader />
+    </template>
     <router-view/>
   </MainLayout>
 </template>
@@ -8,9 +10,10 @@
 <script>
 import '@/assets/css/main.css';
 import MainLayout from './components/layouts/MainLayout';
+import MainHeader from './components/MainHeader';
 
 export default {
   name: 'App',
-  components: { MainLayout }
+  components: { MainLayout, MainHeader }
 };
 </script>
