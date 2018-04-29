@@ -3,3 +3,11 @@
 html, body {
   @apply .h-full;
 }
+
+body {
+  @apply .font-sans;
+}
+
+img {
+  @apply .block;
+}
