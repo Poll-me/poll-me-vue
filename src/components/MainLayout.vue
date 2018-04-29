@@ -4,7 +4,7 @@
       <slot name="header"></slot>
     </header>
     <main class="flex-1">
-      <div class="container">
+      <div class="container py-4">
         <slot/>
       </div>
     </main>

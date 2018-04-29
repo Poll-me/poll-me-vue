@@ -13,6 +13,10 @@ export default new Router({
       component: HelloWorld
     },
     {
+      path: '/polls/:route?',
+      component: () => import('@/polls')
+    },
+    {
       path: '/user/:route?',
       component: () => import('@/user')
     }
