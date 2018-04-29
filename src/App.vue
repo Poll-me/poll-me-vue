@@ -4,16 +4,18 @@
       <MainHeader />
     </template>
     <router-view/>
+    <template slot="footer">
+      <MainFooter />
+    </template>
   </MainLayout>
 </template>
 
 <script>
 import '@/assets/css/main.css';
-import MainLayout from './components/layouts/MainLayout';
-import MainHeader from './components/MainHeader';
+import mainComponents from './components';
 
 export default {
   name: 'App',
-  components: { MainLayout, MainHeader }
+  components: { ...mainComponents }
 };
 </script>
