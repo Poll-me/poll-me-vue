@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black text-white">
+  <div class="footer-wrapper bg-black text-white shadow-t-md">
     <div class="container py-3 text-xs text-center">
       <p>
         This is an
