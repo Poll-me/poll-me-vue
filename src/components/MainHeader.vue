@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-green-dark">
+  <div class="bg-secondary">
     <div class="container py-2 flex">
       <div class="w-10">
         <img src="/static/img/favicon/favicon-64x64.png" alt="header-logo" />
