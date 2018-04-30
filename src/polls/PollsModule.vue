@@ -2,10 +2,18 @@
   <router-view/>
 </template>
 <script>
-import router from './router';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 
-export default {
-  name: 'PollsModule',
+import router from './router';
+import storeModule from './store';
+
+@Component({
   router
-};
+})
+export default class PollsModule extends Vue {
+  beforeCreate() {
+    this.$store.registerModule('polls', storeModule);
+  }
+}
 </script>
