@@ -24,7 +24,9 @@ const { mapGetters, mapActions } = createNamespacedHelpers('polls');
 })
 export default class UserPolls extends Vue {
   created() {
-    this.fetchPolls();
+    if (this.items.length === 0) {
+      this.fetchPolls();
+    }
   }
 }
 </script>
