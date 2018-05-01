@@ -1,13 +1,24 @@
-import Vue from 'vue';
-import store from '@/store';
 import storeModule from '@/polls/store';
+import Vue from 'vue';
+
 import UserPolls from '@/polls/UserPolls';
+import store from '@/store';
+
+const entitiesMock = { a: {}, b: {} };
+const actions = {
+  fetchPolls: jest
+    .fn()
+    .mockImplementation(({ commit }) => commit('setEntities', entitiesMock))
+};
 
 describe('UserPolls.vue', () => {
   let component;
 
   beforeAll(() => {
-    store.registerModule('polls', storeModule);
+    store.registerModule('polls', {
+      ...storeModule,
+      actions
+    });
   });
 
   beforeEach(() => {
@@ -15,8 +26,11 @@ describe('UserPolls.vue', () => {
     component = new Constructor({ store }).$mount();
   });
 
-  it('should have the same number of items as the store node', () => {
-    const pollsLength = Object.keys(storeModule.state.entities).length;
-    expect(component.items.length).toEqual(pollsLength);
+  it('should dispath the fetch polls action', () => {
+    expect(actions.fetchPolls.mock.calls.length).toEqual(1);
+  });
+
+  it('should have the polls as array at items property', () => {
+    expect(component.items.length).toEqual(Object.keys(entitiesMock).length);
   });
 });
