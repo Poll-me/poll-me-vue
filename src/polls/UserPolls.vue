@@ -16,12 +16,15 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapGetters } = createNamespacedHelpers('polls');
+const { mapGetters, mapActions } = createNamespacedHelpers('polls');
 
 @Component({
-  computed: mapGetters(['items'])
+  computed: mapGetters(['items']),
+  methods: mapActions(['fetchPolls'])
 })
 export default class UserPolls extends Vue {
-
+  created() {
+    this.fetchPolls();
+  }
 }
 </script>
