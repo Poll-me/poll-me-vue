@@ -1,3 +1,4 @@
+import mutations from './mutations';
 import actions from './actions';
 
 export default {
@@ -10,10 +11,6 @@ export default {
       return Object.values(state.entities);
     }
   },
-  mutations: {
-    setEntities(state, entities) {
-      state.entities = entities;
-    }
-  },
+  mutations,
   actions
 };
