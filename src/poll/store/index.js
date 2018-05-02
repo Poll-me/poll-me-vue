@@ -4,7 +4,8 @@ import actions from './actions';
 export default {
   namespaced: true,
   state: {
-    entities: {}
+    entity: {},
+    key: ''
   },
   getters: {},
   mutations,
