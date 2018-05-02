@@ -14,7 +14,7 @@ const { mapState, mapActions } = createNamespacedHelpers('poll');
 @Component({
   computed: mapState(['entity']),
   methods: mapActions(['fetchPoll'])
-})//asd
+})
 export default class PollContainer extends Vue {
   created() {
     const key = this.$route.params.key;
