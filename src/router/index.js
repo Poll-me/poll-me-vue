@@ -16,6 +16,11 @@ export default new Router({
       component: () => import('@/polls')
     },
     {
+      path: '/poll/:route',
+      name: 'poll',
+      component: () => import('@/poll')
+    },
+    {
       path: '/user/:route?',
       component: () => import('@/user')
     },
