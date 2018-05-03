@@ -7,7 +7,7 @@
     <div class="p-2">
       <div class="text-sm text-grey-darker">{{ entity.description }}</div>
       <div class="pt-2">
-        <component :is="pollTypeComponent" ></component>
+        <component :is="pollTypeComponent" :poll="entity" ></component>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@ import { createNamespacedHelpers } from 'vuex';
 import RegistrationPoll from './components/RegistrationPoll';
 
 const { mapState } = createNamespacedHelpers('polls/poll');
-const pollTypeComponentMap = {
+const pollTypeMap = {
   1: RegistrationPoll
 };
 
@@ -29,7 +29,7 @@ const pollTypeComponentMap = {
 })
 export default class FillPoll extends Vue {
   get pollTypeComponent() {
-    return pollTypeComponentMap[this.entity.type];
+    return pollTypeMap[this.entity.type];
   }
 }
 </script>
