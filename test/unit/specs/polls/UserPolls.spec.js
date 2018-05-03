@@ -1,6 +1,7 @@
-import storeModule from '@/polls/store';
 import Vue from 'vue';
+import Router from 'vue-router';
 
+import storeModule from '@/polls/store';
 import UserPolls from '@/polls/UserPolls';
 import store from '@/store';
 
@@ -13,8 +14,12 @@ const actions = {
 
 describe('UserPolls.vue', () => {
   let component;
+  let router;
 
   beforeAll(() => {
+    Vue.use(Router);
+    router = new Router();
+
     store.registerModule('polls', {
       ...storeModule,
       actions
@@ -23,7 +28,7 @@ describe('UserPolls.vue', () => {
 
   beforeEach(() => {
     const Constructor = Vue.extend(UserPolls);
-    component = new Constructor({ store }).$mount();
+    component = new Constructor({ router, store }).$mount();
   });
 
   it('should dispath the fetch polls action', () => {
