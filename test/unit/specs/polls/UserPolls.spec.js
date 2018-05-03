@@ -18,7 +18,7 @@ describe('UserPolls.vue', () => {
 
   beforeAll(() => {
     Vue.use(Router);
-    router = new Router({ routes: [{ name: 'poll-view', path: ':key' }] });
+    router = new Router({ routes: [{ name: 'fill-poll', path: ':key' }] });
 
     store.registerModule('polls', {
       ...storeModule,
