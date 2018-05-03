@@ -1,8 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Component from 'vue-class-component';
 
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
+
+Component.registerHooks([
+  'beforeRouteEnter',
+  'beforeRouteLeave',
+  'beforeRouteUpdate'
+]);
 
 Vue.use(Router);
 
