@@ -7,6 +7,7 @@
         <p class="text-grey-darker text-base">
           {{ poll.description }}
         </p>
+        <router-link :to="poll.key">asd</router-link>
       </div>
     </div>
   </div>

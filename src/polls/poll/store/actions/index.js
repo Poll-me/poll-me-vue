@@ -3,12 +3,13 @@ import fb from '@/firebase';
 const db = fb.database();
 
 export default {
-  fetchPoll({ commit }, { key }) {
+  fetchPoll({ commit, state }, { key }) {
+    if (state.key) {
+      db.ref('/polls').child(state.key).off();
+    }
     commit('setKey', { key });
 
-    const ref = db.ref('/polls').child(key);
-    ref.off();
-    ref.on('value', (snapshot) => {
+    db.ref('/polls').child(key).on('value', (snapshot) => {
       commit('setEntity', { poll: snapshot.val() });
     });
   }
