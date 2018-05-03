@@ -11,7 +11,7 @@ export default new Router({
       redirect: { name: 'default' }
     },
     {
-      path: '/polls/:route?',
+      path: '/polls/:route*',
       name: 'default',
       component: () => import('@/polls')
     },
