@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import pollsRoutes from '../polls/router';
+import userRoutes from '../user/router';
 
 Vue.use(Router);
 
@@ -18,8 +19,9 @@ export default new Router({
       children: pollsRoutes
     },
     {
-      path: '/user/:route?',
-      component: () => import('@/user')
+      path: '/user',
+      component: () => import(/* webpackChunkName: "user-chunk" */ '@/user'),
+      children: userRoutes
     },
     {
       path: '*',
