@@ -4,16 +4,28 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { createNamespacedHelpers } from 'vuex';
 
-import router from './router';
 import storeModule from './store';
 
+const { mapActions, mapState } = createNamespacedHelpers('polls/poll');
+
 @Component({
-  router
+  computed: mapState(['key']),
+  methods: mapActions(['fetchPoll'])
 })
 export default class PollModule extends Vue {
   beforeCreate() {
-    this.$store.registerModule(['polls', 'poll'], storeModule);
+    if (!this.$store.state.polls.poll) {
+      this.$store.registerModule(['polls', 'poll'], storeModule);
+    }
+  }
+
+  created() {
+    const routeKey = this.$route.params.key;
+    if (this.key !== routeKey) {
+      this.fetchPoll({ key: routeKey });
+    }
   }
 }
 </script>
