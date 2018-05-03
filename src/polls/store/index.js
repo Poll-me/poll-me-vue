@@ -1,16 +1,13 @@
 import mutations from './mutations';
 import actions from './actions';
+import getters from './getters';
 
 export default {
   namespaced: true,
   state: {
     entities: {}
   },
-  getters: {
-    items(state) {
-      return Object.values(state.entities);
-    }
-  },
+  getters,
   mutations,
   actions
 };
