@@ -19,5 +19,5 @@ const { mapState } = createNamespacedHelpers('polls/poll');
 @Component({
   computed: mapState(['entity'])
 })
-export default class PollView extends Vue {}
+export default class FillPoll extends Vue {}
 </script>
