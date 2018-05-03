@@ -1,8 +1,9 @@
 import Router from 'vue-router';
+
 import PollContainer from '../PollContainer';
 
 export default new Router({
-  base: '/poll',
+  base: '/polls',
   mode: 'history',
   routes: [
     {

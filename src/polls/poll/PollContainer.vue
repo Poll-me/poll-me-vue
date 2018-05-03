@@ -9,7 +9,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapActions } = createNamespacedHelpers('poll');
+const { mapState, mapActions } = createNamespacedHelpers('polls/poll');
 
 @Component({
   computed: mapState(['entity']),

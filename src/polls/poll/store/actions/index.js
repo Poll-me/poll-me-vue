@@ -1,4 +1,4 @@
-import fb from '../../../firebase';
+import fb from '@/firebase';
 
 const db = fb.database();
 

@@ -1,4 +1,4 @@
-import fb from '../firebase';
+import fb from '@/firebase';
 
 const db = fb.database();
 
@@ -9,7 +9,7 @@ export default (to, from, next) => {
       if (snapshot.val() !== null) {
         next();
       } else {
-        next({ name: 'default' });
+        next({ name: 'user-polls' });
       }
     });
 };

@@ -13,7 +13,7 @@ import storeModule from './store';
 })
 export default class PollModule extends Vue {
   beforeCreate() {
-    this.$store.registerModule('poll', storeModule);
+    this.$store.registerModule(['polls', 'poll'], storeModule);
   }
 }
 </script>
