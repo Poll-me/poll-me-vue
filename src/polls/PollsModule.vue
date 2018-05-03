@@ -5,15 +5,14 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-import router from './router';
 import storeModule from './store';
 
-@Component({
-  router
-})
+@Component()
 export default class PollsModule extends Vue {
   beforeCreate() {
-    this.$store.registerModule('polls', storeModule);
+    if (!this.$store.state.polls) {
+      this.$store.registerModule('polls', storeModule);
+    }
   }
 }
 </script>
