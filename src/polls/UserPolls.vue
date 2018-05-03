@@ -8,7 +8,8 @@
           {{ poll.description }}
         </p>
         <router-link :to="poll.key"
-          class="bg-red hover:bg-red-dark text-white font-bold py-2 px-4 rounded block text-center mt-2" >
+          class="bg-red hover:bg-red-dark
+            text-white font-bold py-2 px-4 rounded block text-center mt-2" >
           View poll
         </router-link>
       </div>
