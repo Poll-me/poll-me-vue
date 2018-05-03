@@ -1,7 +1,7 @@
 import Router from 'vue-router';
 
 import UserPolls from '../UserPolls';
-import pollGuard from './poll-guard';
+import pollExistsGuard from './poll-exists.guard';
 
 export default new Router({
   base: '/polls',
@@ -16,7 +16,7 @@ export default new Router({
       path: '/:key',
       name: 'poll',
       component: () => import('../poll'),
-      beforeEnter: pollGuard
+      beforeEnter: pollExistsGuard
     }
   ]
 });
