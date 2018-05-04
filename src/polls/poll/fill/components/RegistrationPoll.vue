@@ -8,7 +8,7 @@
         Are you in?
       </label>
       <div class="flex-1 text-grey-darker text-sm" >
-        <input v-model.trim="name" @keyup.once="dirty = true"
+        <input v-model.trim="name" @input.once="dirty = true"
           v-bind:class="{ 'border-red': !valid && dirty }"
           id="name" type="text" placeholder="Your name"
           class="appearance-none rounded w-full p-2 border-2 border-transparent">
