@@ -1,13 +1,14 @@
 <template>
-  <div class="border-2 border-primary rounded">
-    <div class="bg-primary text-white p-2">
-      <div class="font-medium">{{ entity.name }}</div>
-      <small class="italic text-xs">by {{ entity.author }}</small>
+  <div>
+    <div class="container bg-primary text-white py-4">
+      <h1 class="text-lg font-medium">{{ poll.name }}</h1>
+      <div class="italic text-xs mt-2">by {{ poll.author }}</div>
     </div>
-    <div class="p-2">
-      <div class="text-sm text-grey-darker">{{ entity.description }}</div>
+    <div class="container py-4">
+      <div class="text-sm text-grey-darker">{{ poll.description }}</div>
       <div class="pt-2">
-        <component :is="pollTypeComponent" :poll="entity" ></component>
+        <component :is="pollTypeComponent" :poll="poll" @vote="onVote" ></component>
+        <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
   </div>
@@ -17,19 +18,26 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { createNamespacedHelpers } from 'vuex';
 
-import RegistrationPoll from './components/RegistrationPoll';
+import pollTypeComponentsMap from './components';
+import { voteToActionPayload } from './utils';
 
-const { mapState } = createNamespacedHelpers('polls/poll');
-const pollTypeMap = {
-  1: RegistrationPoll
-};
+const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll');
 
 @Component({
-  computed: mapState(['entity'])
+  computed: {
+    ...mapGetters(['poll']),
+    ...mapState(['key'])
+  },
+  methods: mapActions(['submitVote'])
 })
 export default class FillPoll extends Vue {
   get pollTypeComponent() {
-    return pollTypeMap[this.entity.type];
+    return pollTypeComponentsMap[this.poll.type];
+  }
+
+  onVote(vote) {
+    const actionPayload = voteToActionPayload(this.poll.type, this.key, vote);
+    this.submitVote(actionPayload);
   }
 }
 </script>

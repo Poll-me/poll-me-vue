@@ -5,5 +5,9 @@ export default {
 
   setEntity(state, { poll }) {
     state.entity = poll;
+  },
+
+  setAnswers(state, { answers }) {
+    state.answers = answers;
   }
 };

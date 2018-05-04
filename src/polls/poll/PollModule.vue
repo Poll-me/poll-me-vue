@@ -12,7 +12,7 @@ const { mapActions, mapState } = createNamespacedHelpers('polls/poll');
 
 @Component({
   computed: mapState(['key']),
-  methods: mapActions(['fetchPoll'])
+  methods: mapActions(['fetchPoll', 'fetchAnswers'])
 })
 export default class PollModule extends Vue {
   beforeCreate() {
@@ -25,6 +25,7 @@ export default class PollModule extends Vue {
     const routeKey = this.$route.params.key;
     if (this.key !== routeKey) {
       this.fetchPoll({ key: routeKey });
+      this.fetchAnswers({ key: routeKey });
     }
   }
 }

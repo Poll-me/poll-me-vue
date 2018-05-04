@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="container py-2" >
     <div v-for="poll in items" :key="poll.name"
-      class="rounded overflow-hidden border-2 border-primary my-2">
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">{{ poll.name }}</div>
-        <p class="text-grey-darker text-base">
+      class="overflow-hidden py-2">
+      <div class="p-3 border-2 border-primary rounded">
+        <div class="font-bold text mb-2">{{ poll.name }}</div>
+        <p class="text-grey-darker text-sm">
           {{ poll.description }}
         </p>
         <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}"
