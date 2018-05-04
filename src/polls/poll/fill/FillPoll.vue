@@ -10,6 +10,12 @@
         <component :is="pollTypeComponent" :poll="poll" @vote="onVote" ></component>
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
+      <div class="mt-8">
+        <a :href="`whatsapp://send?text=${whatsappShareText}`" data-action="share/whatsapp/share"
+          class="bg-green text-white p-2 rounded text-xl" >
+          <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width></font-awesome-icon>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +39,14 @@ const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll
 export default class FillPoll extends Vue {
   get pollTypeComponent() {
     return pollTypeComponentsMap[this.poll.type];
+  }
+
+  get whatsappShareText() {
+    const answersText = this.poll.answers.reduce(
+      (text, ans, i) => `${text}${i === 0 ? '\n' : ''}- ${ans.author}\n`,
+      ''
+    );
+    return encodeURI(`*${this.poll.name}*\n${answersText}\nhttp://poll-me.com/polls/${this.key}`);
   }
 
   onVote(vote) {
