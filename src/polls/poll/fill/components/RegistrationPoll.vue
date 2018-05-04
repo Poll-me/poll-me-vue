@@ -35,7 +35,11 @@ import Component from 'vue-class-component';
       type: Object,
       validator: poll => poll.type === 1
     },
-    config: Object
+    config: Object,
+    autofocus: {
+      type: Boolean,
+      default: false
+    }
   }
 })
 export default class RegistrationPoll extends Vue {
@@ -49,7 +53,9 @@ export default class RegistrationPoll extends Vue {
   }
 
   mounted() {
-    this.$el.querySelector('#name').focus();
+    if (this.autofocus) {
+      this.$el.querySelector('#name').focus();
+    }
   }
 
   submit() {
