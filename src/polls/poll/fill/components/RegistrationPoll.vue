@@ -1,27 +1,27 @@
 <template>
   <div class="">
     <div class="text-center pb-2">People IN</div>
-    <div >
-      <form @submit.prevent="submit"
-        class="bg-blue-dark rounded p-2 mb-2 flex">
-        <label for="name"
-          class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center">
-          Are you in?
-        </label>
-        <div class="flex-1" >
-          <input id="name" type="text" placeholder="Your name" v-model.trim="name"
-            class="shadow appearance-none rounded w-full p-2 text-grey-darker text-sm">
+    <form v-if="!submitted" @submit.prevent="submit"
+      class="bg-blue-dark rounded p-2 mb-2 flex">
+      <label for="name"
+        class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center">
+        Are you in?
+      </label>
+      <div class="flex-1 text-grey-darker text-sm" >
+        <input v-model.trim="name" @keyup.once="dirty = true"
+          v-bind:class="{ 'border-red': !valid && dirty }"
+          id="name" type="text" placeholder="Your name"
+          class="appearance-none rounded w-full p-2 border-2 border-transparent">
+      </div>
+    </form>
+    <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
+      <li v-for="ans in poll.answers" :key="ans.author"
+        class="w-1/2 p-1" >
+        <div class="bg-teal-dark shadow p-2 rounded h-full flex flex-col justify-center">
+          {{ ans.author }}
         </div>
-      </form>
-      <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
-        <li v-for="ans in poll.answers" :key="ans.author"
-          class="w-1/2 p-1" >
-          <div class="bg-teal-dark shadow p-2 rounded h-full flex flex-col justify-center">
-            {{ ans.author }}
-          </div>
-        </li>
-      </ul>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -40,9 +40,19 @@ import Component from 'vue-class-component';
 })
 export default class RegistrationPoll extends Vue {
   name = '';
+  dirty = false;
+  submitted = false;
+
+  get valid() {
+    const voteExists = this.poll.answers.some(ans => ans.author === this.name);
+    return this.name.length > 0 && !voteExists;
+  }
 
   submit() {
-    this.$emit('vote', this.name);
+    if (this.valid) {
+      this.$emit('vote', { author: this.name });
+      this.submitted = true;
+    }
   }
 }
 </script>
