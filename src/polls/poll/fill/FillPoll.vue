@@ -7,7 +7,7 @@
     <div class="container py-4">
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
       <div class="pt-2">
-        <component :is="pollTypeComponent" :poll="poll" ></component>
+        <component :is="pollTypeComponent" :poll="poll" @vote="onVote" ></component>
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
@@ -18,19 +18,26 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { createNamespacedHelpers } from 'vuex';
 
-import RegistrationPoll from './components/RegistrationPoll';
+import pollTypeComponentsMap from './components';
+import { voteToActionPayload } from './utils';
 
-const { mapGetters } = createNamespacedHelpers('polls/poll');
-const pollTypeMap = {
-  1: RegistrationPoll
-};
+const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll');
 
 @Component({
-  computed: mapGetters(['poll'])
+  computed: {
+    ...mapGetters(['poll']),
+    ...mapState(['key'])
+  },
+  methods: mapActions(['submitVote'])
 })
 export default class FillPoll extends Vue {
   get pollTypeComponent() {
-    return pollTypeMap[this.poll.type];
+    return pollTypeComponentsMap[this.poll.type];
+  }
+
+  onVote(vote) {
+    const actionPayload = voteToActionPayload(this.poll.type, this.key, vote);
+    this.submitVote(actionPayload);
   }
 }
 </script>
