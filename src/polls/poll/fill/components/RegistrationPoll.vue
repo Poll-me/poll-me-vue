@@ -1,8 +1,15 @@
 <template>
-  <div>
-    Poll type: {{ poll.type }}
-    <div>
-      {{ poll.answers }}
+  <div class="">
+    <div class="text-center pb-2">People IN</div>
+    <div >
+      <ul class="list-reset flex flex-wrap -m-1 text-sm text-center">
+        <li v-for="ans in poll.answers" :key="ans.author"
+          class="w-1/2 p-1" >
+          <div class="border p-2 rounded h-full flex flex-col justify-center">
+            {{ ans.author }}
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
