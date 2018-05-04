@@ -8,6 +8,7 @@
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
       <div class="pt-2">
         <component :is="pollTypeComponent" :poll="poll" ></component>
+        <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
   </div>
