@@ -1,8 +1,12 @@
 import fb from '@/firebase';
 
+import fillActions from './fill';
+
 const db = fb.database();
 
 export default {
+  ...fillActions,
+
   fetchPoll({ commit, state }, { key }) {
     if (state.key) {
       db
