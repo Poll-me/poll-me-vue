@@ -5,9 +5,15 @@ export default {
   namespaced: true,
   state: {
     entity: {},
-    key: ''
+    key: '',
+    answers: {}
   },
-  getters: {},
+  getters: {
+    poll(state) {
+      const answers = Object.values(state.answers);
+      return { ...state.entity, answers: answers.sort((a, b) => a.timestamp - b.timestamp) };
+    }
+  },
   mutations,
   actions
 };

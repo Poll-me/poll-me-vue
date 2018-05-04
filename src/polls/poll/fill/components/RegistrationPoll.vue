@@ -1,6 +1,9 @@
 <template>
   <div>
     Poll type: {{ poll.type }}
+    <div>
+      {{ poll.answers }}
+    </div>
   </div>
 </template>
 <script>
