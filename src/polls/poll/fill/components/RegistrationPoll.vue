@@ -48,6 +48,10 @@ export default class RegistrationPoll extends Vue {
     return this.name.length > 0 && !voteExists;
   }
 
+  mounted() {
+    this.$el.querySelector('#name').focus();
+  }
+
   submit() {
     if (this.valid) {
       this.$emit('vote', { author: this.name });
