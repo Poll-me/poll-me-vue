@@ -1,12 +1,10 @@
 <template functional>
   <div class="h-full flex flex-col">
-    <header>
+    <header class="z-40">
       <slot name="header"></slot>
     </header>
     <main class="flex-1">
-      <div class="container py-4">
-        <slot/>
-      </div>
+      <slot/>
     </main>
     <footer>
       <slot name="footer"></slot>

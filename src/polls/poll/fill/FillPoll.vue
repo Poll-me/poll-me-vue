@@ -1,10 +1,10 @@
 <template>
-  <div class="border-2 border-primary rounded">
-    <div class="bg-primary text-white p-2">
-      <div class="font-medium">{{ poll.name }}</div>
-      <small class="italic text-xs">by {{ poll.author }}</small>
+  <div>
+    <div class="container bg-primary text-white py-4">
+      <h1 class="text-lg font-medium">{{ poll.name }}</h1>
+      <div class="italic text-xs mt-2">by {{ poll.author }}</div>
     </div>
-    <div class="p-2">
+    <div class="container py-4">
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
       <div class="pt-2">
         <component :is="pollTypeComponent" :poll="poll" ></component>
