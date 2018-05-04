@@ -1,5 +1,6 @@
 import mutations from './mutations';
 import actions from './actions';
+import getters from './getters';
 
 export default {
   namespaced: true,
@@ -8,12 +9,7 @@ export default {
     key: '',
     answers: {}
   },
-  getters: {
-    poll(state) {
-      const answers = Object.values(state.answers);
-      return { ...state.entity, answers: answers.sort((a, b) => a.timestamp - b.timestamp) };
-    }
-  },
+  getters,
   mutations,
   actions
 };
