@@ -1,7 +1,8 @@
 <template>
   <a :href="`whatsapp://send?text=${whatsappShareText}`" data-action="share/whatsapp/share"
-    class="bg-green text-white p-2 text-xl block" >
-    <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width></font-awesome-icon>
+    class="text-white p-2 flex items-center justify-center" >
+    <div class="flex-shrink mr-1">Share via WhatsApp</div>
+    <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width class="text-2xl"></font-awesome-icon>
   </a>
 </template>
 <script>
@@ -33,3 +34,9 @@ export default class SharePollWhatsapp extends Vue {
   }
 }
 </script>
+<style scoped>
+a {
+  background-color: #25D366;
+}
+</style>
+

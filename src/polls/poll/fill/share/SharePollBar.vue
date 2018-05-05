@@ -1,7 +1,9 @@
 <template>
-  <div class="flex">
-    <div v-for="media in social" :key="media" class="flex-1">
-      <component :is="getSocialComponent(media)" :poll="poll" :url="pollUrl"></component>
+  <div>
+    <div class="flex">
+      <component v-for="media in social" :key="media"
+        :is="getSocialComponent(media)" :poll="poll" :url="pollUrl"
+        class="flex-1"></component>
     </div>
   </div>
 </template>
