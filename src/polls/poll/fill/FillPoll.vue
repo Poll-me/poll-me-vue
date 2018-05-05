@@ -13,7 +13,8 @@
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
-    <SharePollBar :poll="poll" :social="['whatsapp']"></SharePollBar>
+    <SharePollBar :poll="poll" :social="['whatsapp']"
+      class="sticky pin-b shadow-t"></SharePollBar>
   </div>
 </template>
 <script>
