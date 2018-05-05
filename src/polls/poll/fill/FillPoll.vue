@@ -13,12 +13,7 @@
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
-    <div class="sticky pin-b">
-      <a :href="`whatsapp://send?text=${whatsappShareText}`" data-action="share/whatsapp/share"
-        class="block bg-green text-white p-2 text-xl" >
-        <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width></font-awesome-icon>
-      </a>
-    </div>
+    <SharePollBar :poll="poll" :social="['whatsapp']"></SharePollBar>
   </div>
 </template>
 <script>
@@ -28,6 +23,7 @@ import { createNamespacedHelpers } from 'vuex';
 
 import pollTypeComponentsMap from './components';
 import { voteToActionPayload } from './utils';
+import SharePollBar from './share';
 
 const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll');
 
@@ -36,19 +32,12 @@ const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll
     ...mapGetters(['poll']),
     ...mapState(['key'])
   },
-  methods: mapActions(['submitVote'])
+  methods: mapActions(['submitVote']),
+  components: { SharePollBar }
 })
 export default class FillPoll extends Vue {
   get pollTypeComponent() {
     return pollTypeComponentsMap[this.poll.type];
-  }
-
-  get whatsappShareText() {
-    const answersText = this.poll.answers.reduce(
-      (text, ans, i) => `${text}${i === 0 ? '\n' : ''}- ${ans.author}\n`,
-      ''
-    );
-    return encodeURI(`*${this.poll.name}*\n${answersText}\nhttp://poll-me.com/polls/${this.key}`);
   }
 
   onVote(vote) {
