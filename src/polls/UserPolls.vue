@@ -3,7 +3,7 @@
     <div v-for="poll in items" :key="poll.name"
       class="overflow-hidden py-2">
       <div class="p-3 border-2 border-primary rounded">
-        <div class="font-bold text mb-2">{{ poll.name }}</div>
+        <div class="font-bold mb-2">{{ poll.name }}</div>
         <p class="text-grey-darker text-sm">
           {{ poll.description }}
         </p>

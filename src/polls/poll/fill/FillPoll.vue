@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <div class="container bg-primary text-white py-4">
-      <h1 class="text-lg font-medium">{{ poll.name }}</h1>
-      <div class="italic text-xs mt-2">by {{ poll.author }}</div>
+  <div class="h-full flex flex-col">
+    <div class="sticky pin-t z-10 shadow bg-primary">
+      <div class="container text-white py-4">
+        <h1 class="text-lg font-medium">{{ poll.name }}</h1>
+        <div class="italic text-xs mt-2">by {{ poll.author }}</div>
+      </div>
     </div>
-    <div class="container py-4">
+    <div class="container py-4 flex-1">
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
       <div class="pt-2">
         <component :is="pollTypeComponent" :poll="poll" @vote="onVote" ></component>
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
-      <div class="mt-8">
-        <a :href="`whatsapp://send?text=${whatsappShareText}`" data-action="share/whatsapp/share"
-          class="bg-green text-white p-2 rounded text-xl" >
-          <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width></font-awesome-icon>
-        </a>
-      </div>
+    </div>
+    <div class="sticky pin-b">
+      <a :href="`whatsapp://send?text=${whatsappShareText}`" data-action="share/whatsapp/share"
+        class="block bg-green text-white p-2 text-xl" >
+        <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width></font-awesome-icon>
+      </a>
     </div>
   </div>
 </template>
