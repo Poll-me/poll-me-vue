@@ -13,24 +13,36 @@
         </select>
       </div>
     </div>
-    <div class="container py-4 flex-1">
-      <form v-if="type" class="">
-        <div>
+    <div class="flex-1">
+      <template v-if="selectedType">
+        <div class="bg-blue-dark text-white" >
+          <div class="container py-4">
+            <div class="flex mb-2 items-center">
+              <div class="flex-1 font-medium">{{ selectedType.name }}</div>
+              <font-awesome-icon icon="undo" size="sm"
+                @click="resetType"></font-awesome-icon>
+            </div>
+            <small class="italic">{{ selectedType.description }}</small>
+          </div>
+        </div>
+        <form class="container py-4">
           <div class="flex items-center mb-4">
             <label for="poll-name">
               Name:
             </label>
-            <input id="poll-name" type="text" placeholder="The poll topic">
+            <input v-model="name"
+              id="poll-name" type="text" placeholder="The poll topic">
           </div>
           <div class="flex items-center">
             <label for="poll-author">
               Author:
             </label>
-            <input id="poll-author" type="text" placeholder="Who is asking?">
+            <input v-model="author"
+              id="poll-author" type="text" placeholder="Who is asking?">
           </div>
-        </div>
-      </form>
-      <div v-else class="h-full flex items-center text-center" >
+        </form>
+      </template>
+      <div v-else class="container h-full flex items-center text-center" >
         <div class="flex-1">
           <font-awesome-icon icon="arrow-up" size="2x"></font-awesome-icon>
           <div class="mt-8">First, select what kind of poll you want to create</div>
@@ -57,9 +69,13 @@ export default class CreatePoll extends Vue {
   get selectedType() {
     return this.types[this.type];
   }
+
+  resetType() {
+    this.type = 0;
+  }
 }
 </script>
-<style lang="postcss" scoped>
+<style lang="postcss" scoped >
 @tailwind utilities;
 
 label {

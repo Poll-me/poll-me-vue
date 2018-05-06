@@ -5,6 +5,6 @@ export const pollTypes = {
 export default {
   [pollTypes.REGISTRATION]: {
     name: 'Registration',
-    description: 'Take a quick look at who is going to participate in the topic describe.'
+    description: 'Take a quick look at who is going to participate in the topic you describe.'
   }
 };
