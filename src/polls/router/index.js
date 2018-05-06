@@ -8,6 +8,11 @@ export default [
     component: () => import(/* webpackChunkName: "polls-chunk" */ '../UserPolls')
   },
   {
+    path: 'new',
+    name: 'new-poll',
+    component: () => import(/* webpackChunkName: "polls-chunk" */ '../create')
+  },
+  {
     path: ':key',
     component: () => import(/* webpackChunkName: "poll-chunk" */ '../poll'),
     children: pollRoutes,
