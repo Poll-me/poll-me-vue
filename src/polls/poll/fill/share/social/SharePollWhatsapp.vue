@@ -25,8 +25,8 @@ import Component from 'vue-class-component';
 export default class SharePollWhatsapp extends Vue {
   get title() {
     let title = `*${this.poll.name}*\n`;
-    if (this.poll.answers.length > 0) {
-      title += `_Total: ${this.poll.answers.length} persons_\n`;
+    if (this.poll.answers.length > 1) {
+      title += `_${this.poll.answers.length} people_\n`;
     }
     return title;
   }
