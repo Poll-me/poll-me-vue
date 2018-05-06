@@ -2,10 +2,14 @@
   <div class="h-full flex flex-col">
     <div class="bg-primary text-white py-4">
       <div class="container">
-        <h1 class="text-lg font-medium text-center mb-4">Create a poll</h1>
-        <select id="poll-type" v-model="type" placeholder="What kind of poll?">
+        <h1 class="text-lg font-medium text-center">Create a poll</h1>
+        <select v-show="!type" v-model="type"
+          id="poll-type"
+          class="mt-4">
           <option disabled :value="0">What kind of poll?</option>
-          <option :value="1">Registration</option>
+          <option v-for="(pollType, typeId) in types" :key="typeId" :value="typeId">
+            {{ pollType.name }}
+          </option>
         </select>
       </div>
     </div>
@@ -38,12 +42,21 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { createNamespacedHelpers } from 'vuex';
 
-@Component()
+const { mapState } = createNamespacedHelpers('polls');
+
+@Component({
+  computed: mapState(['types'])
+})
 export default class CreatePoll extends Vue {
   name = '';
   author = '';
   type = 0;
+
+  get selectedType() {
+    return this.types[this.type];
+  }
 }
 </script>
 <style lang="postcss" scoped>
