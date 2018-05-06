@@ -49,7 +49,8 @@
             </textarea>
           </div>
         </form>
-        <div class="sticky pin-b py-4 bg-secondary">
+        <div :class="{ 'opacity-75': !isValid }"
+          class="sticky pin-b py-4 bg-secondary">
           <div class="text-center text-white text-xl">
             Create
             <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
@@ -80,9 +81,21 @@ export default class CreatePoll extends Vue {
   author = '';
   description = '';
   type = 0;
+  dirty = false;
 
   get selectedType() {
     return this.types[this.type];
+  }
+
+  get errors() {
+    return {
+      name: this.name.length === 0,
+      author: this.author.length === 0
+    };
+  }
+
+  get isValid() {
+    return !Object.keys(this.errors).some(field => this.errors[field]);
   }
 
   resetType() {
