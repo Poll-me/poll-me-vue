@@ -11,7 +11,7 @@
         <input v-model.trim="name" @input.once="dirty = true"
           v-bind:class="{ 'border-red': !valid && dirty }"
           id="name" type="text" placeholder="Your name"
-          class="appearance-none rounded w-full p-2 border-2 border-transparent">
+          class="shadow-none border-transparent border-2">
       </div>
     </form>
     <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">

@@ -90,17 +90,9 @@ export default class CreatePoll extends mixins(validationMixin) {
   author = '';
   description = '';
   type = 0;
-  dirty = false;
 
   get selectedType() {
     return this.types[this.type];
-  }
-
-  get errors() {
-    return {
-      name: this.name.length === 0,
-      author: this.author.length === 0
-    };
   }
 
   get isValid() {
@@ -112,32 +104,3 @@ export default class CreatePoll extends mixins(validationMixin) {
   }
 }
 </script>
-<style lang="postcss" scoped >
-@tailwind utilities;
-
-label {
-  @apply .block;
-  @apply .text-grey-darker;
-  @apply .text-sm;
-  @apply .font-semibold;
-  @apply .pr-2;
-}
-
-input,
-select,
-textarea {
-  @apply .shadow;
-  @apply .appearance-none;
-  @apply .border;
-  @apply .rounded;
-  @apply .w-full;
-  @apply .py-2;
-  @apply .px-3;
-  @apply .text-grey-darker;
-}
-
-select {
-  @apply .bg-white;
-}
-</style>
-
