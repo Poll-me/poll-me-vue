@@ -49,7 +49,7 @@
             </textarea>
           </div>
         </form>
-        <div :class="{ 'opacity-75': !isValid }"
+        <div :class="{ 'opacity-75 cursor-not-allowed': !isValid }"
           class="sticky pin-b py-4 bg-secondary">
           <div class="text-center text-white text-xl">
             Create
@@ -67,16 +67,25 @@
   </div>
 </template>
 <script>
-import Vue from 'vue';
-import Component from 'vue-class-component';
+import Component, { mixins } from 'vue-class-component';
+import { validationMixin } from 'vuelidate';
+import { required } from 'vuelidate/lib/validators';
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapState } = createNamespacedHelpers('polls');
 
 @Component({
-  computed: mapState(['types'])
+  computed: mapState(['types']),
+  validations: {
+    name: {
+      required
+    },
+    author: {
+      required
+    }
+  }
 })
-export default class CreatePoll extends Vue {
+export default class CreatePoll extends mixins(validationMixin) {
   name = '';
   author = '';
   description = '';
@@ -95,7 +104,7 @@ export default class CreatePoll extends Vue {
   }
 
   get isValid() {
-    return !Object.keys(this.errors).some(field => this.errors[field]);
+    return !this.$v.name.$invalid && !this.$v.author.$invalid;
   }
 
   resetType() {
@@ -114,7 +123,9 @@ label {
   @apply .pr-2;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   @apply .shadow;
   @apply .appearance-none;
   @apply .border;
