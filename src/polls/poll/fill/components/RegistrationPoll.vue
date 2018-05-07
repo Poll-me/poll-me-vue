@@ -25,8 +25,8 @@
   </div>
 </template>
 <script>
-import Component, { mixins } from 'vue-class-component';
-import { validationMixin } from 'vuelidate';
+import { VueWithValidations } from '@/utils';
+import Component from 'vue-class-component';
 import { required } from 'vuelidate/lib/validators';
 
 @Component({
@@ -49,7 +49,7 @@ import { required } from 'vuelidate/lib/validators';
     }
   }
 })
-export default class RegistrationPoll extends mixins(validationMixin) {
+export default class RegistrationPoll extends VueWithValidations {
   name = '';
   submitted = false;
 

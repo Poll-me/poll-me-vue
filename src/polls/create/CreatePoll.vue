@@ -67,8 +67,8 @@
   </div>
 </template>
 <script>
-import Component, { mixins } from 'vue-class-component';
-import { validationMixin } from 'vuelidate';
+import { VueWithValidations } from '@/utils';
+import Component from 'vue-class-component';
 import { required } from 'vuelidate/lib/validators';
 import { createNamespacedHelpers } from 'vuex';
 
@@ -85,7 +85,7 @@ const { mapState } = createNamespacedHelpers('polls');
     }
   }
 })
-export default class CreatePoll extends mixins(validationMixin) {
+export default class CreatePoll extends VueWithValidations {
   name = '';
   author = '';
   description = '';
