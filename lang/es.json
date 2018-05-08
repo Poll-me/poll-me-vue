@@ -1,3 +1,51 @@
 {
-  "message": "Hola desde el texto traducido"
+  "poll": {
+    "fill": {
+      "author": "de {author-name}",
+      "share": {
+        "whatsapp": "Compartir por"
+      }
+    }
+  },
+  "polls": {
+    "view-poll": "Ver encuesta",
+    "create-poll": "Nueva encuesta",
+    "new": {
+      "title": "Nueva encuesta",
+      "type-placeholder": "¿Que tipo de encuesta?",
+      "first-select-type": "Primero, selecciona que tipo de encuesta quieres crear",
+      "form": {
+        "name-label": "Nombre:",
+        "name-placeholder": "El motivo de la encuesta",
+        "author-label": "Autor:",
+        "author-placeholder": "¿Quién pregunta?",
+        "description-label": "Descripción",
+        "description-placeholder": "Cuenta de que va la encuesta en pocas lineas",
+        "submit-button": "Crear"
+      }
+    },
+    "types": {
+      "1": {
+        "name": "Registro",
+        "description": "Una lista rapida de quien esta interesado en el motivo de la encuesta.",
+        "fill": {
+          "people-in": "Gente dentro",
+          "author-label": "¿Te apuntas?",
+          "author-placeholder": "Tu nombre"
+        }
+      }
+    }
+  },
+  "footer": {
+    "project-details": {
+      "message": "PollMe es {project-link} realizado con {love-icon} por {community-link} bajo la {license-link}",
+      "project": "un projecto de código abierto",
+      "community": "la comunidad",
+      "license": "licencia MIT"
+    },
+    "contribution": {
+      "message": "Puedes contribuir {issues-link} proponiendo nuevas funcionalidades",
+      "link": "aquí"
+    }
+  }
 }

@@ -8,17 +8,15 @@
           <p class="text-grey-darker text-sm">
             {{ poll.description }}
           </p>
-          <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}"
+          <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}" v-t="'polls.view-poll'"
             class="bg-red hover:bg-red-dark
-              text-white font-bold py-2 px-4 rounded block text-center mt-2" >
-            View poll
-          </router-link>
+              text-white font-bold py-2 px-4 rounded block text-center mt-2" ></router-link>
         </div>
       </div>
     </div>
     <router-link :to="{ name: 'new-poll' }"
       class="sticky pin-b py-4 bg-secondary text-center text-white text-lg">
-      Create a new Poll
+      <span v-t="'polls.create-poll'"></span>
       <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
     </router-link>
   </div>

@@ -1,17 +1,15 @@
 <template>
   <div class="">
-    <div class="text-center pb-2">People IN</div>
+    <div class="text-center pb-2" v-t="`polls.types.${poll.type}.fill.people-in`"></div>
     <form v-if="!submitted" @submit.prevent="submit"
       class="bg-blue-dark rounded p-2 mb-2 flex">
-      <label for="name"
-        class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center">
-        Are you in?
-      </label>
+      <label for="name" v-t="`polls.types.${poll.type}.fill.author-label`"
+        class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center"></label>
       <div class="flex-1 text-grey-darker text-sm" >
         <input v-model.trim="name" @input="$v.name.$touch()"
           v-bind:class="{ 'border-red': $v.name.$error }"
-          id="name" type="text" placeholder="Your name"
-          class="shadow-none border-transparent border-2">
+          :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
+          id="name" type="text" class="shadow-none border-transparent border-2">
       </div>
     </form>
     <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">

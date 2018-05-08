@@ -1,3 +1,51 @@
 {
-  "message": "Hello from translated text"
+  "poll": {
+    "fill": {
+      "author": "by {author-name}",
+      "share": {
+        "whatsapp": "Share via"
+      }
+    }
+  },
+  "polls": {
+    "view-poll": "View poll",
+    "create-poll": "Create a new Poll",
+    "new": {
+      "title": "New poll",
+      "type-placeholder": "What kind of poll?",
+      "first-select-type": "First, select what kind of poll you want to create",
+      "form": {
+        "name-label": "Name:",
+        "name-placeholder": "The poll topic",
+        "author-label": "Author:",
+        "author-placeholder": "Who is asking?",
+        "description-label": "Description",
+        "description-placeholder": "Tell about what to participate in",
+        "submit-button": "Create"
+      }
+    },
+    "types": {
+      "1": {
+        "name": "Registration",
+        "description": "Take a quick look at who is going to participate in the topic you describe.",
+        "fill": {
+          "people-in": "People IN",
+          "author-label": "Are you in?",
+          "author-placeholder": "Your name"
+        }
+      }
+    }
+  },
+  "footer": {
+    "project-details": {
+      "message": "PollMe is an {project-link} made with {love-icon} by {community-link} under the {license-link}",
+      "project": "open source project",
+      "community": "the community",
+      "license": "MIT license"
+    },
+    "contribution": {
+      "message": "You can contribute by coding or propose new features {issues-link}",
+      "link": "here"
+    }
+  }
 }
