@@ -2,7 +2,7 @@
   <div class="flex items-center">
     <font-awesome-icon icon="language" size="2x" fixed-width></font-awesome-icon>
     <select
-      id="language-selector" v-model="langCode"
+      id="language-selector" :value="lang" @change.prevent="languageSelected($event)"
       class="flex-1 shadow-none ml-2 text-xs">
       <option v-for="lang in languages" :key="lang.code" :value="lang.code">
         {{ lang.name }}
@@ -12,9 +12,13 @@
 </template>
 <script>
 import Vue from 'vue';
+import { mapState, mapActions } from 'vuex';
 import Component from 'vue-class-component';
 
-@Component()
+@Component({
+  computed: mapState(['lang']),
+  methods: mapActions(['changeLanguage'])
+})
 export default class LangSelector extends Vue {
   languages = [
     {
@@ -26,7 +30,11 @@ export default class LangSelector extends Vue {
       name: 'Español'
     }
   ];
-  langCode = 'en';
+
+  languageSelected(event) {
+    const selectedLang = event.target.value;
+    this.changeLanguage({ lang: selectedLang });
+  }
 }
 </script>
 
