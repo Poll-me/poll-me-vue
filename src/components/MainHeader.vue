@@ -7,8 +7,9 @@
       <div class="flex-1 flex items-center justify-center text-white text-xl font-medium">
         PollMe
       </div>
-      <div class="w-10 flex items-center justify-center text-white text-2xl">
-        <font-awesome-icon icon="bars" fixed-width />
+      <div class="w-10 flex items-center justify-center text-white text-3xl">
+        <font-awesome-icon :icon="['fab', 'pied-piper-alt']" fixed-width>
+        </font-awesome-icon>
       </div>
     </div>
   </div>

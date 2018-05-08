@@ -19,7 +19,7 @@
           <div class="container py-4">
             <div class="flex mb-2 items-center">
               <div class="flex-1 font-medium">{{ type.name }}</div>
-              <font-awesome-icon icon="undo" size="sm"
+              <font-awesome-icon icon="undo" size="sm" class="cursor-pointer"
                 @click="resetType"></font-awesome-icon>
             </div>
             <small class="italic">{{ type.description }}</small>

@@ -22,9 +22,9 @@
           <div class="flex-1">Description</div>
           <switches v-model="hasDescription" color="blue" type-bold="true" ></switches>
         </label>
-        <textarea v-if="hasDescription" v-model.trim="description"
+        <textarea v-show="hasDescription" v-model.trim="description"
           @input="$v.description.$touch()" :class="{ 'border-red': $v.description.$error }"
-          id="poll-author" rows="4" placeholder="Tell about what to participate in">
+          id="poll-description" rows="4" placeholder="Tell about what to participate in">
         </textarea>
       </div>
     </div>
