@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Component from 'vue-class-component';
 
+import i18nGuard from './i18n.guard';
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
 
@@ -13,7 +14,7 @@ Component.registerHooks([
 
 Vue.use(Router);
 
-export default new Router({
+const routerObject = new Router({
   mode: 'history',
   routes: [
     {
@@ -36,3 +37,7 @@ export default new Router({
     }
   ]
 });
+
+routerObject.beforeResolve(i18nGuard);
+
+export default routerObject;
