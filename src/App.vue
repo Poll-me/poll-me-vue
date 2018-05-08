@@ -12,18 +12,20 @@
 
 <script>
 import '@/assets/css/main.css';
-import { loadLanguageAsync } from '@/setup/i18n';
+import { mapActions } from 'vuex';
 
 import mainComponents from './components';
 
 export default {
   name: 'App',
   components: { ...mainComponents },
+  methods: mapActions(['changeLanguage']),
+
   created() {
     let userLang = navigator.language;
     if (typeof userLang === 'string' && userLang.length > 0) {
       userLang = userLang.slice(0, 2);
-      loadLanguageAsync(userLang);
+      this.changeLanguage({ lang: userLang });
     }
   }
 };

@@ -5,7 +5,7 @@ import defaultLangData from '../../lang/en.json';
 
 Vue.use(VueI18n);
 
-const defaultLang = 'en';
+export const defaultLang = 'en';
 
 export const i18n = new VueI18n({
   locale: defaultLang,
