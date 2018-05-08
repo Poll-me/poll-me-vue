@@ -1,5 +1,7 @@
 @import './vendor/tailwind.css';
 
+@import url('https://fonts.googleapis.com/css?family=Amaranth:400,700');
+
 html,
 body {
   @apply .h-full;
