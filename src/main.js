@@ -2,8 +2,9 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 
-import './firebase';
-import './font-awesome';
+import './setup/firebase';
+import './setup/font-awesome';
+import I18n from './setup/i18n';
 
 import App from './App';
 import router from './router';
@@ -16,6 +17,7 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n: I18n,
   components: { App },
   template: '<App/>'
 });

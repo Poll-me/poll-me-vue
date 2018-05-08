@@ -1,4 +1,4 @@
-import fb from '@/firebase';
+import fb from '@/setup/firebase';
 
 import fillActions from './fill';
 
