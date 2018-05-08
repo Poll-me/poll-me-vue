@@ -41,10 +41,11 @@
               id="poll-author" type="text" placeholder="Who is asking?">
           </div>
           <div class="">
-            <label for="poll-description" class="mt-4 mb-2">
-              Description:
+            <label for="poll-description" class="mt-4 mb-2 flex pr-0 items-center">
+              <div class="flex-1">Description</div>
+              <switches v-model="hasDescription" color="blue" type-bold="true" ></switches>
             </label>
-            <textarea v-model.trim="description"
+            <textarea v-if="hasDescription" v-model.trim="description"
               id="poll-author" rows="4" placeholder="Tell about what to participate in">
             </textarea>
           </div>
@@ -67,15 +68,18 @@
   </div>
 </template>
 <script>
-import { VueWithValidations } from '@/utils';
 import Component from 'vue-class-component';
 import { required } from 'vuelidate/lib/validators';
 import { createNamespacedHelpers } from 'vuex';
+import Switches from 'vue-switches';
+
+import { VueWithValidations } from '@/utils';
 
 const { mapState } = createNamespacedHelpers('polls');
 
 @Component({
   computed: mapState(['types']),
+  components: { Switches },
   validations: {
     name: {
       required
@@ -89,6 +93,7 @@ export default class CreatePoll extends VueWithValidations {
   name = '';
   author = '';
   description = '';
+  hasDescription = false;
   type = 0;
 
   get selectedType() {

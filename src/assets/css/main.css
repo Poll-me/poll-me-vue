@@ -55,3 +55,10 @@ textarea {
 select {
   @apply .bg-white;
 }
+
+.vue-switcher--bold {
+  @apply pr-0;
+}
+.vue-switcher--bold div {
+  top: 0 !important;
+}
