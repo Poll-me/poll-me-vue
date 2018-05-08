@@ -196,6 +196,10 @@ module.exports = {
   */
 
   fonts: {
+    'title': [
+      'Amaranth',
+      'sans-serif'
+    ],
     'sans': [
       'system-ui',
       'BlinkMacSystemFont',
