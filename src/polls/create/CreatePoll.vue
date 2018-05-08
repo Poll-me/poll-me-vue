@@ -49,7 +49,7 @@
             </textarea>
           </div>
         </form>
-        <div :class="{ 'opacity-75 cursor-not-allowed': !isValid }"
+        <div :class="{ 'opacity-75 cursor-not-allowed': $v.$invalid }"
           class="sticky pin-b py-4 bg-secondary">
           <div class="text-center text-white text-xl">
             Create
@@ -93,10 +93,6 @@ export default class CreatePoll extends VueWithValidations {
 
   get selectedType() {
     return this.types[this.type];
-  }
-
-  get isValid() {
-    return !this.$v.name.$invalid && !this.$v.author.$invalid;
   }
 
   resetType() {
