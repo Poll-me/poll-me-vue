@@ -1,3 +1,4 @@
 import polls from './polls';
+import types from './types';
 
-export default { ...polls };
+export default { ...polls, ...types };

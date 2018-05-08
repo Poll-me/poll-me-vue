@@ -8,10 +8,10 @@
         Are you in?
       </label>
       <div class="flex-1 text-grey-darker text-sm" >
-        <input v-model.trim="name" @input.once="dirty = true"
-          v-bind:class="{ 'border-red': !valid && dirty }"
+        <input v-model.trim="name" @input="$v.name.$touch()"
+          v-bind:class="{ 'border-red': $v.name.$error }"
           id="name" type="text" placeholder="Your name"
-          class="appearance-none rounded w-full p-2 border-2 border-transparent">
+          class="shadow-none border-transparent border-2">
       </div>
     </form>
     <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
@@ -25,8 +25,9 @@
   </div>
 </template>
 <script>
-import Vue from 'vue';
+import { VueWithValidations } from '@/utils';
 import Component from 'vue-class-component';
+import { required } from 'vuelidate/lib/validators';
 
 @Component({
   props: {
@@ -40,17 +41,17 @@ import Component from 'vue-class-component';
       type: Boolean,
       default: false
     }
+  },
+  validations: {
+    name: {
+      required,
+      unique(val) { return !this.poll.answers.some(ans => ans.author === val); }
+    }
   }
 })
-export default class RegistrationPoll extends Vue {
+export default class RegistrationPoll extends VueWithValidations {
   name = '';
-  dirty = false;
   submitted = false;
-
-  get valid() {
-    const voteExists = this.poll.answers.some(ans => ans.author === this.name);
-    return this.name.length > 0 && !voteExists;
-  }
 
   mounted() {
     if (this.autofocus) {
@@ -59,7 +60,7 @@ export default class RegistrationPoll extends Vue {
   }
 
   submit() {
-    if (this.valid) {
+    if (!this.$v.$invalid) {
       this.$emit('vote', { author: this.name });
       this.submitted = true;
     }

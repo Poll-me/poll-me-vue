@@ -1,3 +1,4 @@
 import polls from './polls';
+import create from './create';
 
-export default { ...polls };
+export default { ...polls, ...create };

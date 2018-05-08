@@ -2,7 +2,8 @@
   <a :href="`whatsapp://send?text=${shareText}`" data-action="share/whatsapp/share"
     class="text-white p-2 flex items-center justify-center" >
     <div class="flex-shrink mr-1">Share via WhatsApp</div>
-    <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width class="text-2xl"></font-awesome-icon>
+    <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width class="text-2xl">
+    </font-awesome-icon>
   </a>
 </template>
 <script>
@@ -25,8 +26,8 @@ import Component from 'vue-class-component';
 export default class SharePollWhatsapp extends Vue {
   get title() {
     let title = `*${this.poll.name}*\n`;
-    if (this.poll.answers.length > 0) {
-      title += `_Total: ${this.poll.answers.length} persons_\n`;
+    if (this.poll.answers.length > 1) {
+      title += `_${this.poll.answers.length} people_\n`;
     }
     return title;
   }
@@ -39,15 +40,13 @@ export default class SharePollWhatsapp extends Vue {
   }
 
   get shareText() {
-    return encodeURI(
-      `${this.title}${this.answers}\n${this.url}`
-    );
+    return encodeURI(`${this.title}${this.answers}\n${this.url}`);
   }
 }
 </script>
 <style scoped>
 a {
-  background-color: #25D366;
+  background-color: #25d366;
 }
 </style>
 

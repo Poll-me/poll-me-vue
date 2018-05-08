@@ -23,14 +23,13 @@ import Component from 'vue-class-component';
 import { createNamespacedHelpers } from 'vuex';
 
 import pollTypeComponentsMap from './components';
-import { voteToActionPayload } from './utils';
 import SharePollBar from './share';
 
 const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll');
 
 @Component({
   computed: {
-    ...mapGetters(['poll']),
+    ...mapGetters(['poll', 'voteActionPayload']),
     ...mapState(['key'])
   },
   methods: mapActions(['submitVote']),
@@ -42,7 +41,7 @@ export default class FillPoll extends Vue {
   }
 
   onVote(vote) {
-    const actionPayload = voteToActionPayload(this.poll.type, this.key, vote);
+    const actionPayload = this.voteActionPayload(vote);
     this.submitVote(actionPayload);
   }
 }

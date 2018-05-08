@@ -32,7 +32,7 @@ export default class SharePollBar extends Vue {
   socialComponentPrefix = 'SharePoll';
 
   get pollUrl() {
-    return `https://poll-me.com/polls/${this.poll.key}`;
+    return `${location.protocol}//${location.host}/polls/${this.poll.key}`;
   }
 
   getSocialComponent(media) {

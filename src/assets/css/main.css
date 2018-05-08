@@ -1,6 +1,7 @@
 @import './vendor/tailwind.css';
 
-html, body {
+html,
+body {
   @apply .h-full;
 }
 
@@ -16,18 +17,48 @@ a {
   @apply .no-underline;
 }
 
-input, textarea, select {
-  outline: none;
-}
-
 .shadow-t {
-  box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.10);
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .shadow-t-md {
-  box-shadow: 0 -4px 8px 0 rgba(0,0,0,0.12), 0 -2px 4px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.12), 0 -2px 4px 0 rgba(0, 0, 0, 0.08);
 }
 
 .shadow-t-lg {
-  box-shadow: 0 -15px 30px 0 rgba(0,0,0,0.11), 0 -5px 15px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 -15px 30px 0 rgba(0, 0, 0, 0.11), 0 -5px 15px 0 rgba(0, 0, 0, 0.08);
+}
+
+label {
+  @apply .block;
+  @apply .text-grey-darker;
+  @apply .text-sm;
+  @apply .font-semibold;
+  @apply .pr-2;
+}
+
+input,
+select,
+textarea {
+  @apply .shadow;
+  @apply .appearance-none;
+  @apply .border;
+  @apply .rounded;
+  @apply .w-full;
+  @apply .py-2;
+  @apply .px-3;
+  @apply .text-grey-darker;
+
+  outline: none;
+}
+
+select {
+  @apply .bg-white;
+}
+
+.vue-switcher--bold {
+  @apply pr-0;
+}
+.vue-switcher--bold div {
+  top: 0 !important;
 }
