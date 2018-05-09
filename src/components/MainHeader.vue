@@ -8,7 +8,7 @@
         PollMe
       </div>
       <div class="flex items-center justify-center text-3xl">
-        <font-awesome-icon icon="bars" fixed-width class="cursor-pointer" @click="asideOpen = true">
+        <font-awesome-icon :icon="menuIcon" fixed-width class="cursor-pointer" @click="asideOpen = !asideOpen">
         </font-awesome-icon>
       </div>
     </div>
@@ -27,5 +27,9 @@ import AsideMenu from './AsideMenu';
 })
 export default class MainHeader extends Vue {
   asideOpen = false;
+
+  get menuIcon() {
+    return this.asideOpen ? 'times' : 'bars';
+  }
 }
 </script>
