@@ -8,10 +8,11 @@
         PollMe
       </div>
       <div class="flex items-center justify-center text-3xl">
-        <font-awesome-icon :icon="['fab', 'pied-piper-alt']" fixed-width>
+        <font-awesome-icon icon="bars" fixed-width class="cursor-pointer" @click="asideOpen = true">
         </font-awesome-icon>
       </div>
     </div>
+    <AsideMenu v-if="asideOpen"></AsideMenu>
   </div>
 </template>
 
@@ -19,6 +20,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component()
-export default class MainHeader extends Vue {}
+import AsideMenu from './AsideMenu';
+
+@Component({
+  components: { AsideMenu }
+})
+export default class MainHeader extends Vue {
+  asideOpen = false;
+}
 </script>
