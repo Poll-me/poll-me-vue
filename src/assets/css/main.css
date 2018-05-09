@@ -1,5 +1,6 @@
 @import './vendor/tailwind.css';
 @import './components/button.css';
+@import './components/nav-list.css';
 
 @import url('https://fonts.googleapis.com/css?family=Amaranth:400,700');
 
