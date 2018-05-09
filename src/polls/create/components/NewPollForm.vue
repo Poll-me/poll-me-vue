@@ -2,36 +2,33 @@
   <form class="flex-1 flex flex-col" @submit.prevent="submit">
     <div class="flex-1 container py-4">
       <div class="flex items-center mb-4">
-        <label for="poll-name">
-          Name:
-        </label>
+        <label for="poll-name" v-t="'polls.new.form.name-label'"></label>
         <input v-model.trim="name" :class="{ 'border-red': $v.name.$error }"
-          @input="$v.name.$touch()"
-          id="poll-name" type="text" placeholder="The poll topic" required >
+          :placeholder="$t('polls.new.form.name-placeholder')" @input="$v.name.$touch()"
+          id="poll-name" type="text" required >
       </div>
       <div class="flex items-center">
-        <label for="poll-author">
-          Author:
-        </label>
+        <label for="poll-author" v-t="'polls.new.form.author-label'"></label>
         <input v-model.trim="author" :class="{ 'border-red': $v.author.$error }"
-          @input="$v.author.$touch()"
-          id="poll-author" type="text" placeholder="Who is asking?" required >
+          @input="$v.author.$touch()" :placeholder="$t('polls.new.form.author-placeholder')"
+          id="poll-author" type="text" required >
       </div>
       <div class="">
         <label for="poll-description" class="mt-4 mb-2 flex pr-0 items-center">
-          <div class="flex-1">Description</div>
+          <div class="flex-1" v-t="'polls.new.form.description-label'"></div>
           <switches v-model="hasDescription" color="blue" type-bold="true" ></switches>
         </label>
         <textarea v-show="hasDescription" v-model.trim="description"
+          :placeholder="$t('polls.new.form.description-placeholder')"
           @input="$v.description.$touch()" :class="{ 'border-red': $v.description.$error }"
-          id="poll-description" rows="4" placeholder="Tell about what to participate in">
+          id="poll-description" rows="4" >
         </textarea>
       </div>
     </div>
     <button :class="{ 'opacity-75': $v.$invalid }" :disabled="$v.$invalid"
       type="submit" class="sticky pin-b py-4 bg-secondary">
       <div class="text-center text-white text-xl">
-        Create
+        <span v-t="'polls.new.form.submit-button'"></span>
         <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
       </div>
     </button>

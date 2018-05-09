@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import '@/setup/font-awesome';
 import storeModule from '@/polls/store';
 import UserPolls from '@/polls/UserPolls';
+import I18n from '@/setup/i18n';
 import store from '@/store';
 
 const entitiesMock = { a: {}, b: {} };
@@ -18,7 +20,12 @@ describe('UserPolls.vue', () => {
 
   beforeAll(() => {
     Vue.use(Router);
-    router = new Router({ routes: [{ name: 'fill-poll', path: ':key' }] });
+    router = new Router({
+      routes: [
+        { name: 'fill-poll', path: ':key' },
+        { name: 'new-poll', path: 'new' }
+      ]
+    });
 
     store.registerModule('polls', {
       ...storeModule,
@@ -28,7 +35,7 @@ describe('UserPolls.vue', () => {
 
   beforeEach(() => {
     const Constructor = Vue.extend(UserPolls);
-    component = new Constructor({ router, store }).$mount();
+    component = new Constructor({ router, store, i18n: I18n }).$mount();
   });
 
   it('should dispath the fetch polls action', () => {

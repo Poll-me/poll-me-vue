@@ -3,7 +3,10 @@
     <div class="sticky pin-t z-10 shadow bg-primary">
       <div class="container text-white py-4">
         <h1 class="text-lg font-medium">{{ poll.name }}</h1>
-        <div class="italic text-xs mt-2">by {{ poll.author }}</div>
+        <i18n path="poll.fill.author" tag="div"
+          class="italic text-xs mt-2">
+          <span place="author-name">{{ poll.author }}</span>
+        </i18n>
       </div>
     </div>
     <div class="container py-4 flex-1">

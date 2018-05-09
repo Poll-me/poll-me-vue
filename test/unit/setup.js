@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import fb from '@/firebase';
+import fb from '@/setup/firebase';
 
 Vue.config.productionTip = false;
 

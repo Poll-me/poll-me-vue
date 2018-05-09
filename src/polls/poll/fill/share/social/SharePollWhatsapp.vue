@@ -1,9 +1,10 @@
 <template>
   <a :href="`whatsapp://send?text=${shareText}`" data-action="share/whatsapp/share"
     class="text-white p-2 flex items-center justify-center" >
-    <div class="flex-shrink mr-1">Share via WhatsApp</div>
+    <div class="flex-shrink mr-1" v-t="'poll.fill.share.whatsapp'"></div>
     <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width class="text-2xl">
     </font-awesome-icon>
+    Whatsapp
   </a>
 </template>
 <script>

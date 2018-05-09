@@ -1,28 +1,25 @@
 <template>
   <div class="footer-wrapper bg-black text-white shadow-t-md">
-    <div class="container py-3 text-xs text-center">
-      <p>
-        This is an
-        <a class="text-primary" target="_blank" href="https://github.com/Poll-me/poll-me-vue">
-          open source project
-        </a>
-        made with <font-awesome-icon icon="heart"></font-awesome-icon> by
-        <a class="text-primary" target="_blank" href="https://github.com/Poll-me">
-          PollMe community
-        </a>
-        under the
-        <a class="text-primary" target="_blank"
-          href="https://github.com/Poll-me/poll-me-vue/blob/master/LICENSE">
-          MIT license
-        </a>
-      </p>
-      <p class="mt-2">
-        You can contribute by coding or propose new features
-        <a class="text-primary" target="_blank"
-          href="https://github.com/Poll-me/poll-me-vue/issues">
-          here
-        </a>
-      </p>
+    <div class="container py-3">
+      <LangSelector class="mb-3"></LangSelector>
+      <div class="text-xs text-center">
+        <i18n path="footer.project-details.message" tag="p">
+          <a place="project-link" v-t="'footer.project-details.project'"
+            class="text-primary" target="_blank" href="https://github.com/Poll-me/poll-me-vue"></a>
+          <font-awesome-icon place="love-icon"
+            icon="heart"></font-awesome-icon>
+          <a place="community-link" v-t="'footer.project-details.community'"
+            class="text-primary" target="_blank" href="https://github.com/Poll-me"></a>
+          <a place="license-link" v-t="'footer.project-details.license'"
+            class="text-primary" target="_blank"
+            href="https://github.com/Poll-me/poll-me-vue/blob/master/LICENSE"></a>
+        </i18n>
+        <i18n path="footer.contribution.message" tag="p" class="mt-2">
+          <a place="issues-link" v-t="'footer.contribution.link'"
+            class="text-primary" target="_blank"
+            href="https://github.com/Poll-me/poll-me-vue/issues"></a>
+        </i18n>
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +28,10 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component()
+import LangSelector from './LangSelector';
+
+@Component({
+  components: { LangSelector }
+})
 export default class MainFooter extends Vue {}
 </script>
