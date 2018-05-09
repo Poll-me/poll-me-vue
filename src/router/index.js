@@ -1,7 +1,8 @@
 import Vue from 'vue';
-import Router from 'vue-router';
 import Component from 'vue-class-component';
+import Router from 'vue-router';
 
+import NotFoundPage from '../NotFoundPage';
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
 
@@ -18,7 +19,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: { name: 'user-polls' }
+      redirect: {
+        name: 'user-polls'
+      }
     },
     {
       path: '/polls',
@@ -32,7 +35,8 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/'
+      name: 'not-found',
+      component: NotFoundPage
     }
   ]
 });
