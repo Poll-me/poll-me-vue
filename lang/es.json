@@ -36,6 +36,13 @@
       }
     }
   },
+  "not-found": {
+    "title": "Página no encontrada",
+    "description": "¡¡Un error 404 salvaje apareció!!",
+    "info": "Pero tranquilo, aun puedes ir a:",
+    "home-link": "Home",
+    "create-link": "Nueva"
+  },
   "footer": {
     "project-details": {
       "message": "PollMe es {project-link} realizado con {love-icon} por {community-link} bajo la {license-link}",

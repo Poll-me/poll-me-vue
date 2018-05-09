@@ -36,6 +36,13 @@
       }
     }
   },
+  "not-found": {
+    "title": "Page not found",
+    "description": "A wild 404 error appeared!!",
+    "info": "But keep calm, you still can go to:",
+    "home-link": "Home page",
+    "create-link": "New poll"
+  },
   "footer": {
     "project-details": {
       "message": "PollMe is an {project-link} made with {love-icon} by {community-link} under the {license-link}",
