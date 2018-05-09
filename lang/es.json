@@ -3,7 +3,10 @@
     "fill": {
       "author": "de {author-name}",
       "share": {
-        "whatsapp": "Compartir por"
+        "whatsapp": {
+          "button": "Compartir por",
+          "people": "{number} personas"
+        }
       }
     }
   },
@@ -13,7 +16,7 @@
     "new": {
       "title": "Nueva encuesta",
       "type-placeholder": "¿Que tipo de encuesta?",
-      "first-select-type": "Primero, selecciona que tipo de encuesta quieres crear",
+      "first-select-type": "Primero, selecciona qué tipo de encuesta quieres crear",
       "form": {
         "name-label": "Nombre:",
         "name-placeholder": "El motivo de la encuesta",
@@ -27,7 +30,7 @@
     "types": {
       "1": {
         "name": "Registro",
-        "description": "Una lista rapida de quien esta interesado en el motivo de la encuesta.",
+        "description": "Una lista rápida de quién está interesado en el motivo de la encuesta.",
         "fill": {
           "people-in": "Gente dentro",
           "author-label": "¿Te apuntas?",
@@ -35,6 +38,13 @@
         }
       }
     }
+  },
+  "not-found": {
+    "title": "Página no encontrada",
+    "description": "¡¡Un error 404 salvaje apareció!!",
+    "info": "Pero tranquilo, aún puedes ir a:",
+    "home-link": "Home",
+    "create-link": "Nueva"
   },
   "footer": {
     "project-details": {
