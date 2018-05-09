@@ -7,10 +7,12 @@
       <div class="mt-4">But keep calm, you still can go to:</div>
     </div>
     <div class="flex mt-2">
-      <router-link class="flex-1 bg-primary rounded text-white p-2" to="/">
+      <router-link class="flex-1 btn btn-primary" to="/">
+        <font-awesome-icon icon="home"></font-awesome-icon>
         Home page
       </router-link>
-      <router-link class="flex-1 bg-primary rounded text-white p-2 ml-2" :to="{ name: 'new-poll' }">
+      <router-link class="flex-1 btn btn-primary ml-2" :to="{ name: 'new-poll' }">
+        <font-awesome-icon icon="plus"></font-awesome-icon>
         New poll
       </router-link>
     </div>
