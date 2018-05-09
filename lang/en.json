@@ -3,7 +3,10 @@
     "fill": {
       "author": "by {author-name}",
       "share": {
-        "whatsapp": "Share via"
+        "whatsapp": {
+          "button": "Share via",
+          "people": "{number} people"
+        }
       }
     }
   },
