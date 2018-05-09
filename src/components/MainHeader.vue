@@ -8,7 +8,9 @@
         PollMe
       </div>
       <div class="flex items-center justify-center text-3xl">
-        <font-awesome-icon :icon="menuIcon" fixed-width class="cursor-pointer" @click="asideOpen = !asideOpen">
+        <font-awesome-icon :icon="menuIcon" fixed-width
+          @click="asideOpen = !asideOpen"
+          class="cursor-pointer">
         </font-awesome-icon>
       </div>
     </div>
