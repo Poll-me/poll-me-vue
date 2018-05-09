@@ -5,6 +5,7 @@
     & a {
       @apply .block;
       @apply .py-2;
+      @apply .text-white;
 
       &.router-link-exact-active {
         @apply .bg-primary;

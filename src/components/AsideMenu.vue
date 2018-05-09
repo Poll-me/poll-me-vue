@@ -34,9 +34,4 @@ import Component from 'vue-class-component';
 @Component()
 export default class AsideMenu extends Vue {}
 </script>
-<style scoped>
-a {
-  color: white;
-}
-</style>
 
