@@ -37,6 +37,10 @@
           "author-placeholder": "Your name"
         }
       }
+    },
+    "not-found": {
+      "title": "This is not the poll you are looking for...",
+      "description": "The poll with key '{key}' does not exist, maybe it is expired or has been deleted by the author."
     }
   },
   "not-found": {

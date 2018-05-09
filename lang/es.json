@@ -37,6 +37,10 @@
           "author-placeholder": "Tu nombre"
         }
       }
+    },
+    "not-found": {
+      "title": "Esta no es la encuesta que estas buscando...",
+      "description": "La encuesta con la clave '{key}' no existe, tal vez ha caducado o ha sido eliminada por el autor."
     }
   },
   "not-found": {

@@ -9,7 +9,7 @@ export default (to, from, next) => {
       if (snapshot.val() !== null) {
         next();
       } else {
-        next({ name: 'not-found' });
+        next({ replace: true, name: 'poll-not-found', params: { pollKey } });
       }
     });
 };
