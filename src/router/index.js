@@ -6,6 +6,8 @@ import NotFoundPage from '../NotFoundPage';
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
 
+import hasAuthGuard from './guards/has-auth';
+
 Component.registerHooks([
   'beforeRouteEnter',
   'beforeRouteLeave',
@@ -14,7 +16,7 @@ Component.registerHooks([
 
 Vue.use(Router);
 
-export default new Router({
+const routerObject = new Router({
   mode: 'history',
   routes: [
     {
@@ -26,7 +28,10 @@ export default new Router({
     {
       path: '/polls',
       component: () => import(/* webpackChunkName: "polls-chunk" */ '@/polls'),
-      children: pollsRoutes
+      children: pollsRoutes,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/user',
@@ -40,3 +45,7 @@ export default new Router({
     }
   ]
 });
+
+routerObject.beforeEach(hasAuthGuard);
+
+export default routerObject;
