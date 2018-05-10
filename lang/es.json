@@ -1,4 +1,12 @@
 {
+  "header": {
+    "nav-menu": {
+      "home-link": "Home",
+      "new-link": "Nueva encuesta",
+      "polls-link": "Tus encuestas",
+      "profile-link": "Perfil"
+    }
+  },
   "poll": {
     "fill": {
       "author": "de {author-name}",

@@ -1,4 +1,12 @@
 {
+  "header": {
+    "nav-menu": {
+      "home-link": "Home",
+      "new-link": "New poll",
+      "polls-link": "Your polls",
+      "profile-link": "Profile"
+    }
+  },
   "poll": {
     "fill": {
       "author": "by {author-name}",
