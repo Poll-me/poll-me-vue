@@ -1,13 +1,14 @@
 .slide-down-enter-active, .slide-down-leave-active {
-  transition-duration: .3s;
   transition-property: transform;
 }
 
 .slide-down-enter-active {
+  transition-duration: .3s;
   transition-timing-function: ease-out;
 }
 
 .slide-down-leave-active {
+  transition-duration: .15s;
   transition-timing-function: ease-in;
 }
 

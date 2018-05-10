@@ -27,7 +27,12 @@ import Component from 'vue-class-component';
 import NavMenu from './NavMenu';
 
 @Component({
-  components: { NavMenu }
+  components: { NavMenu },
+  watch: {
+    $route() {
+      this.navMenuOpen = false;
+    }
+  }
 })
 export default class MainHeader extends Vue {
   navMenuOpen = false;
