@@ -58,7 +58,6 @@ textarea {
 
 select {
   @apply .bg-white;
-  @apply .leading-tight;
 }
 
 .vue-switcher--bold {
