@@ -8,7 +8,7 @@ export default {
       if (auth.currentUser === null) {
         auth.onAuthStateChanged((user) => {
           if (user === null) {
-            auth.signInAnonymously().catch(error => reject(error));
+            auth.signInAnonymously().catch(reject);
           } else {
             commit('setLoggedState', { isLogged: !user.isAnonymous });
 
@@ -17,11 +17,11 @@ export default {
               profile: { displayName, uid, phoneNumber, photoURL, email }
             });
 
-            resolve(true);
+            resolve(!user.isAnonymous);
           }
-        });
+        }, reject);
       } else {
-        resolve(true);
+        resolve(!auth.currentUser.isAnonymous);
       }
     });
   }
