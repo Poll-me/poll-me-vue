@@ -1,17 +1,17 @@
 <template>
   <div class="">
-    <div class="text-center pb-2" v-t="`polls.types.${poll.type}.fill.people-in`"></div>
     <form v-if="!submitted" @submit.prevent="submit"
-      class="bg-blue-dark rounded p-2 mb-2 flex">
+      class="bg-blue-dark rounded p-2 mb-2 flex shadow">
       <label for="name" v-t="`polls.types.${poll.type}.fill.author-label`"
         class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center"></label>
-      <div class="flex-1 text-grey-darker text-sm" >
+      <div class="flex-1 text-grey-darker" >
         <input v-model.trim="name" @input="$v.name.$touch()"
           v-bind:class="{ 'border-red': $v.name.$error }"
           :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
           id="name" type="text" class="shadow-none border-transparent border-2">
       </div>
     </form>
+    <div class="text-center py-2" v-t="`polls.types.${poll.type}.fill.people-in`"></div>
     <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
       <li v-for="ans in poll.answers" :key="ans.author"
         class="w-1/2 p-1" >

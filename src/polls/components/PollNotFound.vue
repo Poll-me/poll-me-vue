@@ -2,7 +2,7 @@
   <div class="container py-4 text-center">
     <div class="font-title">
       <h1 class="uppercase italic text-2xl" v-t="'polls.not-found.title'"></h1>
-      <img class="inline-block my-4" alt="vader" src="/static/img/jedi-mind-control.png">
+      <img class="inline-block my-4" alt="vader" src="/static/img/obi-wan3.gif">
       <h2 v-t="{ path: 'polls.not-found.description', args: { key: pollKey } }"
         class="text-lg" ></h2>
       <div class="mt-4" v-t="'not-found.info'"></div>

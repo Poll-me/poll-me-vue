@@ -4,7 +4,7 @@
     <div class="flex-shrink mr-1" v-t="'poll.fill.share.whatsapp.button'"></div>
     <font-awesome-icon :icon="['fab', 'whatsapp']" fixed-width class="text-2xl">
     </font-awesome-icon>
-    Whatsapp
+    WhatsApp
   </a>
 </template>
 <script>

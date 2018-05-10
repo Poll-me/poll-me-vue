@@ -1,0 +1,18 @@
+.nav-list {
+  & ul {
+    @apply .list-reset;
+
+    & a {
+      @apply .block;
+      @apply .py-3;
+      @apply .text-lg;
+      @apply .text-white;
+
+      &.router-link-exact-active {
+        @apply .bg-primary;
+        @apply .rounded;
+        @apply .font-semibold;
+      }
+    }
+  }
+}
