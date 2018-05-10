@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute z-50 pin-x bg-secondary shadow-md">
+  <div class="absolute z-10 pin-x bg-secondary shadow-md">
     <nav class="container pb-2 text-center nav-list">
       <ul>
         <li>
@@ -34,4 +34,3 @@ import Component from 'vue-class-component';
 @Component()
 export default class AsideMenu extends Vue {}
 </script>
-

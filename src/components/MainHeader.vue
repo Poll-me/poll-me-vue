@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-secondary shadow">
-    <div class="container py-2 flex text-white">
+  <div class="bg-secondary" :class="{ shadow: !asideOpen }">
+    <div class="container py-2 flex text-white bg-secondary relative z-20">
       <div class="w-10">
         <img src="/static/img/favicon/favicon-64x64.png" alt="header-logo" />
       </div>
@@ -14,7 +14,9 @@
         </font-awesome-icon>
       </div>
     </div>
-    <AsideMenu v-if="asideOpen"></AsideMenu>
+    <transition name="slide-down">
+      <AsideMenu v-if="asideOpen"></AsideMenu>
+    </transition>
   </div>
 </template>
 
