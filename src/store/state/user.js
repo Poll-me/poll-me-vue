@@ -1,3 +1,4 @@
 export default {
-  isLogged: false
+  isLogged: false,
+  profile: {}
 };
