@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-secondary" :class="{ shadow: !asideOpen }">
+  <div class="bg-secondary" :class="{ shadow: !navMenuOpen }">
     <div class="container py-2 flex text-white bg-secondary relative z-20">
       <div class="w-10">
         <img src="/static/img/favicon/favicon-64x64.png" alt="header-logo" />
@@ -9,13 +9,13 @@
       </div>
       <div class="flex items-center justify-center text-3xl">
         <font-awesome-icon :icon="menuIcon" fixed-width
-          @click="asideOpen = !asideOpen"
+          @click="navMenuOpen = !navMenuOpen"
           class="cursor-pointer">
         </font-awesome-icon>
       </div>
     </div>
     <transition name="slide-down">
-      <AsideMenu v-if="asideOpen"></AsideMenu>
+      <NavMenu v-if="navMenuOpen"></NavMenu>
     </transition>
   </div>
 </template>
@@ -24,16 +24,16 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-import AsideMenu from './AsideMenu';
+import NavMenu from './NavMenu';
 
 @Component({
-  components: { AsideMenu }
+  components: { NavMenu }
 })
 export default class MainHeader extends Vue {
-  asideOpen = false;
+  navMenuOpen = false;
 
   get menuIcon() {
-    return this.asideOpen ? 'times' : 'bars';
+    return this.navMenuOpen ? 'times' : 'bars';
   }
 }
 </script>

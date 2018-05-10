@@ -8,13 +8,13 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'user-polls' }">
-            Your polls
+          <router-link :to="{ name: 'new-poll' }">
+            New poll
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'new-poll' }">
-            New poll
+          <router-link :to="{ name: 'user-polls' }">
+            Your polls
           </router-link>
         </li>
         <li>
@@ -32,5 +32,5 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 @Component()
-export default class AsideMenu extends Vue {}
+export default class NavMenu extends Vue {}
 </script>

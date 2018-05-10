@@ -4,7 +4,8 @@
 
     & a {
       @apply .block;
-      @apply .py-2;
+      @apply .py-3;
+      @apply .text-lg;
       @apply .text-white;
 
       &.router-link-exact-active {
