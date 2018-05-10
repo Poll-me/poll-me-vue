@@ -1,6 +1,6 @@
 <template>
   <div class="h-full flex flex-col">
-    <div class="container py-4 flex-1" >
+    <div class="container py-2 flex-1" >
       <div v-for="poll in items" :key="poll.name"
         class="overflow-hidden py-2">
         <div class="p-3 border-2 border-primary rounded">
