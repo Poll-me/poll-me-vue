@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "firebase": "^4.13.1",
-    "firebaseui": "^3.0.0",
+    "firebaseui": "^2.7.0",
     "vue": "^2.5.2",
     "vue-i18n": "^7.6.0",
     "vue-router": "^3.0.1",
