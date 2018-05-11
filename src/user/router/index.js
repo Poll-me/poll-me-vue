@@ -7,5 +7,10 @@ export default [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: 'login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login-chunk" */ '../login')
   }
 ];
