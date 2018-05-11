@@ -4,7 +4,8 @@
       "home-link": "Home",
       "new-link": "New poll",
       "polls-link": "Your polls",
-      "profile-link": "Profile"
+      "profile-link": "Profile",
+      "login-link": "Log in / Register"
     }
   },
   "poll": {

@@ -21,6 +21,7 @@ const routerObject = new Router({
   routes: [
     {
       path: '/',
+      name: 'home',
       redirect: {
         name: 'user-polls'
       }
