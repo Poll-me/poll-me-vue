@@ -34,7 +34,7 @@ import { mapState } from 'vuex';
 
 @Component({
   computed: mapState({
-    isLogged: 'user.isLogged'
+    isLogged: state => state.user.isLogged
   })
 })
 export default class NavMenu extends Vue {}

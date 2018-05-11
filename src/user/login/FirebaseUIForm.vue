@@ -8,27 +8,48 @@ import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
-@Component()
+@Component({
+  props: {
+    tosUrl: {
+      required: true,
+      type: String
+    }
+  }
+})
 export default class FirebaseUIForm extends Vue {
-  ui;
-
   mounted() {
     this.initFirebaseUI();
   }
 
+  onSuccess(auth) {
+    this.$emit('success', auth);
+    return false;
+  }
+
+  onError(error) {
+    return new Promise((resolve) => {
+      this.$emit('error', error);
+      resolve();
+    });
+  }
+
   initFirebaseUI() {
-    if (!this.ui) {
-      this.ui = new firebaseui.auth.AuthUI(firebase.auth());
-      this.ui.start('#firebaseui-container', {
-        signInOptions: [
-          {
-            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            requireDisplayName: true
-          },
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID
-        ]
-      });
-    }
+    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-container', {
+      autoUpgradeAnonymousUsers: true,
+      signInOptions: [
+        {
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          requireDisplayName: true
+        },
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      ],
+      callbacks: {
+        signInSuccessWithAuthResult: this.onSuccess.bind(this),
+        signInFailure: this.onError.bind(this)
+      },
+      tosUrl: this.tosUrl
+    });
   }
 }
 </script>

@@ -22,9 +22,7 @@ const routerObject = new Router({
     {
       path: '/',
       name: 'home',
-      redirect: {
-        name: 'user-polls'
-      }
+      redirect: { name: 'user-polls' }
     },
     {
       path: '/polls',
