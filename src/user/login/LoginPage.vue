@@ -6,14 +6,17 @@
         <p class="mt-2 text-xs italic" v-t="'user.login.description'"></p>
       </div>
     </div>
-    <div class="container">
-    </div>
+    <FirebaseUIForm></FirebaseUIForm>
   </div>
 </template>
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component()
+import FirebaseUIForm from './FirebaseUIForm';
+
+@Component({
+  components: { FirebaseUIForm }
+})
 export default class LoginPage extends Vue {}
 </script>
