@@ -21,8 +21,8 @@ export default class FirebaseUIForm extends Vue {
     this.initFirebaseUI();
   }
 
-  onSuccess(auth) {
-    this.$emit('success', auth);
+  onSuccess(auth, redirectUrl) {
+    this.$emit('success', { auth, redirectUrl });
     return false;
   }
 

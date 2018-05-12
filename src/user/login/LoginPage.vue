@@ -6,7 +6,9 @@
         <p class="mt-2 text-xs italic" v-t="'user.login.description'"></p>
       </div>
     </div>
-    <FirebaseUIForm tosUrl="/" @success="loginSuccess" @error="loginError"></FirebaseUIForm>
+    <FirebaseUIForm tosUrl="/"
+      @success="loginSuccess"
+      @error="loginError"></FirebaseUIForm>
   </div>
 </template>
 <script>
@@ -21,18 +23,18 @@ import FirebaseUIForm from './FirebaseUIForm';
   methods: mapActions(['linkUser'])
 })
 export default class LoginPage extends Vue {
-  loginSuccess(auth) {
+  loginSuccess({ auth, redirectUrl }) {
     if (auth.operationType === 'link') {
       this.linkUser({
         provider: auth.credential.providerId,
         data: auth.additionalUserInfo
       });
     }
-    this.$router.replace({ name: 'home' });
+    this.$router.replace(redirectUrl ? { path: redirectUrl } : { name: 'home' });
   }
 
   loginError() {
-    this.$router.go({ name: 'not-found' });
+    this.$router.push({ name: 'not-found' });
   }
 }
 </script>
