@@ -6,13 +6,24 @@ export default [
     path: 'profile',
     alias: '',
     name: 'profile',
-    component: () => import(/* webpackChunkName: "user-chunk" */ '../UserProfile'),
+    component: () => import(/* webpackChunkName: "profile-chunk" */ '../UserProfile'),
     beforeEnter: isLoggedGuard
   },
   {
-    path: 'login',
-    name: 'login',
+    path: '',
     component: () => import(/* webpackChunkName: "login-chunk" */ '../login'),
-    isNotLoggedGuard
+    children: [
+      {
+        path: 'login',
+        name: 'login',
+        component: () => import(/* webpackChunkName: "login-chunk" */ '../login/LoginForm')
+      },
+      {
+        path: 'register',
+        name: 'register',
+        component: () => import(/* webpackChunkName: "login-chunk" */ '../login/RegisterForm')
+      }
+    ],
+    beforeEnter: isNotLoggedGuard
   }
 ];
