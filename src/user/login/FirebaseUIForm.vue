@@ -36,6 +36,7 @@ export default class FirebaseUIForm extends Vue {
   initFirebaseUI() {
     const ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-container', {
+      autoUpgradeAnonymousUsers: true,
       signInOptions: [
         {
           provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,

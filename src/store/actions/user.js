@@ -8,9 +8,30 @@ function getProfileData(user) {
 }
 
 export default {
-  login({ commit }, { user }) {
-    commit('setLoggedState', { isLogged: true });
-    commit('setUserProfile', { profile: getProfileData(user) });
+  linkUser({ commit }, { provider, data }) {
+    const { displayName, photoURL } = getProfileData(auth.currentUser);
+    let newProfile;
+
+    switch (provider) {
+      case 'google.com':
+        newProfile = {
+          displayName: displayName || data.profile.name,
+          photoURL: photoURL || data.profile.picture
+        };
+        break;
+      default:
+        newProfile = { displayName, photoURL };
+    }
+
+    if (newProfile.displayName !== displayName || newProfile.photoURL !== photoURL) {
+      auth.currentUser.updateProfile(newProfile)
+        .then(() => commit('setUserProfile', {
+          profile: {
+            ...getProfileData(auth.currentUser),
+            ...newProfile
+          }
+        }));
+    }
   },
 
   checkAuth({ commit }) {

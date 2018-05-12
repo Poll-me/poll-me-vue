@@ -18,11 +18,16 @@ import FirebaseUIForm from './FirebaseUIForm';
 
 @Component({
   components: { FirebaseUIForm },
-  methods: mapActions(['login'])
+  methods: mapActions(['linkUser'])
 })
 export default class LoginPage extends Vue {
   loginSuccess(auth) {
-    this.login({ user: auth.user });
+    if (auth.operationType === 'link') {
+      this.linkUser({
+        provider: auth.credential.providerId,
+        data: auth.additionalUserInfo
+      });
+    }
     this.$router.replace({ name: 'home' });
   }
 
