@@ -6,9 +6,6 @@
         <p class="mt-2 text-xs italic" v-t="'user.login.description'"></p>
       </div>
     </div>
-    <FirebaseUIForm tosUrl="/"
-      @success="loginSuccess"
-      @error="loginError"></FirebaseUIForm>
   </div>
 </template>
 <script>
@@ -16,10 +13,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions } from 'vuex';
 
-import FirebaseUIForm from './FirebaseUIForm';
-
 @Component({
-  components: { FirebaseUIForm },
   methods: mapActions(['linkUser'])
 })
 export default class LoginPage extends Vue {

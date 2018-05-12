@@ -1,4 +1,5 @@
 import isLoggedGuard from '@/router/guards/is-logged';
+import isNotLoggedGuard from '@/router/guards/is-not-logged';
 
 export default [
   {
@@ -11,6 +12,7 @@ export default [
   {
     path: 'login',
     name: 'login',
-    component: () => import(/* webpackChunkName: "login-chunk" */ '../login')
+    component: () => import(/* webpackChunkName: "login-chunk" */ '../login'),
+    isNotLoggedGuard
   }
 ];
