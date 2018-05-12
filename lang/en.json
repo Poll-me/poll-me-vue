@@ -53,9 +53,11 @@
     }
   },
   "user": {
-    "login": {
-      "title": "Log in / Register",
-      "description": "If you have a PollMe account, you can access your polls from any device, have a profile and much more features that require a valid user."
+    "login-link": "Log in",
+    "register-link": "Register",
+    "login": {},
+    "register": {
+      "info": "With a PollMe account, you can access your polls from any device, have a profile and much more features that require a valid user."
     }
   },
   "not-found": {

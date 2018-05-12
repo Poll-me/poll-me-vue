@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Register form!!
+  <div v-t="'user.register.info'">
+
   </div>
 </template>
 <script>

@@ -2,17 +2,13 @@
   <div>
     <ul class="tab-nav">
       <li>
-        <router-link :to="{ name: 'login' }">
-          Login
-        </router-link>
+        <router-link :to="{ name: 'login' }" v-t="'user.login-link'"></router-link>
       </li>
       <li>
-        <router-link :to="{ name: 'register' }">
-          Register
-        </router-link>
+        <router-link :to="{ name: 'register' }" v-t="'user.register-link'"></router-link>
       </li>
     </ul>
-    <div class="container">
+    <div class="container py-4">
       <router-view></router-view>
     </div>
   </div>

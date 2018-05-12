@@ -53,9 +53,11 @@
     }
   },
   "user": {
-    "login": {
-      "title": "Iniciar sesión / Registrarse",
-      "description": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido."
+    "login-link": "Iniciar sesión",
+    "register-link": "Registrarse",
+    "login": {},
+    "register": {
+      "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido."
     }
   },
   "not-found": {
