@@ -55,7 +55,20 @@
   "user": {
     "login-link": "Iniciar sesión",
     "register-link": "Registrarse",
-    "login": {},
+    "login": {
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "El email de tu cuenta",
+        "required-error": "El correo electrónico es obligatorio.",
+        "valid-error": "Especifica una dirección de correo válida."
+      },
+      "password": {
+        "label": "Contraseña",
+        "required-error": "La contraseña es obligatoria.",
+        "min-length-error": "La contraseña debe ser de al menos {length} caractéres."
+      },
+      "submit": "Entrar"
+    },
     "register": {
       "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido."
     }
