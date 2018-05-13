@@ -5,7 +5,9 @@
       "new-link": "Nueva encuesta",
       "polls-link": "Tus encuestas",
       "profile-link": "Perfil",
-      "login-link": "Iniciar sesión"
+      "login-link": "Iniciar sesión",
+      "register-link": "Registrarse",
+      "logout-link": "Cerrar sesión"
     }
   },
   "poll": {

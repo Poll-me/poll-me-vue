@@ -24,6 +24,13 @@ export default {
     });
   },
 
+  signOut() {
+    if (!auth.currentUser.isAnonymous) {
+      return auth.signOut();
+    }
+    return Promise.resolve(true);
+  },
+
   checkAuth({ commit }) {
     return new Promise((resolve, reject) => {
       if (auth.currentUser === null) {

@@ -5,7 +5,9 @@
       "new-link": "New poll",
       "polls-link": "Your polls",
       "profile-link": "Profile",
-      "login-link": "Log in / Register"
+      "login-link": "Log in",
+      "register-link": "Register",
+      "logout-link": "Log out"
     }
   },
   "poll": {
