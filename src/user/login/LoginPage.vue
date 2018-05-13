@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-full flex flex-col">
     <ul class="tab-nav">
       <li>
         <router-link :to="{ name: 'login' }" v-t="'user.login-link'"></router-link>
@@ -8,8 +8,8 @@
         <router-link :to="{ name: 'register' }" v-t="'user.register-link'"></router-link>
       </li>
     </ul>
-    <div class="container py-4">
-      <router-view></router-view>
+    <div class="flex-1 flex flex-col">
+      <router-view class="flex-1"></router-view>
     </div>
   </div>
 </template>

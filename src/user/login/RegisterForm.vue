@@ -4,10 +4,10 @@
   </div>
 </template>
 <script>
-import Vue from 'vue';
+import { VueWithValidations } from '@/utils';
 import Component from 'vue-class-component';
 
 @Component()
-export default class RegisterForm extends Vue {
+export default class RegisterForm extends VueWithValidations {
 }
 </script>
