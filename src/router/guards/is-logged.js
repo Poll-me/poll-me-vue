@@ -4,7 +4,7 @@ export default function (to, from, next) {
   if (store.state.user.isLogged) {
     next();
   } else {
-    const { path } = to;
-    next({ name: 'login', query: { signInSuccessUrl: path } });
+    const { path, params, query } = to;
+    next({ name: 'login', params: { redirectRoute: { path, params, query } } });
   }
 }

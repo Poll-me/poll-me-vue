@@ -12,6 +12,7 @@ export default [
   {
     path: '',
     component: () => import(/* webpackChunkName: "login-chunk" */ '../login'),
+    props: true,
     children: [
       {
         path: 'login',

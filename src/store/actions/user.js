@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import fb from '@/setup/firebase';
 
 const auth = fb.auth();
@@ -8,30 +9,19 @@ function getProfileData(user) {
 }
 
 export default {
-  linkUser({ commit }, { provider, data }) {
-    const { displayName, photoURL } = getProfileData(auth.currentUser);
-    let newProfile;
-
-    switch (provider) {
-      case 'google.com':
-        newProfile = {
-          displayName: displayName || data.profile.name,
-          photoURL: photoURL || data.profile.picture
-        };
-        break;
-      default:
-        newProfile = { displayName, photoURL };
-    }
-
-    if (newProfile.displayName !== displayName || newProfile.photoURL !== photoURL) {
-      auth.currentUser.updateProfile(newProfile)
-        .then(() => commit('setUserProfile', {
-          profile: {
-            ...getProfileData(auth.currentUser),
-            ...newProfile
+  signIn(context, { email, password }) {
+    return new Promise((resolve, reject) => {
+      const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+      const prevUser = auth.currentUser;
+      auth.signInWithCredential(credential)
+        .then((user) => {
+          if (prevUser && prevUser.isAnonymous) {
+            prevUser.delete();
           }
-        }));
-    }
+          resolve(user);
+        })
+        .catch(reject);
+    });
   },
 
   checkAuth({ commit }) {

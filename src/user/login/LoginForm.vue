@@ -57,7 +57,7 @@ export default class LoginForm extends VueWithValidations {
 
   submit() {
     if (!this.$v.invalid) {
-      // console.log({ email: this.email, password: this.password });
+      this.$emit('signIn', { email: this.email, password: this.password });
     }
   }
 }

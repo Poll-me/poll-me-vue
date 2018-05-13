@@ -9,14 +9,29 @@
       </li>
     </ul>
     <div class="flex-1 flex flex-col">
-      <router-view class="flex-1"></router-view>
+      <router-view class="flex-1" @signIn="login"></router-view>
     </div>
   </div>
 </template>
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { mapActions } from 'vuex';
 
-@Component()
-export default class LoginPage extends Vue {}
+@Component({
+  props: {
+    redirectRoute: {
+      type: Object,
+      default: () => ({ name: 'home' })
+    }
+  },
+  methods: mapActions(['signIn'])
+})
+export default class LoginPage extends Vue {
+  login({ email, password }) {
+    this.signIn({ email, password }).then(() => {
+      this.$router.replace(this.redirectRoute);
+    });
+  }
+}
 </script>
