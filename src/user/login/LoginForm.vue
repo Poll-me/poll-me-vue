@@ -19,7 +19,10 @@
         <p v-show="$v.password.$error" class="text-red text-xs italic mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
           <span v-show="!$v.password.minLength"
-            v-t="{ path: 'user.login.password.min-length-error', args: { length: $v.password.$params.minLength.min } }">
+            v-t="{
+              path: 'user.login.password.min-length-error',
+              args: { length: $v.password.$params.minLength.min }
+            }">
           </span>
         </p>
       </div>
@@ -36,8 +39,6 @@ import { VueWithValidations } from '@/utils';
 import Component from 'vue-class-component';
 import { required, email, minLength } from 'vuelidate/lib/validators';
 
-const passMinLength = 8;
-
 @Component({
   validations: {
     email: {
@@ -46,18 +47,17 @@ const passMinLength = 8;
     },
     password: {
       required,
-      minLength: minLength(passMinLength)
+      minLength: minLength(8)
     }
   }
 })
 export default class LoginForm extends VueWithValidations {
   email = '';
   password = '';
-  passMinLength = passMinLength;
 
   submit() {
     if (!this.$v.invalid) {
-      console.log({ email: this.email, password: this.password });
+      // console.log({ email: this.email, password: this.password });
     }
   }
 }
