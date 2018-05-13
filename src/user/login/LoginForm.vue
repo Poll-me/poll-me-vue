@@ -4,7 +4,7 @@
       <div class="mb-4">
         <label class="mb-2" for="email" v-t="'user.login.email.label'"></label>
         <input v-model.trim="email" @input="$v.email.$touch()"
-          :class="{ 'border-red': $v.email.$error }" required
+          :class="{ 'border-red': $v.email.$error || isWrongEmail }" required
           id="email" type="email" :placeholder="$t('user.login.email.placeholder')" >
         <p v-show="$v.email.$error" class="text-red text-xs italic mt-3">
           <span v-show="!$v.email.required" v-t="'user.login.email.required-error'"></span>
@@ -14,7 +14,7 @@
       <div class="mb-4">
         <label class="mb-2" for="password" v-t="'user.login.password.label'"></label>
         <input v-model.trim="password" @input="$v.password.$touch()"
-          :class="{ 'border-red': $v.password.$error }"
+          :class="{ 'border-red': $v.password.$error || isWrongPassword }"
           id="password" type="password" placeholder="********" required >
         <p v-show="$v.password.$error" class="text-red text-xs italic mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
@@ -38,8 +38,10 @@
 import { VueWithValidations } from '@/utils';
 import Component from 'vue-class-component';
 import { required, email, minLength } from 'vuelidate/lib/validators';
+import { mapActions } from 'vuex';
 
 @Component({
+  methods: mapActions(['signIn']),
   validations: {
     email: {
       required,
@@ -55,9 +57,37 @@ export default class LoginForm extends VueWithValidations {
   email = '';
   password = '';
 
+  wrongEmails = [];
+  wrongPasswords = {};
+
+  get isWrongEmail() {
+    return this.email && this.wrongEmails.indexOf(this.email) >= 0;
+  }
+
+  get isWrongPassword() {
+    const wrongPasswords = this.wrongPasswords[this.email];
+    return Array.isArray(wrongPasswords) && wrongPasswords.indexOf(this.password) >= 0;
+  }
+
   submit() {
-    if (!this.$v.invalid) {
-      this.$emit('signIn', { email: this.email, password: this.password });
+    if (!this.$v.$invalid) {
+      const payload = { email: this.email, password: this.password };
+      this.signIn(payload)
+        .then(() => this.$emit('signIn', payload))
+        .catch((error) => {
+          switch (error.code) {
+            case 'auth/wrong-password': {
+              const passwordsList = this.wrongPasswords[this.email] || [];
+              this.wrongPasswords = {
+                ...this.wrongPasswords,
+                [this.email]: [...passwordsList, this.password]
+              };
+              break;
+            }
+            default:
+              this.wrongEmails.push(this.email);
+          }
+        });
     }
   }
 }
