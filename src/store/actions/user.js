@@ -2,7 +2,6 @@ import firebase from 'firebase';
 import fb from '@/setup/firebase';
 
 const auth = fb.auth();
-let authUnsubscribe;
 
 function getProfileData(user) {
   const { displayName, uid, phoneNumber, photoURL, email } = user;
@@ -34,8 +33,8 @@ export default {
 
   checkAuth({ commit }) {
     return new Promise((resolve, reject) => {
-      if (typeof authUnsubscribe !== 'function') {
-        authUnsubscribe = auth.onAuthStateChanged((user) => {
+      if (auth.currentUser === null) {
+        auth.onAuthStateChanged((user) => {
           if (user === null) {
             auth.signInAnonymously().catch(reject);
           } else {

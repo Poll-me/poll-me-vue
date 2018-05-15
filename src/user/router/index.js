@@ -7,9 +7,6 @@ export default [
     alias: '',
     name: 'profile',
     component: () => import(/* webpackChunkName: "profile-chunk" */ '../UserProfile'),
-    meta: {
-      requiresAuth: true
-    },
     beforeEnter: isLoggedGuard
   },
   {
