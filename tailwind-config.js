@@ -60,13 +60,13 @@ let colors = {
   'secondary-lighter': '#99D2B1',
   'secondary-lightest': '#D6EDE0',
 
-  'tertiary-darkest': '#052322',
-  'tertiary-darker': '#0B5755',
-  'tertiary-dark': '#118B89',
-  'tertiary': '#17BEBB',
-  'tertiary-light': '#56CFCD',
-  'tertiary-lighter': '#95E1E0',
-  'tertiary-lightest': '#D4F3F2',
+  'tertiary-darkest': '#071422',
+  'tertiary-darker': '#113255',
+  'tertiary-dark': '#1B5187',
+  'tertiary': '#246EB9',
+  'tertiary-light': '#5F95CC',
+  'tertiary-lighter': '#9BBDDF',
+  'tertiary-lightest': '#D7E4F2',
 
   'transparent': 'transparent',
 
