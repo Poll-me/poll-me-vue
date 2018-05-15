@@ -36,10 +36,7 @@ const routerObject = new Router({
     {
       path: '/user',
       component: () => import(/* webpackChunkName: "user-chunk" */ '@/user'),
-      children: userRoutes,
-      meta: {
-        requiresAuth: true
-      }
+      children: userRoutes
     },
     {
       path: '*',

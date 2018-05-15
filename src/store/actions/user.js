@@ -38,27 +38,38 @@ export default {
     });
   },
 
-  signOut() {
+  signOut({ commit }) {
     if (!auth.currentUser.isAnonymous) {
-      return auth.signOut();
+      return auth.signOut().then(() => {
+        commit('setLoggedState', { isLogged: false });
+        commit('setUserProfile', { profile: {} });
+      });
     }
     return Promise.resolve(true);
   },
 
-  checkAuth({ commit }) {
+  checkAuth() {
+    return new Promise((resolve, reject) => {
+      if (auth.currentUser === null) {
+        auth.signInAnonymously().then(() => resolve(true)).catch(reject);
+      } else {
+        resolve(!auth.currentUser.isAnonymous);
+      }
+    });
+  },
+
+  initAuthListener({ commit }) {
     return new Promise((resolve, reject) => {
       if (typeof authUnsubscribe !== 'function') {
         authUnsubscribe = auth.onAuthStateChanged((user) => {
-          if (user === null) {
-            auth.signInAnonymously().catch(reject);
-          } else {
+          if (user !== null) {
             commit('setLoggedState', { isLogged: !user.isAnonymous });
             commit('setUserProfile', { profile: getProfileData(user) });
-            resolve(!user.isAnonymous);
           }
+          resolve(true);
         }, reject);
       } else {
-        resolve(auth.currentUser !== null && !auth.currentUser.isAnonymous);
+        resolve(true);
       }
     });
   }
