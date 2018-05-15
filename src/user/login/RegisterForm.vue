@@ -96,7 +96,6 @@ export default class RegisterForm extends VueWithValidations {
   submit() {
     if (!this.$v.$invalid) {
       const payload = { name: this.name, email: this.email, password: this.password };
-      console.log(payload);
       this.registerEmail(payload)
         .then(() => this.$emit('signIn', payload))
         .catch((error) => {
