@@ -14,7 +14,7 @@
     </div>
     <div class="flex-1 flex flex-col">
       <template v-if="type.id">
-        <div class="bg-blue-dark text-white" >
+        <div class="bg-tertiary text-white" >
           <div class="container py-4">
             <div class="flex mb-2 items-center">
               <div class="flex-1 font-medium" v-t="`polls.types.${type.id}.name`"></div>
