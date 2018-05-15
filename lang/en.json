@@ -62,12 +62,14 @@
         "label": "Email",
         "placeholder": "Your account email",
         "required-error": "The email is mandatory.",
-        "valid-error": "Write a valid email."
+        "valid-error": "Write a valid email.",
+        "exists-error": "This email does not match any registered user."
       },
       "password": {
         "label": "Password",
         "required-error": "The password is mandatory.",
-        "min-length-error": "The password should have at least {length} characters."
+        "min-length-error": "The password should have at least {length} characters.",
+        "wrong-error": "The password is not correct."
       },
       "submit": "Sign in"
     },

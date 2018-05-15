@@ -4,17 +4,18 @@
       <div class="mb-4">
         <label class="mb-2" for="email" v-t="'user.login.email.label'"></label>
         <input v-model.trim="email" @input="$v.email.$touch()"
-          :class="{ 'border-red': $v.email.$error || isWrongEmail }" required
+          :class="{ 'border-red': $v.email.$error }" required
           id="email" type="email" :placeholder="$t('user.login.email.placeholder')" >
         <p v-show="$v.email.$error" class="text-red text-xs italic mt-3">
           <span v-show="!$v.email.required" v-t="'user.login.email.required-error'"></span>
           <span v-show="!$v.email.email" v-t="'user.login.email.valid-error'"></span>
+          <span v-show="!$v.email.exists" v-t="'user.login.email.exists-error'"></span>
         </p>
       </div>
       <div class="mb-4">
         <label class="mb-2" for="password" v-t="'user.login.password.label'"></label>
         <input v-model.trim="password" @input="$v.password.$touch()"
-          :class="{ 'border-red': $v.password.$error || isWrongPassword }"
+          :class="{ 'border-red': $v.password.$error }"
           id="password" type="password" placeholder="********" required >
         <p v-show="$v.password.$error" class="text-red text-xs italic mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
@@ -24,6 +25,7 @@
               args: { length: $v.password.$params.minLength.min }
             }">
           </span>
+          <span v-show="!$v.password.notWrong" v-t="'user.login.password.wrong-error'"></span>
         </p>
       </div>
     </div>
@@ -45,11 +47,13 @@ import { mapActions } from 'vuex';
   validations: {
     email: {
       required,
-      email
+      email,
+      exists() { return !this.isWrongEmail; }
     },
     password: {
       required,
-      minLength: minLength(8)
+      minLength: minLength(8),
+      notWrong() { return !this.isWrongPassword; }
     }
   }
 })

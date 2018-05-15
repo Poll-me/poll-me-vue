@@ -62,12 +62,14 @@
         "label": "Correo electrónico",
         "placeholder": "El email de tu cuenta",
         "required-error": "El correo electrónico es obligatorio.",
-        "valid-error": "Especifica una dirección de correo válida."
+        "valid-error": "Especifica una dirección de correo válida.",
+        "exists-error": "El email no se corresponde con ninguna cuenta registrada."
       },
       "password": {
         "label": "Contraseña",
         "required-error": "La contraseña es obligatoria.",
-        "min-length-error": "La contraseña debe ser de al menos {length} caractéres."
+        "min-length-error": "La contraseña debe ser de al menos {length} caractéres.",
+        "wrong-error": "La contraseña no es correcta."
       },
       "submit": "Entrar"
     },
