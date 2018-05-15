@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import Router from 'vue-router';
 
+import HomePage from '../HomePage';
 import NotFoundPage from '../NotFoundPage';
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
@@ -22,7 +23,7 @@ const routerObject = new Router({
     {
       path: '/',
       name: 'home',
-      redirect: { name: 'user-polls' }
+      component: HomePage
     },
     {
       path: '/polls',
