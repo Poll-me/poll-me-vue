@@ -1,0 +1,8 @@
+.field-errors {
+  @apply .text-red .text-xs;
+  @apply .italic;
+
+  & span {
+    @apply .block;
+  }
+}

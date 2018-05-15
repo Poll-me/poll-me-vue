@@ -8,7 +8,7 @@
         <input v-model.trim="name" @input="$v.name.$touch()"
           :class="{ 'border-red': $v.name.$error }" required
           id="name" type="text" :placeholder="$t('user.register.name.placeholder')" >
-        <p v-show="$v.name.$error" class="text-red text-xs italic mt-3">
+        <p v-show="$v.name.$error" class="field-errors mt-3">
           <span v-show="!$v.name.required" v-t="'user.register.name.required-error'"></span>
           <span v-show="!$v.name.alpha" v-t="'user.register.name.alpha-error'"></span>
           <span v-show="!$v.name.minLength"
@@ -24,7 +24,7 @@
         <input v-model.trim="email" @input="$v.email.$touch()"
           :class="{ 'border-red': $v.email.$error }" required
           id="email" type="email" :placeholder="$t('user.login.email.placeholder')" >
-        <p v-show="$v.email.$error" class="text-red text-xs italic mt-3">
+        <p v-show="$v.email.$error" class="field-errors mt-3">
           <span v-show="!$v.email.required" v-t="'user.login.email.required-error'"></span>
           <span v-show="!$v.email.email" v-t="'user.login.email.valid-error'"></span>
           <span v-show="!$v.email.notExists" v-t="'user.register.email.exists-error'"></span>
@@ -35,7 +35,7 @@
         <input v-model.trim="password" @input="$v.password.$touch()"
           :class="{ 'border-red': $v.password.$error }"
           id="password" type="password" placeholder="********" required >
-        <p v-show="$v.password.$error" class="text-red text-xs italic mt-3">
+        <p v-show="$v.password.$error" class="field-errors mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
           <span v-show="!$v.password.minLength"
             v-t="{
