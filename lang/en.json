@@ -83,7 +83,11 @@
         "min-length-error": "The name should have at least {length} characters."
       },
       "email": {
+        "placeholder": "Your personal email",
         "exists-error": "This email is already registered."
+      },
+      "password": {
+        "placeholder": "Your PollMe password"
       }
     }
   },

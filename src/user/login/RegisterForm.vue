@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div v-t="'user.register.info'"></div>
+    <div class="bg-tertiary text-white text-xs">
+      <div class="container py-4">
+        <div v-t="'user.register.info'"></div>
+      </div>
+    </div>
     <form class="flex flex-col" @submit.prevent="submit">
     <div class="flex-1 container py-4">
       <div class="mb-4">
@@ -23,7 +27,7 @@
         <label class="mb-2" for="email" v-t="'user.login.email.label'"></label>
         <input v-model.trim="email" @input="$v.email.$touch()"
           :class="{ 'border-red': $v.email.$error }" required
-          id="email" type="email" :placeholder="$t('user.login.email.placeholder')" >
+          id="email" type="email" :placeholder="$t('user.register.email.placeholder')" >
         <p v-show="$v.email.$error" class="field-errors mt-3">
           <span v-show="!$v.email.required" v-t="'user.login.email.required-error'"></span>
           <span v-show="!$v.email.email" v-t="'user.login.email.valid-error'"></span>
@@ -33,8 +37,8 @@
       <div class="mb-4">
         <label class="mb-2" for="password" v-t="'user.login.password.label'"></label>
         <input v-model.trim="password" @input="$v.password.$touch()"
-          :class="{ 'border-red': $v.password.$error }"
-          id="password" type="password" placeholder="********" required >
+          :class="{ 'border-red': $v.password.$error }" required
+          id="password" type="password" :placeholder="$t('user.register.password.placeholder')" >
         <p v-show="$v.password.$error" class="field-errors mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
           <span v-show="!$v.password.minLength"

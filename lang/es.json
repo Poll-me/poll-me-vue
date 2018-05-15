@@ -83,7 +83,11 @@
         "min-length-error": "El nombre debe ser de al menos {length} caracteres."
       },
       "email": {
+        "placeholder": "Tu email personal",
         "exists-error": "Este correo ya está asociado a una cuenta existente."
+      },
+      "password": {
+        "placeholder": "Tu contraseña en PollMe"
       }
     }
   },
