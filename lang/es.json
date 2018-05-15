@@ -79,8 +79,7 @@
         "label": "Nombre y Apellidos",
         "placeholder": "Tu nombre completo",
         "required-error": "El nombre es obligatorio.",
-        "alpha-error": "El nombre solo puede contener caracteres alfabéticos (ni números, ni símbolos).",
-        "min-length-error": "El nombre debe ser de al menos {length} caracteres."
+        "length-error": "El nombre debe ser tener de {min} a {max} caracteres."
       },
       "email": {
         "placeholder": "Tu email personal",

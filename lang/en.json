@@ -79,8 +79,7 @@
         "label": "Display name",
         "placeholder": "Your complete name",
         "required-error": "The name field is mandatory.",
-        "alpha-error": "Name only can contain alpha characters (not numbers or symbols).",
-        "min-length-error": "The name should have at least {length} characters."
+        "length-error": "The name should have {min} to {max} characters."
       },
       "email": {
         "placeholder": "Your personal email",

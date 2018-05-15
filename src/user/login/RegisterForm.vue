@@ -14,11 +14,10 @@
           id="name" type="text" :placeholder="$t('user.register.name.placeholder')" >
         <p v-show="$v.name.$error" class="field-errors mt-3">
           <span v-show="!$v.name.required" v-t="'user.register.name.required-error'"></span>
-          <span v-show="!$v.name.alpha" v-t="'user.register.name.alpha-error'"></span>
-          <span v-show="!$v.name.minLength"
+          <span v-show="!$v.name.minLength || !$v.name.maxLength"
             v-t="{
-              path: 'user.register.name.min-length-error',
-              args: { length: $v.name.$params.minLength.min }
+              path: 'user.register.name.length-error',
+              args: { min: $v.name.$params.minLength.min, max: $v.name.$params.maxLength.max }
             }">
           </span>
         </p>
@@ -60,7 +59,7 @@
 </template>
 <script>
 import { VueWithValidations } from '@/utils';
-import { alpha, required, email, minLength } from 'vuelidate/lib/validators';
+import { required, email, maxLength, minLength } from 'vuelidate/lib/validators';
 import Component from 'vue-class-component';
 import { mapActions } from 'vuex';
 
@@ -69,8 +68,8 @@ import { mapActions } from 'vuex';
   validations: {
     name: {
       required,
-      alpha,
-      minLength: minLength(8)
+      minLength: minLength(6),
+      maxLength: maxLength(24)
     },
     email: {
       required,
