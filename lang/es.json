@@ -4,7 +4,10 @@
       "home-link": "Home",
       "new-link": "Nueva encuesta",
       "polls-link": "Tus encuestas",
-      "profile-link": "Perfil"
+      "profile-link": "Perfil",
+      "login-link": "Iniciar sesión",
+      "register-link": "Registrarse",
+      "logout-link": "Cerrar sesión"
     }
   },
   "poll": {
@@ -49,6 +52,29 @@
     "not-found": {
       "title": "Esta no es la encuesta que estas buscando...",
       "description": "La encuesta con la clave '{key}' no existe, tal vez ha caducado o ha sido eliminada por el autor."
+    }
+  },
+  "user": {
+    "login-link": "Iniciar sesión",
+    "register-link": "Registrarse",
+    "login": {
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "El email de tu cuenta",
+        "required-error": "El correo electrónico es obligatorio.",
+        "valid-error": "Especifica una dirección de correo válida.",
+        "exists-error": "El email no se corresponde con ninguna cuenta registrada."
+      },
+      "password": {
+        "label": "Contraseña",
+        "required-error": "La contraseña es obligatoria.",
+        "min-length-error": "La contraseña debe ser de al menos {length} caractéres.",
+        "wrong-error": "La contraseña no es correcta."
+      },
+      "submit": "Entrar"
+    },
+    "register": {
+      "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido."
     }
   },
   "not-found": {

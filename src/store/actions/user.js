@@ -1,8 +1,36 @@
+import firebase from 'firebase';
 import fb from '@/setup/firebase';
 
 const auth = fb.auth();
 
+function getProfileData(user) {
+  const { displayName, uid, phoneNumber, photoURL, email } = user;
+  return { displayName, uid, phoneNumber, photoURL, email };
+}
+
 export default {
+  signIn(context, { email, password }) {
+    return new Promise((resolve, reject) => {
+      const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+      const prevUser = auth.currentUser;
+      auth.signInWithCredential(credential)
+        .then((user) => {
+          if (prevUser && prevUser.isAnonymous) {
+            prevUser.delete();
+          }
+          resolve(user);
+        })
+        .catch(reject);
+    });
+  },
+
+  signOut() {
+    if (!auth.currentUser.isAnonymous) {
+      return auth.signOut();
+    }
+    return Promise.resolve(true);
+  },
+
   checkAuth({ commit }) {
     return new Promise((resolve, reject) => {
       if (auth.currentUser === null) {
@@ -11,12 +39,7 @@ export default {
             auth.signInAnonymously().catch(reject);
           } else {
             commit('setLoggedState', { isLogged: !user.isAnonymous });
-
-            const { displayName, uid, phoneNumber, photoURL, email } = user;
-            commit('setUserProfile', {
-              profile: { displayName, uid, phoneNumber, photoURL, email }
-            });
-
+            commit('setUserProfile', { profile: getProfileData(user) });
             resolve(!user.isAnonymous);
           }
         }, reject);

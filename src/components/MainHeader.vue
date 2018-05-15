@@ -16,7 +16,7 @@
       </div>
     </div>
     <transition name="slide-down">
-      <NavMenu v-if="navMenuOpen"></NavMenu>
+      <NavMenu v-if="navMenuOpen" @logout="navMenuOpen = false"></NavMenu>
     </transition>
   </div>
 </template>
