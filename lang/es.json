@@ -68,13 +68,23 @@
       "password": {
         "label": "Contraseña",
         "required-error": "La contraseña es obligatoria.",
-        "min-length-error": "La contraseña debe ser de al menos {length} caractéres.",
+        "min-length-error": "La contraseña debe ser de al menos {length} caracteres.",
         "wrong-error": "La contraseña no es correcta."
       },
       "submit": "Entrar"
     },
     "register": {
-      "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido."
+      "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido.",
+      "name": {
+        "label": "Nombre y Apellidos",
+        "placeholder": "Tu nombre completo",
+        "required-error": "El nombre es obligatorio.",
+        "alpha-error": "El nombre solo puede contener caracteres alfabéticos (ni números, ni símbolos).",
+        "min-length-error": "El nombre debe ser de al menos {length} caracteres."
+      },
+      "email": {
+        "exists-error": "Este correo ya está asociado a una cuenta existente."
+      }
     }
   },
   "not-found": {

@@ -74,7 +74,17 @@
       "submit": "Sign in"
     },
     "register": {
-      "info": "With a PollMe account, you can access your polls from any device, have a profile and much more features that require a valid user."
+      "info": "With a PollMe account, you can access your polls from any device, have a profile and much more features that require a valid user.",
+      "name": {
+        "label": "Display name",
+        "placeholder": "Your complete name",
+        "required-error": "The name field is mandatory.",
+        "alpha-error": "Name only can contain alpha characters (not numbers or symbols).",
+        "min-length-error": "The name should have at least {length} characters."
+      },
+      "email": {
+        "exists-error": "This email is already registered."
+      }
     }
   },
   "not-found": {
