@@ -10,6 +10,19 @@ function getProfileData(user) {
 }
 
 export default {
+  registerEmail(context, { name, email, password }) {
+    return new Promise((resolve, reject) => {
+      const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+      auth.currentUser.linkAndRetrieveDataWithCredential(credential)
+        .then((userCredential) => {
+          userCredential.user.updateProfile({ displayName: name })
+            .then(() => resolve(auth.currentUser))
+            .catch(reject);
+        })
+        .catch(reject);
+    });
+  },
+
   signIn(context, { email, password }) {
     return new Promise((resolve, reject) => {
       const credential = firebase.auth.EmailAuthProvider.credential(email, password);

@@ -97,22 +97,14 @@ export default class RegisterForm extends VueWithValidations {
     if (!this.$v.$invalid) {
       const payload = { name: this.name, email: this.email, password: this.password };
       console.log(payload);
-      // this.signIn(payload)
-      //   .then(() => this.$emit('signIn', payload))
-      //   .catch((error) => {
-      //     switch (error.code) {
-      //       case 'auth/wrong-password': {
-      //         const passwordsList = this.wrongPasswords[this.email] || [];
-      //         this.wrongPasswords = {
-      //           ...this.wrongPasswords,
-      //           [this.email]: [...passwordsList, this.password]
-      //         };
-      //         break;
-      //       }
-      //       default:
-      //         this.wrongEmails.push(this.email);
-      //     }
-      //   });
+      this.registerEmail(payload)
+        .then(() => this.$emit('signIn', payload))
+        .catch((error) => {
+          switch (error.code) {
+            default:
+              this.wrongEmails.push(this.email);
+          }
+        });
     }
   }
 }
