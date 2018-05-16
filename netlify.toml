@@ -2,7 +2,7 @@
   publish = "dist"
   command = "yarn build"
 
-[build.environment]
+[context.production.environment]
   FB_API_KEY = "AIzaSyBG_t00oVzmqiVhF57L9npCb4SqVqaABPI"
   FB_AUTH_DOMAIN = "pollme-dc0fc.firebaseapp.com"
   FB_DB_URL = "https://pollme-dc0fc.firebaseio.com"
