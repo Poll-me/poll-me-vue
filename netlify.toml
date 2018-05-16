@@ -2,7 +2,7 @@
   publish = "dist"
   command = "yarn build"
 
-[context.production.environment]
+[environment]
   FB_API_KEY = "PROD_FB_API_KEY"
   FB_AUTH_DOMAIN = "PROD_FB_AUTH_DOMAIN"
   FB_DB_URL = "PROD_FB_DB_URL"
