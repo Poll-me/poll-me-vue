@@ -100,8 +100,11 @@ export default class RegisterForm extends VueWithValidations {
         .then(() => this.$emit('signIn', payload))
         .catch((error) => {
           switch (error.code) {
-            default:
+            case 'auth/email-already-in-use':
               this.wrongEmails.push(this.email);
+              break;
+            default:
+              this.$emit('error', error);
           }
         });
     }

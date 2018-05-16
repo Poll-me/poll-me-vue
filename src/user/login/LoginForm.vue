@@ -80,6 +80,9 @@ export default class LoginForm extends VueWithValidations {
         .then(() => this.$emit('signIn', payload))
         .catch((error) => {
           switch (error.code) {
+            case 'auth/user-not-found':
+              this.wrongEmails.push(this.email);
+              break;
             case 'auth/wrong-password': {
               const passwordsList = this.wrongPasswords[this.email] || [];
               this.wrongPasswords = {
@@ -89,7 +92,7 @@ export default class LoginForm extends VueWithValidations {
               break;
             }
             default:
-              this.wrongEmails.push(this.email);
+              this.$emit('error', error);
           }
         });
     }
