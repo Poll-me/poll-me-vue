@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import Router from 'vue-router';
 
-import HomePage from '../HomePage';
+import HomePage from '../home';
 import NotFoundPage from '../NotFoundPage';
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
