@@ -11,6 +11,7 @@ import router from './router';
 import store from './store';
 
 Vue.config.productionTip = false;
+Vue.config.errorHandler = () => router.push({ name: 'error' });
 
 store.dispatch('initAuthListener').then(() => {
   /* eslint-disable no-new */
