@@ -10,6 +10,28 @@
       "logout-link": "Cerrar sesión"
     }
   },
+  "home": {
+    "title": "Bienvenido a {name}",
+    "friends": "La mejor aplicación para saber la opinion de tus amigos sobre cualquier cosa.",
+    "polls": {
+      "create-message": "Solo necesitas crear una {new-poll} y compartirla.",
+      "new-poll": "nueva encuesta",
+      "types-message": "Hay muchos {types}, desde el simple {registration} a tipos mas complejos.",
+      "poll-types": "tipos de encuesta"
+    },
+    "edit": "Una vez creada todo el mundo puede participar siguiendo el enlace simplemente.",
+    "no-login": {
+      "message": "Por defecto, {everyone}, permitiéndoles crear y responder encuestas rápidamente, pero estas {related}.",
+      "for-everyone": "cualquiera puede acceder a PollMe sin iniciar sesión",
+      "device-related": "solo estarán relacionadas con el dispositivo usado"
+    },
+    "login": {
+      "message": "Si te {create} una cuenta en PollMe, serás capaz de acceder a tus encuestas y respuestas {device} en el que {login}.",
+      "create-link": "creas",
+      "from-device": "desde cualquier dispositivo",
+      "login-link": "inicies sesión"
+    }
+  },
   "poll": {
     "fill": {
       "author": "de {author-name}",

@@ -10,6 +10,28 @@
       "logout-link": "Log out"
     }
   },
+  "home": {
+    "title": "Wellcome to {name}",
+    "friends": "The best app to know your friends oppinion about everything you need.",
+    "polls": {
+      "create-message": "You only need to create a {new-poll} and share it with your friends.",
+      "new-poll": "new poll",
+      "types-message": "There are many {types}, from the simple {registration} to the more complex.",
+      "poll-types": "poll types"
+    },
+    "edit": "Everybody now can participate and give their opinion following the link.",
+    "no-login": {
+      "message": "By default, {everyone}, allowing create or answer polls quickly, but these are {related}.",
+      "for-everyone": "everyone can access PollMe without login",
+      "device-related": "only related to the device used"
+    },
+    "login": {
+      "message": "If you {create} a PollMe account, you will be able to access your polls and answers {device} you {login}.",
+      "create-link": "create",
+      "from-device": "from any device",
+      "login-link": "log in"
+    }
+  },
   "poll": {
     "fill": {
       "author": "by {author-name}",
