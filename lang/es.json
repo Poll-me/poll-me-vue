@@ -119,6 +119,13 @@
     "home-link": "Home",
     "create-link": "Nueva"
   },
+  "error": {
+    "title": "Ha ocurrido un error",
+    "description": "Algo fué mal en la aplicación por alguna razón",
+    "info": "Mantén la calma y hecha un vistazo a estas posibles soluciones:",
+    "try-link": "Reintentar",
+    "reload-link": "Recargar"
+  },
   "footer": {
     "project-details": {
       "message": "PollMe es {project-link} realizado con {love-icon} por {community-link} bajo la {license-link}",

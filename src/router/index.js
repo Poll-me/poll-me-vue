@@ -4,6 +4,8 @@ import Router from 'vue-router';
 
 import HomePage from '../home';
 import NotFoundPage from '../NotFoundPage';
+import ErrorPage from '../ErrorPage';
+
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
 
@@ -37,6 +39,11 @@ const routerObject = new Router({
       path: '/user',
       component: () => import(/* webpackChunkName: "user-chunk" */ '@/user'),
       children: userRoutes
+    },
+    {
+      path: '/error',
+      name: 'error',
+      component: ErrorPage
     },
     {
       path: '*',
