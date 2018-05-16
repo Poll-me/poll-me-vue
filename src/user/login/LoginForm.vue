@@ -6,7 +6,7 @@
         <input v-model.trim="email" @input="$v.email.$touch()"
           :class="{ 'border-red': $v.email.$error }" required
           id="email" type="email" :placeholder="$t('user.login.email.placeholder')" >
-        <p v-show="$v.email.$error" class="text-red text-xs italic mt-3">
+        <p v-show="$v.email.$error" class="field-errors mt-3">
           <span v-show="!$v.email.required" v-t="'user.login.email.required-error'"></span>
           <span v-show="!$v.email.email" v-t="'user.login.email.valid-error'"></span>
           <span v-show="!$v.email.exists" v-t="'user.login.email.exists-error'"></span>
@@ -17,7 +17,7 @@
         <input v-model.trim="password" @input="$v.password.$touch()"
           :class="{ 'border-red': $v.password.$error }"
           id="password" type="password" placeholder="********" required >
-        <p v-show="$v.password.$error" class="text-red text-xs italic mt-3">
+        <p v-show="$v.password.$error" class="field-errors mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
           <span v-show="!$v.password.minLength"
             v-t="{
@@ -80,6 +80,9 @@ export default class LoginForm extends VueWithValidations {
         .then(() => this.$emit('signIn', payload))
         .catch((error) => {
           switch (error.code) {
+            case 'auth/user-not-found':
+              this.wrongEmails.push(this.email);
+              break;
             case 'auth/wrong-password': {
               const passwordsList = this.wrongPasswords[this.email] || [];
               this.wrongPasswords = {
@@ -89,7 +92,7 @@ export default class LoginForm extends VueWithValidations {
               break;
             }
             default:
-              this.wrongEmails.push(this.email);
+              this.$emit('error', error);
           }
         });
     }
