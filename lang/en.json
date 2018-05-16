@@ -119,6 +119,13 @@
     "home-link": "Home page",
     "create-link": "New poll"
   },
+  "error": {
+    "title": "An error occurred",
+    "description": "Something in the app went wrong for some reason",
+    "info": "Keep calm and take a look at this possible solutions:",
+    "try-link": "Try again",
+    "reload-link": "Reload"
+  },
   "footer": {
     "project-details": {
       "message": "PollMe is an {project-link} made with {love-icon} by {community-link} under the {license-link}",
