@@ -25,7 +25,7 @@ export default {
       if (typeof authUnsubscribe !== 'function') {
         authUnsubscribe = auth.onAuthStateChanged((user) => {
           if (user !== null) {
-            commit('setLoggedState', { isLogged: !user.isAnonymous });
+            commit('setLoggedState', { isLogged: !user.isAnonymous, uid: user.uid });
             dispatch('fetchUserProfile').then(() => resolve(true));
           } else {
             resolve(true);

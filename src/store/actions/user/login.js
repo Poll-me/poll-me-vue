@@ -28,7 +28,7 @@ export default {
         .then((user) => {
           user.updateProfile({ displayName: name })
             .then(() => {
-              commit('setLoggedState', { isLogged: true });
+              commit('setLoggedState', { isLogged: true, uid: user.uid });
               dispatch('createUserProfile').then(() => resolve(user));
             })
             .catch(reject);
