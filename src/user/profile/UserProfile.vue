@@ -37,7 +37,7 @@
             <switches id="change-password" v-model="changePassword" color="blue" type-bold="true" >
             </switches>
           </label>
-          <div v-if="changePassword">
+          <div v-show="changePassword">
             <div class="mb-4">
               <label class="mb-2" for="currentPassword"
                 v-t="'user.profile.current-password.label'"></label>
@@ -45,6 +45,16 @@
                 id="currentPassword" type="password" required
                 :class="{ 'border-red': $v.currentPassword.$error }"
                 :placeholder="$t('user.profile.current-password.placeholder')" >
+              <p v-show="$v.currentPassword.$error" class="field-errors mt-3">
+                <span v-show="!$v.currentPassword.requiredIf"
+                  v-t="'user.profile.required-error'"></span>
+                <span v-show="!$v.currentPassword.minLength"
+                  v-t="{
+                    path: 'user.profile.min-length-error',
+                    args: { min: $v.currentPassword.$params.minLength.min }
+                  }">
+                </span>
+              </p>
             </div>
             <div class="mb-4">
               <label class="mb-2" for="newPassword"
@@ -53,6 +63,18 @@
                 id="newPassword" type="password" required
                 :class="{ 'border-red': $v.newPassword.$error }"
                 :placeholder="$t('user.profile.new-password.placeholder')" >
+              <p v-show="$v.newPassword.$error" class="field-errors mt-3">
+                <span v-show="!$v.newPassword.requiredIf"
+                  v-t="'user.profile.required-error'"></span>
+                <span v-show="!$v.newPassword.minLength"
+                  v-t="{
+                    path: 'user.profile.min-length-error',
+                    args: { min: $v.newPassword.$params.minLength.min }
+                  }">
+                </span>
+                <span v-show="!$v.newPassword.notSameAsCurrentPassword"
+                  v-t="'user.profile.new-password.not-same-as-current-error'"></span>
+              </p>
             </div>
             <div class="mb-4">
               <label class="mb-2" for="confirmPassword"
@@ -61,6 +83,12 @@
                 id="confirmPassword" type="password" required
                 :class="{ 'border-red': $v.confirmPassword.$error }"
                 :placeholder="$t('user.profile.confirm-password.placeholder')" >
+              <p v-show="$v.confirmPassword.$error" class="field-errors mt-3">
+                <span v-show="!$v.confirmPassword.requiredIf"
+                  v-t="'user.profile.required-error'"></span>
+                <span v-show="!$v.confirmPassword.sameAsNewPassword"
+                  v-t="'user.profile.confirm-password.same-as-new-error'"></span>
+              </p>
             </div>
           </div>
         </div>
@@ -101,7 +129,7 @@ import { VueWithValidations } from '@/utils';
     newPassword: {
       requiredIf: requiredIf('changePassword'),
       minLength: minLength(8),
-      notSameAsCurrentPassword(val) { return val !== this.currentPassword }
+      notSameAsCurrentPassword(val) { return val !== this.currentPassword; }
     },
     confirmPassword: {
       requiredIf: requiredIf('changePassword'),
@@ -142,8 +170,7 @@ export default class UserProfile extends VueWithValidations {
 
   submit() {
     if (!this.$v.invalid) {
-      this.updateUserProfile({ profile: this.updateData })
-        .then(data => console.log(data));
+      this.updateUserProfile({ profile: this.updateData });
     }
   }
 }

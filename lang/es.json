@@ -114,17 +114,21 @@
     },
     "profile": {
       "change-password": "Cambiar contraseña",
+      "required-error": "Este campo es obligatorio.",
+      "min-length-error": "El campo debe tener al menos {min} caracteres.",
       "current-password": {
         "label": "Actual",
         "placeholder": "Tu contraseña actual"
       },
       "new-password": {
         "label": "Nueva",
-        "placeholder": "La contraseña deseada"
+        "placeholder": "La contraseña deseada",
+        "not-same-as-current-error": "La nueva contraseña no puede ser igual a la actual."
       },
       "confirm-password": {
         "label": "Confirmar",
-        "placeholder": "Repite la nueva contraseña"
+        "placeholder": "Repite la nueva contraseña",
+        "same-as-new-error": "Debe coincidir con la nueva contraseña."
       },
       "submit-button": "Guardar"
     }

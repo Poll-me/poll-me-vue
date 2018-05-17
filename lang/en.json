@@ -114,17 +114,21 @@
     },
     "profile": {
       "change-password": "Change password",
+      "required-error": "This field is mandatory.",
+      "min-length-error": "The field should have at least {min} characters.",
       "current-password": {
         "label": "Current",
         "placeholder": "Your password now"
       },
       "new-password": {
         "label": "New",
-        "placeholder": "The new password"
+        "placeholder": "The new password",
+        "not-same-as-current-error": "The new password can not be the same as current."
       },
       "confirm-password": {
         "label": "Confirm",
-        "placeholder": "Type new password again"
+        "placeholder": "Type new password again",
+        "same-as-new-error": "Must equal to the new password."
       },
       "submit-button": "Save"
     }
