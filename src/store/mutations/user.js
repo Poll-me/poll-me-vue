@@ -7,7 +7,7 @@ export default {
     state.user = { ...state.user, profile };
   },
 
-  updateUserState(state, { isLogged, profile }) {
+  setUserState(state, { isLogged, profile }) {
     state.user = {
       ...state.user,
       isLogged,

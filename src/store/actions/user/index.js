@@ -1,17 +1,14 @@
 import fb from '@/setup/firebase';
 
 import login from './login';
+import profile from './profile';
 
 const auth = fb.auth();
 let authUnsubscribe;
 
-function getProfileData(user) {
-  const { displayName, uid, phoneNumber, photoURL, email } = user;
-  return { displayName, uid, phoneNumber, photoURL, email };
-}
-
 export default {
   ...login,
+  ...profile,
 
   checkAuth() {
     return new Promise((resolve, reject) => {
@@ -23,17 +20,16 @@ export default {
     });
   },
 
-  initAuthListener({ commit }) {
+  initAuthListener({ commit, dispatch }) {
     return new Promise((resolve, reject) => {
       if (typeof authUnsubscribe !== 'function') {
         authUnsubscribe = auth.onAuthStateChanged((user) => {
           if (user !== null) {
-            commit('updateUserState', {
-              isLogged: !user.isAnonymous,
-              profile: getProfileData(user)
-            });
+            commit('setLoggedState', { isLogged: !user.isAnonymous });
+            dispatch('fetchUserProfile').then(() => resolve(true));
+          } else {
+            resolve(true);
           }
-          resolve(true);
         }, reject);
       } else {
         resolve(true);

@@ -3,11 +3,6 @@ import fb from '@/setup/firebase';
 
 const auth = fb.auth();
 
-function getProfileData(user) {
-  const { displayName, uid, phoneNumber, photoURL, email } = user;
-  return { displayName, uid, phoneNumber, photoURL, email };
-}
-
 function createEmailUser(email, password) {
   return auth.createUserWithEmailAndPassword(email, password);
 }
@@ -23,7 +18,7 @@ function linkEmailToUser(email, password) {
 
 export default {
 
-  registerEmail({ commit }, { name, email, password }) {
+  registerEmail({ commit, dispatch }, { name, email, password }) {
     return new Promise((resolve, reject) => {
       const prevUser = auth.currentUser;
       const registerFunction = prevUser !== null ?
@@ -33,11 +28,8 @@ export default {
         .then((user) => {
           user.updateProfile({ displayName: name })
             .then(() => {
-              commit('updateUserState', {
-                isLogged: true,
-                profile: getProfileData(user)
-              });
-              resolve(user);
+              commit('setLoggedState', { isLogged: true });
+              dispatch('createUserProfile').then(() => resolve(user));
             })
             .catch(reject);
         })
@@ -63,7 +55,7 @@ export default {
   signOut({ commit }) {
     if (!auth.currentUser.isAnonymous) {
       return auth.signOut().then(() => {
-        commit('updateUserState', { isLogged: false });
+        commit('setUserState', { isLogged: false });
       });
     }
     return Promise.resolve(true);
