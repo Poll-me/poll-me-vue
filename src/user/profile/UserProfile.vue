@@ -54,6 +54,8 @@
                     args: { min: $v.currentPassword.$params.minLength.min }
                   }">
                 </span>
+                <span v-show="!$v.currentPassword.notWrong"
+                  v-t="'user.login.password.wrong-error'"></span>
               </p>
             </div>
             <div class="mb-4">
@@ -115,7 +117,7 @@ import { VueWithValidations } from '@/utils';
   computed: mapState({
     profile: state => state.user.profile
   }),
-  methods: mapActions(['updateUserProfile']),
+  methods: mapActions(['updateUserProfile', 'updateUserPassword']),
   validations: {
     name: {
       required,
@@ -124,7 +126,8 @@ import { VueWithValidations } from '@/utils';
     },
     currentPassword: {
       requiredIf: requiredIf('changePassword'),
-      minLength: minLength(8)
+      minLength: minLength(8),
+      notWrong() { return !this.isWrongPassword; }
     },
     newPassword: {
       requiredIf: requiredIf('changePassword'),
@@ -144,6 +147,7 @@ export default class UserProfile extends VueWithValidations {
   currentPassword = '';
   newPassword = '';
   confirmPassword = '';
+  wrongPasswords = [];
 
   get hasChanges() {
     const { displayName, photoUrl } = this.profile;
@@ -164,13 +168,49 @@ export default class UserProfile extends VueWithValidations {
     return data;
   }
 
+  get isWrongPassword() {
+    return this.currentPassword && this.wrongPasswords.indexOf(this.currentPassword) >= 0;
+  }
+
   created() {
     this.name = this.profile.displayName;
   }
 
+  resetPasswordFields() {
+    this.changePassword = false;
+    this.currentPassword = '';
+    this.$v.currentPassword.$reset();
+    this.newPassword = '';
+    this.$v.newPassword.$reset();
+    this.confirmPassword = '';
+    this.$v.confirmPassword.$reset();
+  }
+
   submit() {
     if (!this.$v.invalid) {
-      this.updateUserProfile({ profile: this.updateData });
+      let updateProfilePromise = Promise.resolve(true);
+      if (Object.keys(this.updateData).length > 0) {
+        updateProfilePromise = this.updateUserProfile({ profile: this.updateData });
+      }
+      if (this.newPassword.length > 0) {
+        updateProfilePromise.then(() => {
+          this.updateUserPassword({
+            password: this.currentPassword,
+            newPassword: this.newPassword
+          })
+            .then(() => this.resetPasswordFields())
+            .catch((error) => {
+              switch (error.code) {
+                case 'auth/wrong-password': {
+                  this.wrongPasswords = [...this.wrongPasswords, this.currentPassword];
+                  break;
+                }
+                default:
+                  this.$emit('error', error);
+              }
+            });
+        });
+      }
     }
   }
 }

@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import fb from '@/setup/firebase';
 
 const auth = fb.auth();
@@ -43,6 +44,20 @@ export default {
           } else {
             resolve(newData);
           }
+        })
+        .catch(reject);
+    });
+  },
+
+  updateUserPassword(context, { password, newPassword }) {
+    const authUser = auth.currentUser;
+    const credential = firebase.auth.EmailAuthProvider.credential(authUser.email, password);
+    return new Promise((resolve, reject) => {
+      authUser.reauthenticateAndRetrieveDataWithCredential(credential)
+        .then(() => {
+          authUser.updatePassword(newPassword)
+            .then(resolve)
+            .catch(reject);
         })
         .catch(reject);
     });
