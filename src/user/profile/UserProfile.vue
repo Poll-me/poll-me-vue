@@ -3,7 +3,7 @@
     <div class="text-center container py-4">
       <div class="inline-block rounded-full border-4 border-primary w-24 h-24 overflow-hidden">
         <img v-if="profile.photoUrl" :src="profile.photoUrl"
-          class="w-full h-full" >
+          class="min-w-full min-h-full" >
         <div v-else class="h-full flex items-center justify-center">
           <font-awesome-icon :icon="['far', 'smile']" size="4x"
             class="text-grey-darker"></font-awesome-icon>
@@ -34,8 +34,8 @@
       </div>
       <button v-show="hasChanges" :class="{ 'opacity-75': $v.$invalid }" :disabled="$v.$invalid"
         type="submit" class="sticky pin-b py-4 bg-secondary text-center text-white text-xl">
-        <font-awesome-icon icon="user-plus" class="mr-1" ></font-awesome-icon>
-        <span v-t="'user.register.submit'"></span>
+        <font-awesome-icon icon="edit" class="mr-1" ></font-awesome-icon>
+        <span v-t="'user.profile.submit-button'"></span>
       </button>
     </form>
   </div>

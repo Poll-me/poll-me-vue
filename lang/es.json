@@ -111,6 +111,9 @@
         "placeholder": "Tu contraseña en PollMe"
       },
       "submit": "Crear cuenta"
+    },
+    "profile": {
+      "submit-button": "Guardar"
     }
   },
   "not-found": {
