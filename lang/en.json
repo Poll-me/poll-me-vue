@@ -109,7 +109,8 @@
       },
       "password": {
         "placeholder": "Your PollMe password"
-      }
+      },
+      "submit": "Create account"
     }
   },
   "not-found": {
