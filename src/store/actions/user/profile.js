@@ -33,7 +33,16 @@ export default {
         .update(newData)
         .then(() => {
           commit('setUserProfile', { profile: { ...state.user.profile, ...newData } });
-          resolve(newData);
+          if (newData.displayName || newData.photoUrl) {
+            authUser.updateProfile({
+              displayName: newData.displayName,
+              photoURL: newData.photoUrl
+            })
+              .then(() => resolve(newData))
+              .catch(reject);
+          } else {
+            resolve(newData);
+          }
         })
         .catch(reject);
     });
