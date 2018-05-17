@@ -113,6 +113,19 @@
       "submit": "Crear cuenta"
     },
     "profile": {
+      "change-password": "Cambiar contraseña",
+      "current-password": {
+        "label": "Actual",
+        "placeholder": "Tu contraseña actual"
+      },
+      "new-password": {
+        "label": "Nueva",
+        "placeholder": "La contraseña deseada"
+      },
+      "confirm-password": {
+        "label": "Confirmar",
+        "placeholder": "Repite la nueva contraseña"
+      },
       "submit-button": "Guardar"
     }
   },

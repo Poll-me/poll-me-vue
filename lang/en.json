@@ -113,6 +113,19 @@
       "submit": "Create account"
     },
     "profile": {
+      "change-password": "Change password",
+      "current-password": {
+        "label": "Current",
+        "placeholder": "Your password now"
+      },
+      "new-password": {
+        "label": "New",
+        "placeholder": "The new password"
+      },
+      "confirm-password": {
+        "label": "Confirm",
+        "placeholder": "Type new password again"
+      },
       "submit-button": "Save"
     }
   },
