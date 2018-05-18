@@ -14,11 +14,12 @@
 import '@/assets/css/main.css';
 import { mapActions } from 'vuex';
 
-import mainComponents from './components';
+import coreComponents from './core';
+import sharedComponents from './components';
 
 export default {
   name: 'App',
-  components: { ...mainComponents },
+  components: { ...coreComponents, ...sharedComponents },
   methods: mapActions(['changeLanguage']),
 
   created() {
