@@ -2,6 +2,7 @@
   <div class="h-full flex flex-col">
     <div class="text-center container py-4">
       <UserAvatar :profile="profile" size="lg"></UserAvatar>
+      <FileUploader class="mt-2" file-types="image/*"></FileUploader>
     </div>
     <form class="flex flex-col flex-1" @submit.prevent="submit" >
       <div class="flex-1 container">
