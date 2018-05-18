@@ -12,9 +12,9 @@
   },
   "home": {
     "title": "Bienvenido a {name}",
-    "friends": "La mejor aplicación para saber la opinion de tus amigos sobre cualquier cosa.",
+    "friends": "La mejor aplicación para saber la opinión de tus amigos sobre cualquier cosa.",
     "polls": {
-      "create-message": "Solo necesitas crear una {new-poll} y compartirla.",
+      "create-message": "Sólo necesitas crear una {new-poll} y compartirla.",
       "new-poll": "nueva encuesta",
       "types-message": "Hay muchos {types}, desde el simple {registration} a tipos mas complejos.",
       "poll-types": "tipos de encuesta"
@@ -109,7 +109,28 @@
       },
       "password": {
         "placeholder": "Tu contraseña en PollMe"
-      }
+      },
+      "submit": "Crear cuenta"
+    },
+    "profile": {
+      "change-password": "Cambiar contraseña",
+      "required-error": "Este campo es obligatorio.",
+      "min-length-error": "El campo debe tener al menos {min} caracteres.",
+      "current-password": {
+        "label": "Actual",
+        "placeholder": "Tu contraseña actual"
+      },
+      "new-password": {
+        "label": "Nueva",
+        "placeholder": "La contraseña deseada",
+        "not-same-as-current-error": "La nueva contraseña no puede ser igual a la actual."
+      },
+      "confirm-password": {
+        "label": "Confirmar",
+        "placeholder": "Repite la nueva contraseña",
+        "same-as-new-error": "Debe coincidir con la nueva contraseña."
+      },
+      "submit-button": "Guardar"
     }
   },
   "not-found": {
@@ -122,7 +143,7 @@
   "error": {
     "title": "Ha ocurrido un error",
     "description": "Algo fué mal en la aplicación por alguna razón",
-    "info": "Mantén la calma y hecha un vistazo a estas posibles soluciones:",
+    "info": "Mantén la calma y echa un vistazo a estas posibles soluciones:",
     "try-link": "Reintentar",
     "reload-link": "Recargar"
   },

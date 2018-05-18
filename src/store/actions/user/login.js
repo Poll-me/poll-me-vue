@@ -2,12 +2,6 @@ import firebase from 'firebase';
 import fb from '@/setup/firebase';
 
 const auth = fb.auth();
-let authUnsubscribe;
-
-function getProfileData(user) {
-  const { displayName, uid, phoneNumber, photoURL, email } = user;
-  return { displayName, uid, phoneNumber, photoURL, email };
-}
 
 function createEmailUser(email, password) {
   return auth.createUserWithEmailAndPassword(email, password);
@@ -23,7 +17,8 @@ function linkEmailToUser(email, password) {
 }
 
 export default {
-  registerEmail({ commit }, { name, email, password }) {
+
+  registerEmail({ commit, dispatch }, { name, email, password }) {
     return new Promise((resolve, reject) => {
       const prevUser = auth.currentUser;
       const registerFunction = prevUser !== null ?
@@ -33,9 +28,8 @@ export default {
         .then((user) => {
           user.updateProfile({ displayName: name })
             .then(() => {
-              commit('setLoggedState', { isLogged: true });
-              commit('setUserProfile', { profile: getProfileData(user) });
-              resolve(user);
+              commit('setLoggedState', { isLogged: true, uid: user.uid });
+              dispatch('createUserProfile').then(() => resolve(user));
             })
             .catch(reject);
         })
@@ -61,36 +55,9 @@ export default {
   signOut({ commit }) {
     if (!auth.currentUser.isAnonymous) {
       return auth.signOut().then(() => {
-        commit('setLoggedState', { isLogged: false });
-        commit('setUserProfile', { profile: {} });
+        commit('setUserState', { isLogged: false });
       });
     }
     return Promise.resolve(true);
-  },
-
-  checkAuth() {
-    return new Promise((resolve, reject) => {
-      if (auth.currentUser === null) {
-        auth.signInAnonymously().then(() => resolve(true)).catch(reject);
-      } else {
-        resolve(!auth.currentUser.isAnonymous);
-      }
-    });
-  },
-
-  initAuthListener({ commit }) {
-    return new Promise((resolve, reject) => {
-      if (typeof authUnsubscribe !== 'function') {
-        authUnsubscribe = auth.onAuthStateChanged((user) => {
-          if (user !== null) {
-            commit('setLoggedState', { isLogged: !user.isAnonymous });
-            commit('setUserProfile', { profile: getProfileData(user) });
-          }
-          resolve(true);
-        }, reject);
-      } else {
-        resolve(true);
-      }
-    });
   }
 };

@@ -6,7 +6,7 @@ export default [
     path: 'profile',
     alias: '',
     name: 'profile',
-    component: () => import(/* webpackChunkName: "profile-chunk" */ '../UserProfile'),
+    component: () => import(/* webpackChunkName: "profile-chunk" */ '../profile'),
     beforeEnter: isLoggedGuard
   },
   {
