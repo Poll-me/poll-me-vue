@@ -1,14 +1,7 @@
 <template>
   <div class="h-full flex flex-col">
     <div class="text-center container py-4">
-      <div class="inline-block rounded-full border-4 border-primary w-24 h-24 overflow-hidden">
-        <img v-if="profile.photoUrl" :src="profile.photoUrl"
-          class="min-w-full min-h-full" >
-        <div v-else class="h-full flex items-center justify-center">
-          <font-awesome-icon :icon="['far', 'smile']" size="4x"
-            class="text-grey-darker"></font-awesome-icon>
-        </div>
-      </div>
+      <UserAvatar :profile="profile" size="lg"></UserAvatar>
     </div>
     <form class="flex flex-col flex-1" @submit.prevent="submit" >
       <div class="flex-1 container">
@@ -37,7 +30,7 @@
             <switches id="change-password" v-model="changePassword" color="blue" type-bold="true" >
             </switches>
           </label>
-          <div v-show="changePassword">
+          <div v-if="changePassword">
             <div class="mb-4">
               <label class="mb-2" for="currentPassword"
                 v-t="'user.profile.current-password.label'"></label>
@@ -184,7 +177,7 @@ export default class UserProfile extends VueWithValidations {
     return this.changePassword && this.wrongPasswords.indexOf(this.currentPassword) >= 0;
   }
 
-  created() {
+  mounted() {
     this.name = this.profile.displayName;
   }
 

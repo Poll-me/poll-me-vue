@@ -1,5 +1,3 @@
-import MainFooter from './MainFooter';
-import MainHeader from './MainHeader';
-import MainLayout from './MainLayout';
+import UserAvatar from './UserAvatar';
 
-export default { MainLayout, MainHeader, MainFooter };
+export default { UserAvatar };

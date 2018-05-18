@@ -7,11 +7,16 @@ import './setup/font-awesome';
 import I18n from './setup/i18n';
 
 import App from './App';
+import globalComponents from './components';
 import router from './router';
 import store from './store';
 
 Vue.config.productionTip = false;
 Vue.config.errorHandler = () => router.push({ name: 'error' });
+
+Object.keys(globalComponents).forEach(
+  compName => Vue.component(compName, globalComponents[compName])
+);
 
 store.dispatch('initAuthListener').then(() => {
   /* eslint-disable no-new */
