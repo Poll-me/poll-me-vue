@@ -3,9 +3,9 @@
     class="inline-block rounded-full border-primary overflow-hidden">
     <img v-if="profile.photoUrl" :src="profile.photoUrl"
       class="min-w-full min-h-full" >
-    <div v-else :class="`text-${sizeData.font}`"
-      class="h-full flex items-center justify-center text-white bg-teal font-medium font-title">
-      {{ profile.displayName.slice(0, 1) }}
+    <div v-else :class="`text-${sizeData.font}`" :style="{ 'background-color': bgColor }"
+      class="h-full flex items-center justify-center text-white font-medium font-title">
+      {{ avatarLetter }}
     </div>
   </div>
 </template>
@@ -37,8 +37,27 @@ const avatarSizesMap = {
   }
 })
 export default class UserAvatar extends Vue {
+  get avatarLetter() {
+    return (typeof this.profile.displayName === 'string' && this.profile.displayName.length > 0) ?
+      this.profile.displayName[0].toUpperCase() :
+      '';
+  }
+
   get sizeData() {
     return avatarSizesMap[this.size];
+  }
+
+  get bgColor() {
+    let color = '#';
+    if (this.avatarLetter.length > 0) {
+      const letterCode = this.avatarLetter.charCodeAt(0);
+      const variance = ((letterCode % 8) + 1) * 15;
+      for (let i = 0; i < 3; i += 1) {
+        const letterFlag = ((letterCode + i) % 2 || ((letterCode + i) % 3) === 0);
+        color += (letterFlag ? Math.min(128 + variance, 200) : 128 - variance).toString(16);
+      }
+    }
+    return color;
   }
 }
 </script>

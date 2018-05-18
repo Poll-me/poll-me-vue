@@ -30,7 +30,7 @@
             <switches id="change-password" v-model="changePassword" color="blue" type-bold="true" >
             </switches>
           </label>
-          <div v-show="changePassword">
+          <div v-if="changePassword">
             <div class="mb-4">
               <label class="mb-2" for="currentPassword"
                 v-t="'user.profile.current-password.label'"></label>
@@ -177,7 +177,7 @@ export default class UserProfile extends VueWithValidations {
     return this.changePassword && this.wrongPasswords.indexOf(this.currentPassword) >= 0;
   }
 
-  created() {
+  mounted() {
     this.name = this.profile.displayName;
   }
 
