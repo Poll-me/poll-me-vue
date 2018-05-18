@@ -118,6 +118,13 @@ import { VueWithValidations } from '@/utils';
     profile: state => state.user.profile
   }),
   methods: mapActions(['updateUserProfile', 'updateUserPassword']),
+  watch: {
+    changePassword(val) {
+      if (!val) {
+        this.resetPasswordFields();
+      }
+    }
+  },
   validations: {
     name: {
       required,
@@ -132,7 +139,7 @@ import { VueWithValidations } from '@/utils';
     newPassword: {
       requiredIf: requiredIf('changePassword'),
       minLength: minLength(8),
-      notSameAsCurrentPassword(val) { return val !== this.currentPassword; }
+      notSameAsCurrentPassword(val) { return !(val && val === this.currentPassword); }
     },
     confirmPassword: {
       requiredIf: requiredIf('changePassword'),
@@ -169,7 +176,7 @@ export default class UserProfile extends VueWithValidations {
   }
 
   get isWrongPassword() {
-    return this.currentPassword && this.wrongPasswords.indexOf(this.currentPassword) >= 0;
+    return this.changePassword && this.wrongPasswords.indexOf(this.currentPassword) >= 0;
   }
 
   created() {
@@ -192,7 +199,7 @@ export default class UserProfile extends VueWithValidations {
       if (Object.keys(this.updateData).length > 0) {
         updateProfilePromise = this.updateUserProfile({ profile: this.updateData });
       }
-      if (this.newPassword.length > 0) {
+      if (this.changePassword) {
         updateProfilePromise.then(() => {
           this.updateUserPassword({
             password: this.currentPassword,
