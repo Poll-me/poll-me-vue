@@ -95,10 +95,14 @@
           </div>
         </div>
       </div>
-      <button v-show="hasChanges" :class="{ 'opacity-75': $v.$invalid }" :disabled="$v.$invalid"
+      <button v-show="hasChanges" :class="{ 'opacity-75': $v.$invalid || loading }"
+        :disabled="$v.$invalid || loading"
         type="submit" class="sticky pin-b py-4 bg-secondary text-center text-white text-xl">
-        <font-awesome-icon icon="edit" class="mr-1" ></font-awesome-icon>
-        <span v-t="'user.profile.submit-button'"></span>
+        <template v-if="!loading">
+          <font-awesome-icon icon="edit" class="mr-1" ></font-awesome-icon>
+          <span v-t="'user.profile.submit-button'"></span>
+        </template>
+        <font-awesome-icon v-else icon="spinner" spin ></font-awesome-icon>
       </button>
     </form>
   </div>
@@ -155,6 +159,7 @@ export default class UserProfile extends VueWithValidations {
   newPassword = '';
   confirmPassword = '';
   wrongPasswords = [];
+  loading = false;
 
   get hasChanges() {
     const { displayName, photoUrl } = this.profile;
@@ -195,29 +200,31 @@ export default class UserProfile extends VueWithValidations {
 
   submit() {
     if (!this.$v.invalid) {
-      let updateProfilePromise = Promise.resolve(true);
+      const updatePromises = [];
+      this.loading = true;
       if (Object.keys(this.updateData).length > 0) {
-        updateProfilePromise = this.updateUserProfile({ profile: this.updateData });
+        updatePromises.push(this.updateUserProfile({ profile: this.updateData }));
       }
       if (this.changePassword) {
-        updateProfilePromise.then(() => {
-          this.updateUserPassword({
-            password: this.currentPassword,
-            newPassword: this.newPassword
+        updatePromises.push(this.updateUserPassword({
+          password: this.currentPassword,
+          newPassword: this.newPassword
+        })
+          .then(() => this.resetPasswordFields())
+          .catch((error) => {
+            switch (error.code) {
+              case 'auth/wrong-password':
+                this.wrongPasswords = [...this.wrongPasswords, this.currentPassword];
+                break;
+              default:
+                this.resetPasswordFields();
+            }
           })
-            .then(() => this.resetPasswordFields())
-            .catch((error) => {
-              switch (error.code) {
-                case 'auth/wrong-password': {
-                  this.wrongPasswords = [...this.wrongPasswords, this.currentPassword];
-                  break;
-                }
-                default:
-                  this.$emit('error', error);
-              }
-            });
-        });
+        );
       }
+      Promise.all(updatePromises).then(() => {
+        this.loading = false;
+      });
     }
   }
 }
