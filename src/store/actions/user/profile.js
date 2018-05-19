@@ -88,27 +88,35 @@ export default {
   updateUserAvatar({ dispatch }, { image }) {
     return new Promise((resolve, reject) => {
       const user = auth.currentUser;
-      const ref = st.ref().child('users').child(user.uid).child(avatarFileName);
-      if (image instanceof File) {
-        const metadata = { contentType: image.type };
-        ref.put(image, metadata).then(() => {
-          ref.getDownloadURL().then((url) => {
-            dispatch('updateUserProfile', {
-              profile: {
-                photoUrl: url
-              }
-            }).then(() => resolve(url), reject);
+      const userRef = st.ref().child('users').child(user.uid);
+
+      const cleanBeforeAvatarPromise = user.photoURL ?
+        st.refFromURL(user.photoURL).delete() :
+        Promise.resolve(true);
+
+      cleanBeforeAvatarPromise.then(() => {
+        if (image instanceof File) {
+          const fileExt = image.name.split('.').pop();
+          const fileName = `${avatarFileName}-${Date.now()}.${fileExt}`;
+          const metadata = { contentType: image.type };
+          const avatarRef = userRef.child(fileName);
+          avatarRef.put(image, metadata).then(() => {
+            avatarRef.getDownloadURL().then((url) => {
+              dispatch('updateUserProfile', {
+                profile: {
+                  photoUrl: url
+                }
+              }).then(() => resolve(url), reject);
+            }, reject);
           }, reject);
-        }, reject);
-      } else {
-        ref.delete().then(() => {
+        } else {
           dispatch('updateUserProfile', {
             profile: {
               photoUrl: null
             }
           }).then(() => resolve(), reject);
-        }, reject);
-      }
+        }
+      }, reject);
     });
   }
 };
