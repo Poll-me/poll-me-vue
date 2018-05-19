@@ -28,9 +28,9 @@ import Component from 'vue-class-component';
       type: String,
       default: '*'
     },
-    maxFileSize: {
+    maxSize: {
       type: Number,
-      default: 1024 * 500 // 500KB
+      default: 1024 * 1024 * 5 // 5MB
     },
     loading: {
       type: Boolean,
@@ -45,13 +45,13 @@ export default class FileUploader extends Vue {
       if (this.areValidFiles(files)) {
         this.$emit('files-ready', files);
       } else {
-        this.$emit('not-valid-files', files);
+        this.$emit('not-valid-error', files);
       }
     }
   }
 
   areValidFiles(files) {
-    return !files.some(file => file.size > this.maxFileSize);
+    return !files.some(file => file.size > this.maxSize);
   }
 }
 </script>

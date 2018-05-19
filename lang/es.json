@@ -117,6 +117,7 @@
       "required-error": "Este campo es obligatorio.",
       "min-length-error": "El campo debe tener al menos {min} caracteres.",
       "upload-avatar": "Subir",
+      "file-error": "La imagen no puede ocupar mas de {size}",
       "current-password": {
         "label": "Actual",
         "placeholder": "Tu contraseña actual"

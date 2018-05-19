@@ -4,13 +4,17 @@
       <UserAvatar :profile="profile" size="lg"></UserAvatar>
       <div class="mt-2 flex justify-center">
         <FileUploader file-types="image/*" :text="$t('user.profile.upload-avatar')"
-          :loading="updatingAvatar" @files-ready="updateAvatar" ></FileUploader>
+          :loading="updatingAvatar" :max-size="avatarMaxSize"
+          @files-ready="updateAvatar" @not-valid-error="fileError = true" ></FileUploader>
         <button v-if="profile.photoUrl" @click="updateAvatar()" :disabled="updatingAvatar"
           class="btn bg-grey-dark ml-2 text-white">
           <font-awesome-icon icon="trash-alt">
           </font-awesome-icon>
         </button>
       </div>
+      <p v-show="fileError" class="field-errors mt-3">
+        <span v-t="{ path: 'user.profile.file-error', args: { size: avatarMaxSizeString } }"></span>
+      </p>
     </div>
     <form class="flex flex-col flex-1" @submit.prevent="submit" >
       <div class="flex-1 container">
@@ -162,6 +166,8 @@ export default class UserProfile extends VueWithValidations {
   wrongPasswords = [];
   loading = false;
   updatingAvatar = false;
+  avatarMaxSize = 1024 * 500; // 500KB
+  fileError = false;
 
   get hasChanges() {
     return this.name !== this.profile.displayName ||
@@ -181,12 +187,18 @@ export default class UserProfile extends VueWithValidations {
     return this.changePassword && this.wrongPasswords.indexOf(this.currentPassword) >= 0;
   }
 
+  get avatarMaxSizeString() {
+    return `${(this.avatarMaxSize / 1024).toFixed(0)} KB`;
+  }
+
   mounted() {
     this.name = this.profile.displayName;
+    this.fileError = false;
   }
 
   updateAvatar(files) {
     this.updatingAvatar = true;
+    this.fileError = false;
     const image = Array.isArray(files) ? files.shift() : undefined;
     this.updateUserAvatar({ image }).then(() => {
       this.updatingAvatar = false;
