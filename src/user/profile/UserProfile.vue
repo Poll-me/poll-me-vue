@@ -2,7 +2,8 @@
   <div class="h-full flex flex-col">
     <div class="text-center container py-4">
       <UserAvatar :profile="profile" size="lg"></UserAvatar>
-      <FileUploader class="mt-2" file-types="image/*"></FileUploader>
+      <FileUploader class="mt-2" file-types="image/*"
+        :loading="uploadingAvatar" @files-ready="uploadAvatar" ></FileUploader>
     </div>
     <form class="flex flex-col flex-1" @submit.prevent="submit" >
       <div class="flex-1 container">
@@ -115,7 +116,7 @@ import { VueWithValidations } from '@/utils';
   computed: mapState({
     profile: state => state.user.profile
   }),
-  methods: mapActions(['updateUserProfile', 'updateUserPassword']),
+  methods: mapActions(['updateUserProfile', 'updateUserPassword', 'updateUserAvatar']),
   watch: {
     changePassword(val) {
       if (!val) {
@@ -154,6 +155,7 @@ export default class UserProfile extends VueWithValidations {
   confirmPassword = '';
   wrongPasswords = [];
   loading = false;
+  uploadingAvatar = false;
 
   get hasChanges() {
     const { displayName, photoUrl } = this.profile;
@@ -180,6 +182,13 @@ export default class UserProfile extends VueWithValidations {
 
   mounted() {
     this.name = this.profile.displayName;
+  }
+
+  uploadAvatar(files) {
+    this.uploadingAvatar = true;
+    this.updateUserAvatar({ image: files.shift() }).then(() => {
+      this.uploadingAvatar = false;
+    }, console.log.bind(console));
   }
 
   resetPasswordFields() {

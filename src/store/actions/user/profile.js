@@ -3,10 +3,12 @@ import fb from '@/setup/firebase';
 
 const auth = fb.auth();
 const db = fb.database();
+const st = fb.storage();
+const avatarFileName = 'avatar-image';
 
 function getProfileData(authUser) {
   const { displayName, phoneNumber, photoURL, email } = authUser;
-  return { displayName, phoneNumber, photoURL, email };
+  return { displayName, phoneNumber, photoUrl: photoURL, email };
 }
 
 export default {
@@ -23,6 +25,26 @@ export default {
           resolve(profile);
         })
         .catch(reject);
+    });
+  },
+
+  fetchUserProfile({ commit }) {
+    const authUser = auth.currentUser;
+    return new Promise((resolve, reject) => {
+      if (!authUser.isAnonymous) {
+        db.ref('/users/')
+          .child(authUser.uid)
+          .once('value')
+          .then((snapshot) => {
+            const profile = snapshot.val();
+            commit('setUserProfile', { profile });
+            resolve(profile);
+          })
+          .catch(reject);
+      } else {
+        commit('setUserProfile', { profile: {} });
+        resolve({});
+      }
     });
   },
 
@@ -63,22 +85,21 @@ export default {
     });
   },
 
-  fetchUserProfile({ commit }) {
-    const authUser = auth.currentUser;
+  updateUserAvatar({ dispatch }, { image }) {
     return new Promise((resolve, reject) => {
-      if (!authUser.isAnonymous) {
-        db.ref('/users/')
-          .child(authUser.uid)
-          .once('value')
-          .then((snapshot) => {
-            const profile = snapshot.val();
-            commit('setUserProfile', { profile });
-            resolve(profile);
-          })
-          .catch(reject);
-      } else {
-        commit('setUserProfile', { profile: {} });
-        resolve({});
+      if (image instanceof File) {
+        const user = auth.currentUser;
+        const ref = st.ref().child('users').child(user.uid).child(avatarFileName);
+        const metadata = { contentType: image.type };
+        ref.put(image, metadata).then(() => {
+          ref.getDownloadURL().then((url) => {
+            dispatch('updateUserProfile', {
+              profile: {
+                photoUrl: url
+              }
+            }).then(() => resolve(url), reject);
+          }, reject);
+        }, reject);
       }
     });
   }

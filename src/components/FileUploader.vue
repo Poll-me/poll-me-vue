@@ -29,17 +29,21 @@ import Component from 'vue-class-component';
     },
     maxFileSize: {
       type: Number,
-      default: 204800 // 200KB
+      default: 1024 * 500 // 500KB
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   }
 })
 export default class FileUploader extends Vue {
-  loading = false;
-
   filesChange() {
     if (this.$refs.fileInput.files.length > 0) {
       const files = Array.from(this.$refs.fileInput.files);
-      if (!this.areValidFiles(files)) {
+      if (this.areValidFiles(files)) {
+        this.$emit('files-ready', files);
+      } else {
         this.$emit('not-valid-files', files);
       }
     }
