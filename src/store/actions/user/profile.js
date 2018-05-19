@@ -88,7 +88,7 @@ export default {
   updateUserAvatar({ dispatch }, { image }) {
     return new Promise((resolve, reject) => {
       const user = auth.currentUser;
-      const userRef = st.ref().child('users').child(user.uid);
+      const userRef = st.ref().child('users').child(user.uid).child('avatar');
 
       const cleanBeforeAvatarPromise = user.photoURL ?
         st.refFromURL(user.photoURL).delete() :
@@ -98,7 +98,7 @@ export default {
         if (image instanceof File) {
           const fileExt = image.name.split('.').pop();
           const fileName = `${avatarFileName}-${Date.now()}.${fileExt}`;
-          const metadata = { contentType: image.type };
+          const metadata = { contentType: image.type, cacheControl: 'public, max-age=31536000' };
           const avatarRef = userRef.child(fileName);
           avatarRef.put(image, metadata).then(() => {
             avatarRef.getDownloadURL().then((url) => {
