@@ -1,9 +1,9 @@
 <template>
   <div :class="`w-${sizeData.size} h-${sizeData.size} border-${sizeData.border}`"
-    class="inline-block rounded-full border-primary overflow-hidden">
-    <img v-if="profile.photoUrl" :src="profile.photoUrl"
-      class="min-w-full min-h-full" >
-    <div v-else :class="`text-${sizeData.font}`" :style="{ 'background-color': bgColor }"
+    :style="photoBackground"
+    class="inline-block rounded-full border-primary overflow-hidden bg-cover bg-center">
+    <div v-if="!profile.photoUrl" :class="`text-${sizeData.font}`"
+      :style="{ 'background-color': bgColor }"
       class="h-full flex items-center justify-center text-white font-medium font-title">
       {{ avatarLetter }}
     </div>
@@ -37,6 +37,10 @@ const avatarSizesMap = {
   }
 })
 export default class UserAvatar extends Vue {
+  get photoBackground() {
+    return this.profile.photoUrl ? `background-image: url('${this.profile.photoUrl}')` : '';
+  }
+
   get avatarLetter() {
     return (typeof this.profile.displayName === 'string' && this.profile.displayName.length > 0) ?
       this.profile.displayName[0].toUpperCase() :

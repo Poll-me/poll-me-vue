@@ -1,3 +1,4 @@
+import FileUploader from './FileUploader';
 import UserAvatar from './UserAvatar';
 
-export default { UserAvatar };
+export default { FileUploader, UserAvatar };

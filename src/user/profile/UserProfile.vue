@@ -2,6 +2,19 @@
   <div class="h-full flex flex-col">
     <div class="text-center container py-4">
       <UserAvatar :profile="profile" size="lg"></UserAvatar>
+      <div class="mt-2 flex justify-center">
+        <FileUploader file-types="image/*" :text="$t('user.profile.upload-avatar')"
+          :loading="updatingAvatar" :max-size="avatarMaxSize"
+          @files-ready="updateAvatar" @not-valid-error="fileError = true" ></FileUploader>
+        <button v-if="profile.photoUrl" @click="updateAvatar()" :disabled="updatingAvatar"
+          class="btn bg-grey-dark ml-2 text-white">
+          <font-awesome-icon icon="trash-alt">
+          </font-awesome-icon>
+        </button>
+      </div>
+      <p v-show="fileError" class="field-errors mt-3">
+        <span v-t="{ path: 'user.profile.file-error', args: { size: avatarMaxSizeString } }"></span>
+      </p>
     </div>
     <form class="flex flex-col flex-1" @submit.prevent="submit" >
       <div class="flex-1 container">
@@ -114,7 +127,7 @@ import { VueWithValidations } from '@/utils';
   computed: mapState({
     profile: state => state.user.profile
   }),
-  methods: mapActions(['updateUserProfile', 'updateUserPassword']),
+  methods: mapActions(['updateUserProfile', 'updateUserPassword', 'updateUserAvatar']),
   watch: {
     changePassword(val) {
       if (!val) {
@@ -146,29 +159,26 @@ import { VueWithValidations } from '@/utils';
 })
 export default class UserProfile extends VueWithValidations {
   name = '';
-  photoUrl = '';
   changePassword = false;
   currentPassword = '';
   newPassword = '';
   confirmPassword = '';
   wrongPasswords = [];
   loading = false;
+  updatingAvatar = false;
+  avatarMaxSize = 1024 * 500; // 500KB
+  fileError = false;
 
   get hasChanges() {
-    const { displayName, photoUrl } = this.profile;
-    return this.name !== displayName ||
-      (this.photoUrl.length > 0 && this.photoUrl !== photoUrl) ||
+    return this.name !== this.profile.displayName ||
       this.newPassword.length > 0;
   }
 
   get updateData() {
-    const { displayName, photoUrl } = this.profile;
+    const { displayName } = this.profile;
     const data = {};
     if (this.name !== displayName) {
       data.displayName = this.name;
-    }
-    if (this.photoUrl.length > 0 && this.photoUrl !== photoUrl) {
-      data.photoUrl = this.photoUrl;
     }
     return data;
   }
@@ -177,8 +187,22 @@ export default class UserProfile extends VueWithValidations {
     return this.changePassword && this.wrongPasswords.indexOf(this.currentPassword) >= 0;
   }
 
+  get avatarMaxSizeString() {
+    return `${(this.avatarMaxSize / 1024).toFixed(0)} KB`;
+  }
+
   mounted() {
     this.name = this.profile.displayName;
+    this.fileError = false;
+  }
+
+  updateAvatar(files) {
+    this.updatingAvatar = true;
+    this.fileError = false;
+    const image = Array.isArray(files) ? files.shift() : undefined;
+    this.updateUserAvatar({ image }).then(() => {
+      this.updatingAvatar = false;
+    });
   }
 
   resetPasswordFields() {

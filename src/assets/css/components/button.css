@@ -20,3 +20,12 @@
   @apply .bg-secondary;
   @apply .text-white;
 }
+
+/**
+ *  TERTIARY
+ */
+
+.btn-tertiary {
+  @apply .bg-tertiary;
+  @apply .text-white;
+}
