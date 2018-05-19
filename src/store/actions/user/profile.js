@@ -56,18 +56,18 @@ export default {
         .update(newData)
         .then(() => {
           commit('setUserProfile', { profile: { ...state.user.profile, ...newData } });
-          if (newData.displayName || newData.photoUrl) {
+          if (
+            typeof newData.displayName !== 'undefined' ||
+            typeof newData.photoUrl !== 'undefined'
+          ) {
             authUser.updateProfile({
               displayName: newData.displayName,
               photoURL: newData.photoUrl
-            })
-              .then(() => resolve(newData))
-              .catch(reject);
+            }).then(() => resolve(newData), reject);
           } else {
             resolve(newData);
           }
-        })
-        .catch(reject);
+        }, reject);
     });
   },
 
@@ -87,9 +87,9 @@ export default {
 
   updateUserAvatar({ dispatch }, { image }) {
     return new Promise((resolve, reject) => {
+      const user = auth.currentUser;
+      const ref = st.ref().child('users').child(user.uid).child(avatarFileName);
       if (image instanceof File) {
-        const user = auth.currentUser;
-        const ref = st.ref().child('users').child(user.uid).child(avatarFileName);
         const metadata = { contentType: image.type };
         ref.put(image, metadata).then(() => {
           ref.getDownloadURL().then((url) => {
@@ -99,6 +99,14 @@ export default {
               }
             }).then(() => resolve(url), reject);
           }, reject);
+        }, reject);
+      } else {
+        ref.delete().then(() => {
+          dispatch('updateUserProfile', {
+            profile: {
+              photoUrl: null
+            }
+          }).then(() => resolve(), reject);
         }, reject);
       }
     });

@@ -116,6 +116,7 @@
       "change-password": "Cambiar contraseña",
       "required-error": "Este campo es obligatorio.",
       "min-length-error": "El campo debe tener al menos {min} caracteres.",
+      "upload-avatar": "Subir",
       "current-password": {
         "label": "Actual",
         "placeholder": "Tu contraseña actual"

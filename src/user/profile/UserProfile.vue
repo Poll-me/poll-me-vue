@@ -2,8 +2,15 @@
   <div class="h-full flex flex-col">
     <div class="text-center container py-4">
       <UserAvatar :profile="profile" size="lg"></UserAvatar>
-      <FileUploader class="mt-2" file-types="image/*"
-        :loading="uploadingAvatar" @files-ready="uploadAvatar" ></FileUploader>
+      <div class="mt-2 flex justify-center">
+        <FileUploader file-types="image/*" :text="$t('user.profile.upload-avatar')"
+          :loading="updatingAvatar" @files-ready="updateAvatar" ></FileUploader>
+        <button v-if="profile.photoUrl" @click="updateAvatar()" :disabled="updatingAvatar"
+          class="btn bg-grey-dark ml-2 text-white">
+          <font-awesome-icon icon="trash-alt">
+          </font-awesome-icon>
+        </button>
+      </div>
     </div>
     <form class="flex flex-col flex-1" @submit.prevent="submit" >
       <div class="flex-1 container">
@@ -148,30 +155,24 @@ import { VueWithValidations } from '@/utils';
 })
 export default class UserProfile extends VueWithValidations {
   name = '';
-  photoUrl = '';
   changePassword = false;
   currentPassword = '';
   newPassword = '';
   confirmPassword = '';
   wrongPasswords = [];
   loading = false;
-  uploadingAvatar = false;
+  updatingAvatar = false;
 
   get hasChanges() {
-    const { displayName, photoUrl } = this.profile;
-    return this.name !== displayName ||
-      (this.photoUrl.length > 0 && this.photoUrl !== photoUrl) ||
+    return this.name !== this.profile.displayName ||
       this.newPassword.length > 0;
   }
 
   get updateData() {
-    const { displayName, photoUrl } = this.profile;
+    const { displayName } = this.profile;
     const data = {};
     if (this.name !== displayName) {
       data.displayName = this.name;
-    }
-    if (this.photoUrl.length > 0 && this.photoUrl !== photoUrl) {
-      data.photoUrl = this.photoUrl;
     }
     return data;
   }
@@ -184,11 +185,12 @@ export default class UserProfile extends VueWithValidations {
     this.name = this.profile.displayName;
   }
 
-  uploadAvatar(files) {
-    this.uploadingAvatar = true;
-    this.updateUserAvatar({ image: files.shift() }).then(() => {
-      this.uploadingAvatar = false;
-    }, console.log.bind(console));
+  updateAvatar(files) {
+    this.updatingAvatar = true;
+    const image = Array.isArray(files) ? files.shift() : undefined;
+    this.updateUserAvatar({ image }).then(() => {
+      this.updatingAvatar = false;
+    });
   }
 
   resetPasswordFields() {

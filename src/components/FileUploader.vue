@@ -2,11 +2,9 @@
   <div>
     <button :class="{ 'opacity-75': loading }" @click="$refs.fileInput.click()"
       class="btn btn-tertiary" :disabled="loading" >
-      <template v-if="!loading">
-        <font-awesome-icon icon="upload" class="mr-1" ></font-awesome-icon>
-        <span>Upload</span>
-      </template>
-      <font-awesome-icon v-else icon="spinner" spin ></font-awesome-icon>
+      <font-awesome-icon :icon="loading ? 'spinner' : 'upload'" :spin="loading" >
+      </font-awesome-icon>
+      <span v-show="!loading && text" class="ml-1">{{ text }}</span>
     </button>
     <input ref="fileInput" type="file" class="hidden"
       :accept="fileTypes" :multiple="maxFiles > 1"
@@ -19,6 +17,9 @@ import Component from 'vue-class-component';
 
 @Component({
   props: {
+    text: {
+      type: String
+    },
     maxFiles: {
       type: Number,
       default: 1

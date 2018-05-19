@@ -116,6 +116,7 @@
       "change-password": "Change password",
       "required-error": "This field is mandatory.",
       "min-length-error": "The field should have at least {min} characters.",
+      "upload-avatar": "Upload",
       "current-password": {
         "label": "Current",
         "placeholder": "Your password now"
