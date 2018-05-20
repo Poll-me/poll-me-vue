@@ -58,7 +58,7 @@ export default class CreatePoll extends Vue {
   }
 
   submit(data) {
-    const pollData = { ...data, type: this.type.id, user: this.user.uid };
+    const pollData = { ...data, type: this.type.id };
     this.createPoll(pollData)
       .then(key => this.$router.push({ name: 'fill-poll', params: { key } }));
   }
