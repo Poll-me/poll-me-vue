@@ -7,7 +7,7 @@
           :placeholder="$t('polls.new.form.name-placeholder')" @input="$v.name.$touch()"
           id="poll-name" type="text" required >
       </div>
-      <div class="flex items-center">
+      <div v-if="!isLogged" class="flex items-center">
         <label for="poll-author" v-t="'polls.new.form.author-label'"></label>
         <input v-model.trim="author" :class="{ 'border-red': $v.author.$error }"
           @input="$v.author.$touch()" :placeholder="$t('polls.new.form.author-placeholder')"
@@ -36,7 +36,7 @@
 </template>
 <script>
 import Component from 'vue-class-component';
-import { required, requiredIf } from 'vuelidate/lib/validators';
+import { required, requiredIf, requiredUnless } from 'vuelidate/lib/validators';
 import Switches from 'vue-switches';
 
 import { VueWithValidations } from '@/utils';
@@ -44,6 +44,10 @@ import { VueWithValidations } from '@/utils';
 @Component({
   components: { Switches },
   props: {
+    isLogged: {
+      type: Boolean,
+      required: true
+    },
     type: {
       required: true,
       type: Number
@@ -54,7 +58,7 @@ import { VueWithValidations } from '@/utils';
       required
     },
     author: {
-      required
+      required: requiredUnless('isLogged')
     },
     description: {
       required: requiredIf('hasDescription')
@@ -66,6 +70,12 @@ export default class NewPollForm extends VueWithValidations {
   author = '';
   description = '';
   hasDescription = false;
+
+  mounted() {
+    if (this.userName) {
+      this.author = this.userName;
+    }
+  }
 
   submit() {
     if (!this.$v.$invalid) {

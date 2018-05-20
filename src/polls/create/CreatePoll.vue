@@ -24,7 +24,8 @@
             <small class="italic" v-t="`polls.types.${type.id}.description`"></small>
           </div>
         </div>
-        <NewPollForm :type="type.id" @submit="submit"></NewPollForm>
+        <NewPollForm :is-logged="user.isLogged"
+          :type="type.id" @submit="submit"></NewPollForm>
       </template>
       <div v-else class="container flex-1 flex items-center text-center" >
         <div class="flex-1">
@@ -38,7 +39,7 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { createNamespacedHelpers } from 'vuex';
+import { mapState as mapRootState, createNamespacedHelpers } from 'vuex';
 
 import NewPollForm from './components';
 
@@ -46,7 +47,7 @@ const { mapGetters, mapActions } = createNamespacedHelpers('polls');
 
 @Component({
   components: { NewPollForm },
-  computed: mapGetters(['typesList']),
+  computed: { ...mapGetters(['typesList']), ...mapRootState(['user']) },
   methods: mapActions(['createPoll'])
 })
 export default class CreatePoll extends Vue {
@@ -57,7 +58,7 @@ export default class CreatePoll extends Vue {
   }
 
   submit(data) {
-    const pollData = { ...data, type: this.type.id };
+    const pollData = { ...data, type: this.type.id, user: this.user.uid };
     this.createPoll(pollData)
       .then(key => this.$router.push({ name: 'fill-poll', params: { key } }));
   }
