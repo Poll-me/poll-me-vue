@@ -30,13 +30,12 @@ const { mapGetters, mapActions } = createNamespacedHelpers('polls');
 
 @Component({
   computed: mapGetters(['items']),
-  methods: mapActions(['fetchPolls'])
+  methods: mapActions(['fetchPolls', 'fetchVotes'])
 })
 export default class UserPolls extends Vue {
-  created() {
-    if (this.items.length === 0) {
-      this.fetchPolls();
-    }
+  mounted() {
+    this.fetchPolls();
+    this.fetchVotes();
   }
 }
 </script>
