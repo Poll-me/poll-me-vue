@@ -96,9 +96,10 @@ export default {
 
       cleanBeforeAvatarPromise.then(() => {
         if (image instanceof File) {
+          const cacheAge = 60 * 60 * 24 * 14; // 14 days
           const fileExt = image.name.split('.').pop();
           const fileName = `${avatarFileName}-${Date.now()}.${fileExt}`;
-          const metadata = { contentType: image.type, cacheControl: 'public, max-age=31536000' };
+          const metadata = { contentType: image.type, cacheControl: `public, max-age=${cacheAge}` };
           const avatarRef = userRef.child(fileName);
           avatarRef.put(image, metadata).then(() => {
             avatarRef.getDownloadURL().then((url) => {
