@@ -46,6 +46,9 @@
   "polls": {
     "view-poll": "Ver encuesta",
     "create-poll": "Nueva encuesta",
+    "activity-title": "Actividad reciente",
+    "polls-title": "Tus encuestas",
+    "no-polls": "¡Aún no tienes encuestas! No te preocupes, puedes crear la primera pulsando el botón de abajo",
     "new": {
       "title": "Nueva encuesta",
       "type-placeholder": "¿Que tipo de encuesta?",

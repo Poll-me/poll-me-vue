@@ -46,6 +46,9 @@
   "polls": {
     "view-poll": "View poll",
     "create-poll": "Create a new Poll",
+    "activity-title": "Recent activity",
+    "polls-title": "Your polls",
+    "no-polls": "You have no polls yet!! But do not worry you can create the first clicking the button below",
     "new": {
       "title": "New poll",
       "type-placeholder": "What kind of poll?",
