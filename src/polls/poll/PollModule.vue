@@ -22,11 +22,9 @@ export default class PollModule extends Vue {
   }
 
   created() {
-    const routeKey = this.$route.params.key;
-    if (this.key !== routeKey) {
-      this.fetchPoll({ key: routeKey });
-      this.fetchAnswers({ key: routeKey });
-    }
+    const { key } = this.$route.params;
+    this.fetchPoll({ key });
+    this.fetchAnswers({ key });
   }
 }
 </script>

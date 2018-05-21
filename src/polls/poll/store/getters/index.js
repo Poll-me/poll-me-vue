@@ -1,10 +1,18 @@
 export default {
-  poll(state) {
-    const answers = Object.values(state.answers);
+  answers(state) {
+    return Object.keys(state.answersEntities)
+      .map(user => ({
+        ...state.answersEntities[user],
+        user
+      }))
+      .sort((a, b) => a.timestamp - b.timestamp);
+  },
+
+  poll(state, { answers }) {
     return {
       ...state.entity,
       key: state.key,
-      answers: answers.sort((a, b) => a.timestamp - b.timestamp)
+      answers
     };
   },
 

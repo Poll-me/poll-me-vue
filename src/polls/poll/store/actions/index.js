@@ -4,40 +4,39 @@ import fillActions from './fill';
 
 const db = fb.database();
 
+let fetchedPoll = {};
+let fetchedAnswers = {};
+
 export default {
   ...fillActions,
 
-  fetchPoll({ commit, state }, { key }) {
-    if (state.key) {
-      db
-        .ref('/polls')
-        .child(state.key)
-        .off();
-    }
-    commit('setKey', { key });
+  fetchPoll({ commit }, { key }) {
+    if (fetchedPoll.key !== key) {
+      if (fetchedPoll.key) {
+        fetchedPoll.ref.off();
+      }
+      commit('setKey', { key });
 
-    db
-      .ref('/polls')
-      .child(key)
-      .on('value', snapshot => commit('setEntity', { poll: snapshot.val() }));
+      const pollRef = db.ref('/polls').child(key);
+      pollRef.on('value', snapshot => commit('setEntity', { poll: snapshot.val() }));
+
+      fetchedPoll = { key, ref: pollRef };
+    }
   },
 
-  fetchAnswers({ commit, state }, { key }) {
-    if (state.key) {
-      db
-        .ref('/answers')
-        .orderByChild('poll')
-        .equalTo(state.key)
-        .off();
-    }
+  fetchAnswers({ commit }, { key }) {
+    if (fetchedAnswers.key !== key) {
+      if (fetchedAnswers.key) {
+        fetchedAnswers.ref.off();
+      }
 
-    db
-      .ref('/answers')
-      .orderByChild('poll')
-      .equalTo(key)
-      .on('value', (snapshot) => {
+      const answersRef = db.ref('/answers').child(key);
+      answersRef.on('value', (snapshot) => {
         const answers = snapshot.val() || {};
         commit('setAnswers', { answers });
       });
+
+      fetchedAnswers = { key, ref: answersRef };
+    }
   }
 };
