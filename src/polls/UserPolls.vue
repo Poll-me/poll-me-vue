@@ -1,6 +1,6 @@
 <template>
   <div class="h-full flex flex-col">
-    <div class="container py-4 flex-1" >
+    <div class="container py-4 flex-1 flex flex-col" >
       <div v-if="votes.length > 0" class="mb-4">
         <h2 class="text-xl font-medium">Recent activity:</h2>
         <ul class="list-reset font-medium leading-tight">
@@ -14,9 +14,9 @@
           </li>
         </ul>
       </div>
-      <div>
+      <div v-if="polls.length > 0" key="polls-list" class="flex-1" >
         <h2 class="text-xl font-medium">Your polls:</h2>
-        <div v-for="poll in items" :key="poll.name"
+        <div v-for="poll in polls" :key="poll.name"
           class="overflow-hidden py-2">
           <div class="p-3 border-2 border-primary rounded">
             <div class="font-bold mb-2">{{ poll.name }}</div>
@@ -27,6 +27,16 @@
               v-t="'polls.view-poll'" class="bg-red hover:bg-red-dark
                 text-white font-bold py-2 px-4 rounded block text-center mt-2" ></router-link>
           </div>
+        </div>
+      </div>
+      <div v-else key="no-polls-prompt"
+        class="flex-1 flex flex-col">
+        <div class="flex-1 flex flex-col items-center justify-around py-4">
+          <font-awesome-icon :icon="['far', 'frown']" size="3x"
+            class="block text-grey-darkest" ></font-awesome-icon>
+          <div class="my-4">You have no polls yet!!</div>
+          <font-awesome-icon icon="arrow-down" size="3x"
+            class="block text-grey-darkest" ></font-awesome-icon>
         </div>
       </div>
     </div>
@@ -45,7 +55,7 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapGetters, mapActions } = createNamespacedHelpers('polls');
 
 @Component({
-  computed: mapGetters(['items', 'votes']),
+  computed: mapGetters(['polls', 'votes']),
   methods: mapActions(['fetchPolls', 'fetchVotes'])
 })
 export default class UserPolls extends Vue {
