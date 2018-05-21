@@ -56,6 +56,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // no trailing commas allowed
     'comma-dangle': ['error', 'never'],
-    'no-console': ['error']
+    'no-console': ['error'],
+    "class-methods-use-this": ['error', { "exceptMethods": ['beforeRouteEnter'] }]
   }
 };

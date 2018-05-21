@@ -1,5 +1,4 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Router from 'vue-router';
 
 import '@/setup/font-awesome';
 import storeModule from '@/polls/store';

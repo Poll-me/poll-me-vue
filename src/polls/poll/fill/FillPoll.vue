@@ -25,6 +25,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { createNamespacedHelpers } from 'vuex';
 
+import store from '@/store';
 import pollTypeComponentsMap from './components';
 import SharePollBar from './share';
 
@@ -41,6 +42,11 @@ const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll
 export default class FillPoll extends Vue {
   get pollTypeComponent() {
     return pollTypeComponentsMap[this.poll.type];
+  }
+
+  beforeRouteEnter(to, from, next) {
+    const { key } = to.params;
+    store.dispatch('polls/poll/fetchAnswers', { key }).then(() => next(), () => next(false));
   }
 
   onVote(vote) {
