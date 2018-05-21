@@ -34,7 +34,10 @@
         <div class="flex-1 flex flex-col items-center justify-around py-4">
           <font-awesome-icon :icon="['far', 'frown']" size="3x"
             class="block text-grey-darkest" ></font-awesome-icon>
-          <div class="my-4" v-t="'polls.no-polls'"></div>
+          <div class="my-4 text-center">
+            <div v-t="'polls.no-polls.title'" class="text-primary font-medium"></div>
+            <div v-t="'polls.no-polls.description'" class="text-sm"></div>
+          </div>
           <font-awesome-icon icon="arrow-down" size="3x"
             class="block text-grey-darkest" ></font-awesome-icon>
         </div>
