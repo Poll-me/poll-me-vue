@@ -1,16 +1,32 @@
 <template>
   <div class="h-full flex flex-col">
-    <div class="container py-2 flex-1" >
-      <div v-for="poll in items" :key="poll.name"
-        class="overflow-hidden py-2">
-        <div class="p-3 border-2 border-primary rounded">
-          <div class="font-bold mb-2">{{ poll.name }}</div>
-          <p class="text-grey-darker text-sm">
-            {{ poll.description }}
-          </p>
-          <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}" v-t="'polls.view-poll'"
-            class="bg-red hover:bg-red-dark
-              text-white font-bold py-2 px-4 rounded block text-center mt-2" ></router-link>
+    <div class="container py-4 flex-1" >
+      <div v-if="votes.length > 0" class="mb-4">
+        <h2 class="text-xl font-medium">Recent activity:</h2>
+        <ul class="list-reset font-medium leading-tight">
+          <li v-for="vote in votes" :key="vote.key"
+            class="bg-primary rounded shadow mt-2">
+            <router-link :to="{ name: 'fill-poll', params: { key: vote.key }}"
+              class="text-white px-3 py-2 flex items-center">
+              <div class="flex-1 truncate">{{ vote.name }}</div>
+              <font-awesome-icon icon="eye" class="ml-2" fixed-width ></font-awesome-icon>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-xl font-medium">Your polls:</h2>
+        <div v-for="poll in items" :key="poll.name"
+          class="overflow-hidden py-2">
+          <div class="p-3 border-2 border-primary rounded">
+            <div class="font-bold mb-2">{{ poll.name }}</div>
+            <p class="text-grey-darker text-sm">
+              {{ poll.description }}
+            </p>
+            <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}"
+              v-t="'polls.view-poll'" class="bg-red hover:bg-red-dark
+                text-white font-bold py-2 px-4 rounded block text-center mt-2" ></router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -29,7 +45,7 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapGetters, mapActions } = createNamespacedHelpers('polls');
 
 @Component({
-  computed: mapGetters(['items']),
+  computed: mapGetters(['items', 'votes']),
   methods: mapActions(['fetchPolls', 'fetchVotes'])
 })
 export default class UserPolls extends Vue {
