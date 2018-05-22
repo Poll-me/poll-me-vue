@@ -46,6 +46,12 @@
   "polls": {
     "view-poll": "View poll",
     "create-poll": "Create a new Poll",
+    "activity-title": "Recent activity",
+    "polls-title": "Your polls",
+    "no-polls": {
+      "title": "You have no polls yet!!",
+      "description": "Do not worry, you can create the first clicking the button below"
+    },
     "new": {
       "title": "New poll",
       "type-placeholder": "What kind of poll?",
@@ -66,8 +72,12 @@
         "description": "Take a quick look at who is going to participate in the topic you describe.",
         "fill": {
           "people-in": "People IN",
+          "no-answers": "No one has enrolled yet!",
           "author-label": "Are you in?",
-          "author-placeholder": "Your name"
+          "author-placeholder": "Your name",
+          "already-in": "You are already in!",
+          "get-in": "Hell yeah!",
+          "get-out": "Get out"
         }
       }
     },

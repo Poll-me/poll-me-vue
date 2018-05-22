@@ -7,7 +7,7 @@ export default {
   state: {
     entity: {},
     key: '',
-    answers: {}
+    answersEntities: {}
   },
   getters,
   mutations,

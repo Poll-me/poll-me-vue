@@ -8,6 +8,6 @@ export default {
   },
 
   setAnswers(state, { answers }) {
-    state.answers = answers;
+    state.answersEntities = answers;
   }
 };

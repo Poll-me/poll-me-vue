@@ -46,6 +46,12 @@
   "polls": {
     "view-poll": "Ver encuesta",
     "create-poll": "Nueva encuesta",
+    "activity-title": "Actividad reciente",
+    "polls-title": "Tus encuestas",
+    "no-polls": {
+      "title": "¡Aún no tienes encuestas!",
+      "description": "No te preocupes, puedes crear la primera pulsando el botón de abajo"
+    },
     "new": {
       "title": "Nueva encuesta",
       "type-placeholder": "¿Que tipo de encuesta?",
@@ -66,8 +72,12 @@
         "description": "Una lista rápida de quién está interesado en el motivo de la encuesta.",
         "fill": {
           "people-in": "Gente dentro",
+          "no-answers": "¡Nadie se ha apuntado aún!",
           "author-label": "¿Te apuntas?",
-          "author-placeholder": "Tu nombre"
+          "author-placeholder": "Tu nombre",
+          "already-in": "¡Ya estás dentro!",
+          "get-in": "¡Dios si!",
+          "get-out": "Salir"
         }
       }
     },

@@ -13,6 +13,14 @@ function getProfileData(authUser) {
 
 export default {
 
+  getUserProfile(context, uid) {
+    return new Promise((resolve, reject) => {
+      db.ref('/users/')
+        .child(uid)
+        .once('value', snapshot => resolve(snapshot.val()), reject);
+    });
+  },
+
   createUserProfile({ commit }) {
     return new Promise((resolve, reject) => {
       const authUser = auth.currentUser;
@@ -28,19 +36,15 @@ export default {
     });
   },
 
-  fetchUserProfile({ commit }) {
+  fetchUserProfile({ commit, dispatch }) {
     const authUser = auth.currentUser;
     return new Promise((resolve, reject) => {
       if (!authUser.isAnonymous) {
-        db.ref('/users/')
-          .child(authUser.uid)
-          .once('value')
-          .then((snapshot) => {
-            const profile = snapshot.val();
+        dispatch('getUserProfile', authUser.uid)
+          .then((profile) => {
             commit('setUserProfile', { profile });
             resolve(profile);
-          })
-          .catch(reject);
+          }, reject);
       } else {
         commit('setUserProfile', { profile: {} });
         resolve({});
@@ -96,9 +100,10 @@ export default {
 
       cleanBeforeAvatarPromise.then(() => {
         if (image instanceof File) {
+          const cacheAge = 60 * 60 * 24 * 14; // 14 days
           const fileExt = image.name.split('.').pop();
           const fileName = `${avatarFileName}-${Date.now()}.${fileExt}`;
-          const metadata = { contentType: image.type, cacheControl: 'public, max-age=31536000' };
+          const metadata = { contentType: image.type, cacheControl: `public, max-age=${cacheAge}` };
           const avatarRef = userRef.child(fileName);
           avatarRef.put(image, metadata).then(() => {
             avatarRef.getDownloadURL().then((url) => {

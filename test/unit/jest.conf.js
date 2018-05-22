@@ -19,5 +19,6 @@ module.exports = {
     '!src/main.js',
     '!src/**/index.js',
     '!**/node_modules/**'
-  ]
+  ],
+  clearMocks: true
 };

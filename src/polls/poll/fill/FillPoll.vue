@@ -9,10 +9,11 @@
         </i18n>
       </div>
     </div>
-    <div class="container py-4 flex-1">
+    <div class="container py-4 flex-1 flex flex-col">
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
-      <div class="pt-2">
-        <component :is="pollTypeComponent" :poll="poll" @vote="onVote" ></component>
+      <div class="pt-2 flex-1">
+        <component :is="pollTypeComponent" :user="user" :isLogged="isLogged" :poll="poll"
+          @vote="onVote" @remove-vote="onRemoveVote" ></component>
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
@@ -23,19 +24,24 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { createNamespacedHelpers } from 'vuex';
+import { createNamespacedHelpers, mapState as mapRootState } from 'vuex';
 
+import store from '@/store';
 import pollTypeComponentsMap from './components';
-import SharePollBar from './share';
+import SharePollBar from './components/share';
 
 const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll');
 
 @Component({
   computed: {
-    ...mapGetters(['poll', 'voteActionPayload']),
+    ...mapRootState({
+      user: state => state.user.uid,
+      isLogged: state => state.user.isLogged
+    }),
+    ...mapGetters(['poll']),
     ...mapState(['key'])
   },
-  methods: mapActions(['submitVote']),
+  methods: mapActions(['submitVote', 'removeVote']),
   components: { SharePollBar }
 })
 export default class FillPoll extends Vue {
@@ -43,9 +49,24 @@ export default class FillPoll extends Vue {
     return pollTypeComponentsMap[this.poll.type];
   }
 
+  beforeRouteEnter(to, from, next) {
+    const { key } = to.params;
+    store.dispatch('polls/poll/fetchAnswers', { key }).then(() => next(), () => next(false));
+  }
+
+  processVote(votePromise) {
+    this.loading = true;
+    votePromise.then(() => {
+      this.loading = false;
+    });
+  }
+
   onVote(vote) {
-    const actionPayload = this.voteActionPayload(vote);
-    this.submitVote(actionPayload);
+    this.processVote(this.submitVote(vote));
+  }
+
+  onRemoveVote() {
+    this.processVote(this.removeVote());
   }
 }
 </script>
