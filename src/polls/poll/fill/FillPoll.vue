@@ -9,9 +9,9 @@
         </i18n>
       </div>
     </div>
-    <div class="container py-4 flex-1">
+    <div class="container py-4 flex-1 flex flex-col">
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
-      <div class="pt-2">
+      <div class="pt-2 flex-1">
         <component :is="pollTypeComponent" :user="user" :isLogged="isLogged" :poll="poll"
           @vote="onVote" @remove-vote="onRemoveVote" ></component>
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>

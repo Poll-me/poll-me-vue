@@ -1,6 +1,6 @@
 <template>
-  <div class="">
-    <div class="bg-secondary rounded p-2 mb-2shadow">
+  <div class="h-full flex flex-col">
+    <div class="bg-secondary rounded p-2 mb-4 shadow">
       <template v-if="!hasVoted" ref="vote-container">
         <div v-if="isLogged" class="flex" ref="logged-vote-container">
           <div v-t="`polls.types.${poll.type}.fill.author-label`"
@@ -30,15 +30,26 @@
         </button>
       </div>
     </div>
-    <div class="text-center py-2" v-t="`polls.types.${poll.type}.fill.people-in`"></div>
-    <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
-      <li v-for="ans in poll.answers" :key="ans.author"
-        class="w-1/2 p-1" >
-        <div class="bg-tertiary shadow p-2 rounded h-full flex flex-col justify-center">
-          {{ ans.author }}
-        </div>
-      </li>
-    </ul>
+    <template v-if="poll.answers.length > 0" >
+      <div class="text-center py-2" v-t="`polls.types.${poll.type}.fill.people-in`"></div>
+      <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
+        <li v-for="ans in poll.answers" :key="ans.author"
+          class="w-1/2 p-1" >
+          <div class="bg-tertiary shadow p-2 rounded h-full flex flex-col justify-center">
+            {{ ans.author }}
+          </div>
+        </li>
+      </ul>
+    </template>
+    <div v-else key="no-answers-prompt"
+      class="flex-1 flex flex-col">
+      <div class="flex-1 flex flex-col items-center justify-around text-grey-darkest">
+        <font-awesome-icon :icon="['far', 'frown']" size="3x"
+          class="block" ></font-awesome-icon>
+        <div v-t="`polls.types.${poll.type}.fill.no-answers`"
+          class="mt-4 text-center font-medium"></div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -62,17 +73,13 @@ export default class RegistrationPoll extends FillPollType {
     return this.poll.answers.some(ans => ans.user === this.user);
   }
 
-  removeVote() {
-    this.$emit('remove-vote');
-  }
-
   loggedVote() {
-    this.$emit('vote', {});
+    this.vote({});
   }
 
   submit() {
     if (!this.$v.$invalid) {
-      this.$emit('vote', { author: this.name });
+      this.vote({ author: this.name });
     }
   }
 }

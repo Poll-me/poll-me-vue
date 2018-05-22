@@ -72,6 +72,7 @@
         "description": "Take a quick look at who is going to participate in the topic you describe.",
         "fill": {
           "people-in": "People IN",
+          "no-answers": "No one has enrolled yet!",
           "author-label": "Are you in?",
           "author-placeholder": "Your name",
           "already-in": "You are already in!",

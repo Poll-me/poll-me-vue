@@ -21,6 +21,14 @@ const fillPollTypeMixinConfig = {
       default: false
     },
     config: Object
+  },
+  methods: {
+    vote(payload) {
+      this.$emit('vote', payload);
+    },
+    removeVote() {
+      this.$emit('remove-vote');
+    }
   }
 };
 

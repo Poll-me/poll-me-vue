@@ -72,6 +72,7 @@
         "description": "Una lista rápida de quién está interesado en el motivo de la encuesta.",
         "fill": {
           "people-in": "Gente dentro",
+          "no-answers": "¡Nadie se ha apuntado aún!",
           "author-label": "¿Te apuntas?",
           "author-placeholder": "Tu nombre",
           "already-in": "¡Ya estás dentro!",
