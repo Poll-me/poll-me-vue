@@ -12,7 +12,8 @@
     <div class="container py-4 flex-1">
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
       <div class="pt-2">
-        <component :is="pollTypeComponent" :poll="poll" @vote="onVote" ></component>
+        <component :is="pollTypeComponent" :user="user" :isLogged="isLogged" :poll="poll"
+          @vote="onVote" ></component>
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
@@ -23,16 +24,20 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { createNamespacedHelpers } from 'vuex';
+import { createNamespacedHelpers, mapState as mapRootState } from 'vuex';
 
 import store from '@/store';
 import pollTypeComponentsMap from './components';
-import SharePollBar from './share';
+import SharePollBar from './components/share';
 
 const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll');
 
 @Component({
   computed: {
+    ...mapRootState({
+      user: state => state.user.uid,
+      isLogged: state => state.user.isLogged
+    }),
     ...mapGetters(['poll', 'voteActionPayload']),
     ...mapState(['key'])
   },

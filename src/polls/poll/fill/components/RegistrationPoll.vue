@@ -23,23 +23,12 @@
   </div>
 </template>
 <script>
-import { VueWithValidations } from '@/utils';
 import Component from 'vue-class-component';
 import { required } from 'vuelidate/lib/validators';
 
+import FillPollType from '../fill-poll-type-mixin';
+
 @Component({
-  props: {
-    poll: {
-      required: true,
-      type: Object,
-      validator: poll => poll.type === 1
-    },
-    config: Object,
-    autofocus: {
-      type: Boolean,
-      default: false
-    }
-  },
   validations: {
     name: {
       required,
@@ -47,7 +36,7 @@ import { required } from 'vuelidate/lib/validators';
     }
   }
 })
-export default class RegistrationPoll extends VueWithValidations {
+export default class RegistrationPoll extends FillPollType {
   name = '';
   submitted = false;
 
