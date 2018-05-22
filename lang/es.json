@@ -73,7 +73,9 @@
         "fill": {
           "people-in": "Gente dentro",
           "author-label": "¿Te apuntas?",
-          "author-placeholder": "Tu nombre"
+          "author-placeholder": "Tu nombre",
+          "already-in": "¡Ya estás dentro!",
+          "get-out": "Salir"
         }
       }
     },

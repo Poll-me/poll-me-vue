@@ -14,17 +14,5 @@ export default {
       key: state.key,
       answers
     };
-  },
-
-  voteActionPayload: (state, getters) => ({ author }) => {
-    const timestamp = new Date().getTime();
-    let actionPayload = { timestamp, poll: getters.poll.key };
-
-    switch (getters.poll.type) {
-      default:
-        actionPayload = { ...actionPayload, author };
-    }
-
-    return actionPayload;
   }
 };

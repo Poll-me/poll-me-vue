@@ -13,7 +13,7 @@
       <div class="text-sm text-grey-darker">{{ poll.description }}</div>
       <div class="pt-2">
         <component :is="pollTypeComponent" :user="user" :isLogged="isLogged" :poll="poll"
-          @vote="onVote" ></component>
+          @vote="onVote" @remove-vote="onRemoveVote" ></component>
         <template v-if="!pollTypeComponent">Poll type: {{ poll.type }}</template>
       </div>
     </div>
@@ -38,10 +38,10 @@ const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll
       user: state => state.user.uid,
       isLogged: state => state.user.isLogged
     }),
-    ...mapGetters(['poll', 'voteActionPayload']),
+    ...mapGetters(['poll']),
     ...mapState(['key'])
   },
-  methods: mapActions(['submitVote']),
+  methods: mapActions(['submitVote', 'removeVote']),
   components: { SharePollBar }
 })
 export default class FillPoll extends Vue {
@@ -54,9 +54,19 @@ export default class FillPoll extends Vue {
     store.dispatch('polls/poll/fetchAnswers', { key }).then(() => next(), () => next(false));
   }
 
+  processVote(votePromise) {
+    this.loading = true;
+    votePromise.then(() => {
+      this.loading = false;
+    });
+  }
+
   onVote(vote) {
-    const actionPayload = this.voteActionPayload(vote);
-    this.submitVote(actionPayload);
+    this.processVote(this.submitVote(vote));
+  }
+
+  onRemoveVote() {
+    this.processVote(this.removeVote());
   }
 }
 </script>

@@ -1,16 +1,25 @@
 <template>
   <div class="">
-    <form v-if="!submitted" @submit.prevent="submit"
-      class="bg-secondary rounded p-2 mb-2 flex shadow">
-      <label for="name" v-t="`polls.types.${poll.type}.fill.author-label`"
-        class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center"></label>
-      <div class="flex-1 text-grey-darker" >
-        <input v-model.trim="name" @input="$v.name.$touch()"
-          v-bind:class="{ 'border-red': $v.name.$error }"
-          :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
-          id="name" type="text" class="shadow-none border-transparent border-2">
+    <div class="bg-secondary rounded p-2 mb-2shadow">
+      <form v-if="!hasVoted" @submit.prevent="submit" class="flex">
+        <label for="name" v-t="`polls.types.${poll.type}.fill.author-label`"
+          class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center"></label>
+        <div class="flex-1 text-grey-darker" >
+          <input v-model.trim="name" @input="$v.name.$touch()"
+            v-bind:class="{ 'border-red': $v.name.$error }"
+            :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
+            id="name" type="text" class="shadow-none border-transparent border-2">
+        </div>
+      </form>
+      <div v-else class="flex">
+        <div v-t="`polls.types.${poll.type}.fill.already-in`"
+          class="flex-1 text-white font-semibold flex-no-shrink px-1 flex items-center"></div>
+        <button class="btn btn-primary" @click="removeVote">
+          <span v-t="`polls.types.${poll.type}.fill.get-out`"></span>
+          <font-awesome-icon icon="sign-out-alt" fixed-width></font-awesome-icon>
+        </button>
       </div>
-    </form>
+    </div>
     <div class="text-center py-2" v-t="`polls.types.${poll.type}.fill.people-in`"></div>
     <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
       <li v-for="ans in poll.answers" :key="ans.author"
@@ -38,18 +47,18 @@ import FillPollType from '../fill-poll-type-mixin';
 })
 export default class RegistrationPoll extends FillPollType {
   name = '';
-  submitted = false;
 
-  mounted() {
-    if (this.autofocus) {
-      this.$el.querySelector('#name').focus();
-    }
+  get hasVoted() {
+    return this.poll.answers.some(ans => ans.user === this.user);
+  }
+
+  removeVote() {
+    this.$emit('remove-vote');
   }
 
   submit() {
     if (!this.$v.$invalid) {
       this.$emit('vote', { author: this.name });
-      this.submitted = true;
     }
   }
 }

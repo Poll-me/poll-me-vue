@@ -73,7 +73,9 @@
         "fill": {
           "people-in": "People IN",
           "author-label": "Are you in?",
-          "author-placeholder": "Your name"
+          "author-placeholder": "Your name",
+          "already-in": "You are already in!",
+          "get-out": "Get out"
         }
       }
     },

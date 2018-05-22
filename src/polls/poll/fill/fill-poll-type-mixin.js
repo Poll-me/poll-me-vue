@@ -16,11 +16,11 @@ const fillPollTypeMixinConfig = {
       required: true,
       type: String
     },
-    config: Object,
-    autofocus: {
+    loading: {
       type: Boolean,
       default: false
-    }
+    },
+    config: Object
   }
 };
 
