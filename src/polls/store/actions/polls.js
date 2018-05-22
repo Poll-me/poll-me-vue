@@ -24,7 +24,7 @@ export default {
       });
 
       pollsRef.on('child_removed', (snapshot) => {
-        commit('removeEntity', { key: snapshot.key });
+        commit('removeEntity', snapshot.key);
       });
 
       pollsFetched = { ref: pollsRef, user: user.uid };

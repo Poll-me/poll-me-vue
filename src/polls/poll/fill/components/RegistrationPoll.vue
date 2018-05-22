@@ -1,19 +1,29 @@
 <template>
   <div class="">
     <div class="bg-secondary rounded p-2 mb-2shadow">
-      <form v-if="!hasVoted" @submit.prevent="submit" class="flex">
-        <label for="name" v-t="`polls.types.${poll.type}.fill.author-label`"
-          class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center"></label>
-        <div class="flex-1 text-grey-darker" >
-          <input v-model.trim="name" @input="$v.name.$touch()"
-            v-bind:class="{ 'border-red': $v.name.$error }"
-            :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
-            id="name" type="text" class="shadow-none border-transparent border-2">
+      <template v-if="!hasVoted" ref="vote-container">
+        <div v-if="isLogged" class="flex" ref="logged-vote-container">
+          <div v-t="`polls.types.${poll.type}.fill.author-label`"
+            class="flex-1 text-white font-semibold px-1 flex items-center"></div>
+          <button class="btn btn-primary" @click="loggedVote">
+            <span v-t="`polls.types.${poll.type}.fill.get-in`"></span>
+            <font-awesome-icon icon="sign-in-alt" fixed-width></font-awesome-icon>
+          </button>
         </div>
-      </form>
-      <div v-else class="flex">
+        <form v-else @submit.prevent="submit" class="flex" ref="anonymous-vote-container">
+          <label for="name" v-t="`polls.types.${poll.type}.fill.author-label`"
+            class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center"></label>
+          <div class="flex-1 text-grey-darker" >
+            <input v-model.trim="name" @input="$v.name.$touch()"
+              v-bind:class="{ 'border-red': $v.name.$error }"
+              :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
+              id="name" type="text" class="shadow-none border-transparent border-2">
+          </div>
+        </form>
+      </template>
+      <div v-else class="flex" ref="remove-vote-container">
         <div v-t="`polls.types.${poll.type}.fill.already-in`"
-          class="flex-1 text-white font-semibold flex-no-shrink px-1 flex items-center"></div>
+          class="flex-1 text-white font-semibold px-1 flex items-center"></div>
         <button class="btn btn-primary" @click="removeVote">
           <span v-t="`polls.types.${poll.type}.fill.get-out`"></span>
           <font-awesome-icon icon="sign-out-alt" fixed-width></font-awesome-icon>
@@ -54,6 +64,10 @@ export default class RegistrationPoll extends FillPollType {
 
   removeVote() {
     this.$emit('remove-vote');
+  }
+
+  loggedVote() {
+    this.$emit('vote', {});
   }
 
   submit() {

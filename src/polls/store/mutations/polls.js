@@ -11,7 +11,7 @@ export default {
     state.entities = { ...state.entities, [key]: value };
   },
 
-  removeEntity(state, { key }) {
+  removeEntity(state, key) {
     const { [key]: asd, ...restEntities } = state.entities;
     state.entities = restEntities;
   }

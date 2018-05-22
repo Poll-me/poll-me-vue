@@ -24,7 +24,7 @@ export default {
       });
 
       votesRef.on('child_removed', (snapshot) => {
-        commit('removeVote', { key: snapshot.key });
+        commit('removeVote', snapshot.key);
       });
 
       votesFetched = { ref: votesRef, user: user.uid };
