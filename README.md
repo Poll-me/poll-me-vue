@@ -11,7 +11,7 @@
 
 # PollMe Vue
 
-[![Build Status](https://travis-ci.org/Poll-me/poll-me-vue.svg?branch=develop)](https://travis-ci.org/Poll-me/poll-me-vue)
+[![Build Status](https://travis-ci.com/Poll-me/poll-me-vue.svg?branch=develop)](https://travis-ci.com/Poll-me/poll-me-vue)
 [![Uses FontAwesome](https://img.shields.io/badge/uses-fontawesome-blue.svg)](https://fontawesome.com)
 [![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-accent.svg)](https://www.netlify.com)
 

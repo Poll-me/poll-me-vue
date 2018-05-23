@@ -25,7 +25,7 @@ export default {
     return new Promise((resolve, reject) => {
       const authUser = auth.currentUser;
       const profile = getProfileData(authUser);
-      db.ref('/users/')
+      fb.database().ref('/users/')
         .child(authUser.uid)
         .set(profile)
         .then(() => {
