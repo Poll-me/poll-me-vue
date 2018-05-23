@@ -11,8 +11,8 @@ function linkEmailToUser(email, password) {
   const credential = firebase.auth.EmailAuthProvider.credential(email, password);
   return new Promise((resolve, reject) => {
     auth.currentUser.linkAndRetrieveDataWithCredential(credential)
-      .then(userCredential => resolve(userCredential.user))
-      .catch(reject);
+      .then(userCredential => userCredential.user.getIdToken(true)
+        .then(() => resolve(userCredential.user), reject), reject);
   });
 }
 
