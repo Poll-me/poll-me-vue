@@ -8,6 +8,11 @@
   "theme_color": "#d8403f",
   "background_color": "#1f9d55",
   "icons": [
+    {
+			"src": "/static/img/favicon/favicon-64x64.png",
+			"sizes": "64x64",
+			"type": "image/png"
+    },
 		{
 			"src": "/static/img/favicon/mstile-144x144.png",
 			"sizes": "144x144",
