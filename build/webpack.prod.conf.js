@@ -132,7 +132,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'PollMe',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: [
+        'dist/**/*.{js,html,css}',
+        'dist/**/*.{svg,png,jpg,gif}'
+      ],
       minify: true,
       stripPrefix: 'dist/'
     })
