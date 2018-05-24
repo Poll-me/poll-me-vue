@@ -1,6 +1,19 @@
-@import './vendor/_vendor.css';
-@import './components/_components.css';
-@import './animations/_animations.css';
+/**
+ * This injects Tailwind's base styles, which is a combination of
+ * Normalize.css and some additional base styles.
+ *
+ * You can see the styles here:
+ * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
+ *
+ * If using `postcss-import`, use this import instead:
+ *
+ * @import "tailwindcss/preflight";
+ */
+/* @tailwind preflight; */
+@import 'tailwindcss/preflight';
+
+@import './components/_components';
+@import './utilities/_utilities';
 
 @import url('https://fonts.googleapis.com/css?family=Amaranth:400,700');
 
