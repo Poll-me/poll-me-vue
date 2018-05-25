@@ -1,4 +1,4 @@
-import fbApp, { fbAsync } from '@/setup/firebase';
+import fbApp, { fbAsync, stAsync } from '@/setup/firebase';
 
 const avatarFileName = 'avatar-image';
 
@@ -67,7 +67,7 @@ export default {
 
   async updateUserAvatar({ dispatch }, { image }) {
     const authUser = (await fbApp()).auth().currentUser;
-    const st = (await fbApp()).storage();
+    const st = await stAsync();
     const userRef = st.ref().child('users').child(authUser.uid).child('avatar');
 
     if (authUser.photoURL) {

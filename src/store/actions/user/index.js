@@ -11,11 +11,15 @@ export default {
 
   async checkAuth() {
     const auth = (await fbAsync()).auth();
-    if (auth.currentUser === null) {
-      await auth.signInAnonymously();
-      return true;
-    }
-    return !auth.currentUser.isAnonymous;
+    return new Promise((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged(async (user) => {
+        unsubscribe();
+        if (user === null) {
+          await auth.signInAnonymously();
+        }
+        resolve(!auth.currentUser.isAnonymous);
+      }, reject);
+    });
   },
 
   async initAuthListener({ commit, dispatch }) {

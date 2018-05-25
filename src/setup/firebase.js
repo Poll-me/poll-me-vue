@@ -23,9 +23,13 @@ export async function fbAsync() {
   return fb;
 }
 
+export async function stAsync() {
+  await import(/* webpackChunkName: 'firebase-storage' */ 'firebase/storage');
+  return (await fbAsync()).storage();
+}
+
 export default async function () {
   await import(/* webpackChunkName: 'firebase' */ 'firebase/database');
-  await import(/* webpackChunkName: 'firebase' */ 'firebase/storage');
 
   return (await fbAsync()).app();
 }
