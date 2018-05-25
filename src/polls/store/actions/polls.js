@@ -1,19 +1,17 @@
-import fb from '@/setup/firebase';
-
-const db = fb.database();
-const auth = fb.auth();
+import fbApp from '@/setup/firebase';
 
 let pollsFetched = {};
 
 export default {
-  fetchPolls({ commit }) {
-    const user = auth.currentUser;
-    if (pollsFetched.user !== user.uid) {
+  async fetchPolls({ commit }) {
+    const db = (await fbApp()).database();
+    const authUser = (await fbApp()).auth().currentUser;
+    if (pollsFetched.user !== authUser.uid) {
       if (pollsFetched.ref) {
         pollsFetched.ref.off();
         commit('setEntities', {});
       }
-      const pollsRef = db.ref('polls').orderByChild('user').equalTo(user.uid);
+      const pollsRef = db.ref('polls').orderByChild('user').equalTo(authUser.uid);
 
       pollsRef.on('child_added', (snapshot) => {
         commit('addEntity', { key: snapshot.key, value: snapshot.val() });
@@ -27,7 +25,7 @@ export default {
         commit('removeEntity', snapshot.key);
       });
 
-      pollsFetched = { ref: pollsRef, user: user.uid };
+      pollsFetched = { ref: pollsRef, user: authUser.uid };
     }
   }
 };

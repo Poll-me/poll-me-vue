@@ -1,33 +1,22 @@
-import fb from '@/setup/firebase';
-
-const db = fb.database();
-const auth = fb.auth();
+import fbApp from '@/setup/firebase';
 
 export default {
-  submitVote({ getters }, payload) {
-    return new Promise((resolve, reject) => {
-      const user = auth.currentUser;
-      const timestamp = new Date().getTime();
-      const vote = { ...payload, lastModified: timestamp };
-      db.ref('answers').child(getters.poll.key).child(user.uid).set(vote)
-        .then(() => {
-          db.ref('userVotes').child(user.uid).child(getters.poll.key).set({
-            name: getters.poll.name,
-            lastModified: timestamp
-          })
-            .then(() => resolve(), reject);
-        }, reject);
+  async submitVote({ getters }, payload) {
+    const db = (await fbApp()).database();
+    const authUser = (await fbApp()).auth().currentUser;
+    const timestamp = new Date().getTime();
+    const vote = { ...payload, lastModified: timestamp };
+    await db.ref('answers').child(getters.poll.key).child(authUser.uid).set(vote);
+    await db.ref('userVotes').child(authUser.uid).child(getters.poll.key).set({
+      name: getters.poll.name,
+      lastModified: timestamp
     });
   },
 
-  removeVote({ getters }) {
-    return new Promise((resolve, reject) => {
-      const user = auth.currentUser;
-      db.ref('answers').child(getters.poll.key).child(user.uid).remove()
-        .then(() => {
-          db.ref('userVotes').child(user.uid).child(getters.poll.key).remove()
-            .then(() => resolve(), reject);
-        }, reject);
-    });
+  async removeVote({ getters }) {
+    const db = (await fbApp()).database();
+    const authUser = (await fbApp()).auth().currentUser;
+    await db.ref('answers').child(getters.poll.key).child(authUser.uid).remove();
+    await db.ref('userVotes').child(authUser.uid).child(getters.poll.key).remove();
   }
 };
