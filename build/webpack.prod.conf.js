@@ -136,6 +136,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         'dist/**/*.{js,html,css}',
         'dist/**/*.{svg,png,jpg,gif}'
       ],
+      navigateFallback: '/index.html',
       minify: true,
       stripPrefix: 'dist/'
     })
