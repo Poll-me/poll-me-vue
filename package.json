@@ -34,7 +34,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "firebase": "^4.13.1",
+    "firebase": "^5.0.4",
     "vue": "^2.5.2",
     "vue-i18n": "^7.6.0",
     "vue-router": "^3.0.1",
