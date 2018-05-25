@@ -1,11 +1,11 @@
-import fbApp from '@/setup/firebase';
+import fbApp, { fbUser } from '@/setup/firebase';
 
 let pollsFetched = {};
 
 export default {
   async fetchPolls({ commit }) {
     const db = (await fbApp()).database();
-    const authUser = (await fbApp()).auth().currentUser;
+    const authUser = await fbUser();
     if (pollsFetched.user !== authUser.uid) {
       if (pollsFetched.ref) {
         pollsFetched.ref.off();

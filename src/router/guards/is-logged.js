@@ -1,7 +1,8 @@
-import store from '@/store';
+import { fbUser } from '@/setup/firebase';
 
-export default function (to, from, next) {
-  if (store.state.user.isLogged) {
+export default async function (to, from, next) {
+  const authUser = await fbUser();
+  if (authUser && !authUser.isAnonymous) {
     next();
   } else {
     const { path, params, query } = to;

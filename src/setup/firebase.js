@@ -23,13 +23,29 @@ export async function fbAsync() {
   return fb;
 }
 
+async function fbApp() {
+  await import(/* webpackChunkName: 'firebase' */ 'firebase/database');
+
+  return (await fbAsync()).app();
+}
+
 export async function stAsync() {
   await import(/* webpackChunkName: 'firebase-storage' */ 'firebase/storage');
   return (await fbAsync()).storage();
 }
 
-export default async function () {
-  await import(/* webpackChunkName: 'firebase' */ 'firebase/database');
-
-  return (await fbAsync()).app();
+export async function fbUser() {
+  const auth = (await fbAsync()).auth();
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      let currentUser = user;
+      unsubscribe();
+      if (user === null) {
+        currentUser = (await auth.signInAnonymously()).user;
+      }
+      resolve(currentUser);
+    }, reject);
+  });
 }
+
+export default fbApp;

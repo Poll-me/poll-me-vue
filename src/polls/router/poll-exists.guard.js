@@ -1,6 +1,7 @@
-import fbApp from '@/setup/firebase';
+import fbApp, { fbUser } from '@/setup/firebase';
 
 export default async (to, from, next) => {
+  await fbUser();
   const db = (await fbApp()).database();
   const pollKey = to.params.key;
   const snapshot = await db.ref('/polls').child(pollKey).once('value');

@@ -50,8 +50,8 @@ import { mapActions, mapState } from 'vuex';
 })
 export default class NavMenu extends Vue {
   logOut() {
+    this.$router.push({ name: 'home' });
     this.signOut().then(() => {
-      this.$router.push({ name: 'home' });
       this.$emit('logout');
     });
   }

@@ -129,6 +129,11 @@ import { VueWithValidations } from '@/utils';
   }),
   methods: mapActions(['updateUserProfile', 'updateUserPassword', 'updateUserAvatar']),
   watch: {
+    profile(val) {
+      if (!this.name && val.displayName) {
+        this.name = val.displayName;
+      }
+    },
     changePassword(val) {
       if (!val) {
         this.resetPasswordFields();
@@ -192,7 +197,9 @@ export default class UserProfile extends VueWithValidations {
   }
 
   mounted() {
-    this.name = this.profile.displayName;
+    if (this.profile.displayName) {
+      this.name = this.profile.displayName;
+    }
     this.fileError = false;
   }
 

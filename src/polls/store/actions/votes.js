@@ -1,11 +1,11 @@
-import fbApp from '@/setup/firebase';
+import fbApp, { fbUser } from '@/setup/firebase';
 
 let votesFetched = {};
 
 export default {
   async fetchVotes({ commit }) {
     const db = (await fbApp()).database();
-    const authUser = (await fbApp()).auth().currentUser;
+    const authUser = await fbUser();
     if (votesFetched.user !== authUser.uid) {
       if (votesFetched.ref) {
         votesFetched.ref.off();

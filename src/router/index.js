@@ -9,8 +9,6 @@ import ErrorPage from '../ErrorPage';
 import pollsRoutes from '../polls/router';
 import userRoutes from '../user/router';
 
-import hasAuthGuard from './guards/has-auth';
-
 Component.registerHooks([
   'beforeRouteEnter',
   'beforeRouteLeave',
@@ -53,6 +51,6 @@ const routerObject = new Router({
   ]
 });
 
-routerObject.beforeEach(hasAuthGuard);
+// routerObject.beforeEach(hasAuthGuard);
 
 export default routerObject;

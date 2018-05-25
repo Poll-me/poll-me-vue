@@ -51,7 +51,8 @@ export default class FillPoll extends Vue {
 
   beforeRouteEnter(to, from, next) {
     const { key } = to.params;
-    store.dispatch('polls/poll/fetchAnswers', { key }).then(() => next(), () => next(false));
+    store.dispatch('polls/poll/fetchAnswers', { key });
+    next();
   }
 
   processVote(votePromise) {

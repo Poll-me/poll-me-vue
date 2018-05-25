@@ -1,4 +1,4 @@
-import fbApp, { fbAsync, stAsync } from '@/setup/firebase';
+import fbApp, { fbAsync, stAsync, fbUser } from '@/setup/firebase';
 
 const avatarFileName = 'avatar-image';
 
@@ -18,7 +18,7 @@ export default {
   },
 
   async createUserProfile({ commit }) {
-    const authUser = (await fbApp()).auth().currentUser;
+    const authUser = await fbUser();
     const db = (await fbAsync()).database();
     const profile = getProfileData(authUser);
     await db.ref('/users/').child(authUser.uid).set(profile);
@@ -27,7 +27,7 @@ export default {
   },
 
   async fetchUserProfile({ commit, dispatch }) {
-    const authUser = (await fbApp()).auth().currentUser;
+    const authUser = await fbUser();
     let profile = {};
 
     if (!authUser.isAnonymous) {
@@ -39,7 +39,7 @@ export default {
   },
 
   async updateUserProfile({ commit, state }, { profile: newData }) {
-    const authUser = (await fbApp()).auth().currentUser;
+    const authUser = await fbUser();
     const db = (await fbApp()).database();
 
     await db.ref('/users/')
@@ -59,14 +59,14 @@ export default {
 
   async updateUserPassword(context, { password, newPassword }) {
     const fbAuth = (await fbAsync()).auth;
-    const authUser = (await fbApp()).auth().currentUser;
+    const authUser = await fbUser();
     const credential = fbAuth.EmailAuthProvider.credential(authUser.email, password);
     await authUser.reauthenticateAndRetrieveDataWithCredential(credential);
     return authUser.updatePassword(newPassword);
   },
 
   async updateUserAvatar({ dispatch }, { image }) {
-    const authUser = (await fbApp()).auth().currentUser;
+    const authUser = await fbUser();
     const st = await stAsync();
     const userRef = st.ref().child('users').child(authUser.uid).child('avatar');
 
