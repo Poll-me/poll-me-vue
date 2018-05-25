@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import fb from '@/setup/firebase';
 
 const auth = fb.auth();
