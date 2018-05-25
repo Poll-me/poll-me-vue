@@ -12,7 +12,7 @@
     <HomeBlock color="tertiary-lightest" icon="list-alt" icon-position="left">
       <i18n path="home.polls.create-message" tag="p">
         <router-link place="new-poll" v-t="'home.polls.new-poll'"
-          :to="{ name: 'new-poll' }" class="text-tertiary"></router-link>
+          :to="{ name: 'new-poll' }" class="text-primary"></router-link>
       </i18n>
       <i18n path="home.polls.types-message" tag="p">
         <b place="types" v-t="'home.polls.poll-types'" ></b>
