@@ -45,6 +45,10 @@
   },
   "polls": {
     "view-poll": "Ver encuesta",
+    "no-login": {
+      "message": "RECUERDE, si no {login}, toda la actividad solo será accesible desde el dispositivo utilizado.",
+      "login-link": "inicia sesión"
+    },
     "create-poll": "Nueva encuesta",
     "activity-title": "Actividad reciente",
     "polls-title": "Tus encuestas",
