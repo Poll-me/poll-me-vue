@@ -18,14 +18,15 @@ Object.keys(globalComponents).forEach(
   compName => Vue.component(compName, globalComponents[compName])
 );
 
-store.dispatch('initAuthListener').then(() => {
-  /* eslint-disable no-new */
-  new Vue({
-    el: '#app',
-    router,
-    store,
-    i18n: I18n,
-    components: { App },
-    template: '<App/>'
-  });
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  i18n: I18n,
+  components: { App },
+  template: '<App/>',
+  beforeCreate() {
+    store.dispatch('initAuthListener');
+  }
 });

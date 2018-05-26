@@ -23,11 +23,7 @@ const avatarSizesMap = {
   props: {
     profile: {
       required: true,
-      type: Object,
-      validator(val) {
-        return (typeof val.displayName === 'string' && val.displayName.length > 0) ||
-          (typeof val.photoUrl === 'string' && val.photoUrl.length > 0);
-      }
+      type: Object
     },
     size: {
       type: String,
@@ -44,7 +40,7 @@ export default class UserAvatar extends Vue {
   get avatarLetter() {
     return (typeof this.profile.displayName === 'string' && this.profile.displayName.length > 0) ?
       this.profile.displayName[0].toUpperCase() :
-      '';
+      'A';
   }
 
   get sizeData() {

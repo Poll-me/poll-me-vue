@@ -1,63 +1,52 @@
-import firebase from 'firebase';
-import fb from '@/setup/firebase';
+import fbApp, { fbAsync } from '@/setup/firebase';
 
-const auth = fb.auth();
-
-function createEmailUser(email, password) {
+async function createEmailUser(email, password) {
+  const auth = (await fbApp()).auth();
   return auth.createUserWithEmailAndPassword(email, password);
 }
 
-function linkEmailToUser(email, password) {
-  const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-  return new Promise((resolve, reject) => {
-    auth.currentUser.linkAndRetrieveDataWithCredential(credential)
-      .then(userCredential => userCredential.user.getIdToken(true)
-        .then(() => resolve(userCredential.user), reject), reject);
-  });
+async function linkEmailToUser(email, password) {
+  const fbAuth = (await fbAsync()).auth;
+  const auth = (await fbApp()).auth();
+  const credential = fbAuth.EmailAuthProvider.credential(email, password);
+  const userCredential = await auth.currentUser.linkAndRetrieveDataWithCredential(credential);
+  await userCredential.user.getIdToken(true);
+  return userCredential.user;
 }
 
 export default {
 
-  registerEmail({ commit, dispatch }, { name, email, password }) {
-    return new Promise((resolve, reject) => {
-      const prevUser = auth.currentUser;
-      const registerFunction = prevUser !== null ?
-        linkEmailToUser :
-        createEmailUser;
-      registerFunction(email, password)
-        .then((user) => {
-          user.updateProfile({ displayName: name })
-            .then(() => {
-              commit('setLoggedState', { isLogged: true, uid: user.uid });
-              dispatch('createUserProfile').then(() => resolve(user));
-            })
-            .catch(reject);
-        })
-        .catch(reject);
-    });
+  async registerEmail({ commit, dispatch }, { name, email, password }) {
+    const prevUser = (await fbApp()).auth().currentUser;
+    const registerFunction = prevUser !== null ?
+      linkEmailToUser :
+      createEmailUser;
+    const user = await registerFunction(email, password);
+    await user.updateProfile({ displayName: name });
+    commit('setLoggedState', { isLogged: true, uid: user.uid });
+    await dispatch('createUserProfile');
+    return user;
   },
 
-  signIn(context, { email, password }) {
-    return new Promise((resolve, reject) => {
-      const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-      const prevUser = auth.currentUser;
-      auth.signInWithCredential(credential)
-        .then((user) => {
-          if (prevUser && prevUser.isAnonymous) {
-            prevUser.delete();
-          }
-          resolve(user);
-        })
-        .catch(reject);
-    });
-  },
+  async signIn(context, { email, password }) {
+    const fbAuth = (await fbAsync()).auth;
+    const auth = (await fbApp()).auth();
+    const credential = fbAuth.EmailAuthProvider.credential(email, password);
+    const prevUser = auth.currentUser;
+    const user = await auth.signInAndRetrieveDataWithCredential(credential);
 
-  signOut({ commit }) {
-    if (!auth.currentUser.isAnonymous) {
-      return auth.signOut().then(() => {
-        commit('setUserState', { isLogged: false });
-      });
+    if (prevUser && prevUser.isAnonymous) {
+      await prevUser.delete();
     }
-    return Promise.resolve(true);
+
+    return user;
+  },
+
+  async signOut({ commit }) {
+    const auth = (await fbApp()).auth();
+    if (!auth.currentUser.isAnonymous) {
+      await auth.signOut();
+      commit('setUserState', { isLogged: false });
+    }
   }
 };

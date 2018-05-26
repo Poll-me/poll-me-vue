@@ -1,14 +1,13 @@
-import fb from '@/setup/firebase';
+import fbApp, { fbUser } from '@/setup/firebase';
 
-const db = fb.database();
-
-export default (to, from, next) => {
+export default async (to, from, next) => {
+  await fbUser();
+  const db = (await fbApp()).database();
   const pollKey = to.params.key;
-  db.ref('/polls').child(pollKey).once('value', (snapshot) => {
-    if (snapshot.exists()) {
-      next();
-    } else {
-      next({ replace: true, name: 'poll-not-found', params: { pollKey } });
-    }
-  }, () => next(false));
+  const snapshot = await db.ref('/polls').child(pollKey).once('value');
+  if (snapshot.exists()) {
+    next();
+  } else {
+    next({ replace: true, name: 'poll-not-found', params: { pollKey } });
+  }
 };

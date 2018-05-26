@@ -2,12 +2,17 @@
   "name": "PollMe",
   "description": "The best application for get the information you need for any kind of people.",
   "short_name": "PollMe",
-  "start_url": "/?utm_source=homescreen",
+  "start_url": "/?utm_source=web_app_manifest",
   "display": "standalone",
   "lang": "en-US",
   "theme_color": "#d8403f",
   "background_color": "#1f9d55",
   "icons": [
+    {
+			"src": "/static/img/favicon/favicon-64x64.png",
+			"sizes": "64x64",
+			"type": "image/png"
+    },
 		{
 			"src": "/static/img/favicon/mstile-144x144.png",
 			"sizes": "144x144",
