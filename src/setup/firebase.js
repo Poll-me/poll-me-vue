@@ -34,18 +34,23 @@ export async function stAsync() {
   return (await fbAsync()).storage();
 }
 
+let userPromise;
 export async function fbUser() {
   const auth = (await fbAsync()).auth();
-  return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      let currentUser = user;
-      unsubscribe();
-      if (user === null) {
-        currentUser = (await auth.signInAnonymously()).user;
-      }
-      resolve(currentUser);
-    }, reject);
-  });
+  if (!userPromise) {
+    userPromise = new Promise((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged(async (user) => {
+        let currentUser = user;
+        unsubscribe();
+        userPromise = undefined;
+        if (user === null) {
+          currentUser = (await auth.signInAnonymously()).user;
+        }
+        resolve(currentUser);
+      }, reject);
+    });
+  }
+  return userPromise;
 }
 
 export default fbApp;
