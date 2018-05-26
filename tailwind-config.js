@@ -62,7 +62,7 @@ let colors = {
 
   // 'tertiary-darkest': '#071422',
   // 'tertiary-darker': '#113255',
-  // 'tertiary-dark': '#1B5187',
+  'tertiary-dark': '#1B5187',
   'tertiary': '#246EB9',
   // 'tertiary-light': '#5F95CC',
   // 'tertiary-lighter': '#9BBDDF',

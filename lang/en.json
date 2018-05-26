@@ -45,6 +45,10 @@
   },
   "polls": {
     "view-poll": "View poll",
+    "no-login": {
+      "message": "REMEMBER, if you do not {login} all the activity will only be accessible from the device used.",
+      "login-link": "log in"
+    },
     "create-poll": "Create a new Poll",
     "activity-title": "Recent activity",
     "polls-title": "Your polls",
