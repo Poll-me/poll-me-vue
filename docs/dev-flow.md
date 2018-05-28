@@ -85,7 +85,7 @@ would be `release/1.2.3`.
 
 The steps you must follow in order to create a new version of the project.
 
-1. \* Update the [CHANGELOG](CHANGELOG.md) with the revelant release changes
+1. \* Update the [CHANGELOG](/CHANGELOG.md) with the revelant release changes
 1. Update the project version in all the files that reference it
 1. Create a merge request to merge the release in master
 1. Accept the merge request when the build success
