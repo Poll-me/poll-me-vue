@@ -11,8 +11,8 @@
 
 # PollMe Vue
 
+![GitHub (pre-)release](https://img.shields.io/github/release/Poll-me/poll-me-vue/all.svg)
 [![Build Status](https://travis-ci.com/Poll-me/poll-me-vue.svg?branch=develop)](https://travis-ci.com/Poll-me/poll-me-vue)
-[![Uses FontAwesome](https://img.shields.io/badge/uses-fontawesome-blue.svg)](https://fontawesome.com)
 [![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-accent.svg)](https://www.netlify.com)
 
 > The VueJS version of the PollMe webapp
