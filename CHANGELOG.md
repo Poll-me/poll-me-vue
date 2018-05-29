@@ -30,5 +30,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - **Continuous deployment** (CD) using the **Netlify** service
 - **PWA** app configuration for allow the users install the app on their devices
 
-[Unreleased]: https://github.com/Poll-me/poll-me-vue/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/Poll-me/poll-me-vue/compare/v0.0.0...v0.1.0
+[Unreleased]: https://github.com/Poll-me/poll-me-vue/compare/v0.1.0-alpha.1...HEAD
+[0.1.0]: https://github.com/Poll-me/poll-me-vue/compare/v0.0.0...v0.1.0-alpha.1
