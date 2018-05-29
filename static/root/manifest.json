@@ -14,12 +14,12 @@
 			"type": "image/png"
     },
 		{
-			"src": "/static/img/favicon/mstile-144x144.png",
+			"src": "/static/img/favicon/android-chrome-144x144.png",
 			"sizes": "144x144",
 			"type": "image/png"
     },
     {
-      "src": "/static/img/favicon/apple-touch-icon.png",
+      "src": "/static/img/favicon/android-chrome-180x180.png",
       "type": "image/png",
       "sizes": "180x180"
     },
