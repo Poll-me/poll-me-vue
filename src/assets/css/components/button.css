@@ -1,0 +1,35 @@
+.btn {
+  @apply .rounded;
+  @apply .px-3 .py-2;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+/**
+ *  PRIMARY
+ */
+
+.btn-primary {
+  @apply .bg-primary;
+  @apply .text-white;
+}
+
+/**
+ *  SECONDARY
+ */
+
+.btn-secondary {
+  @apply .bg-secondary;
+  @apply .text-white;
+}
+
+/**
+ *  TERTIARY
+ */
+
+.btn-tertiary {
+  @apply .bg-tertiary;
+  @apply .text-white;
+}

@@ -1,0 +1,178 @@
+{
+  "header": {
+    "nav-menu": {
+      "home-link": "Home",
+      "new-link": "Nueva encuesta",
+      "polls-link": "Tus encuestas",
+      "profile-link": "Perfil",
+      "login-link": "Iniciar sesión",
+      "register-link": "Registrarse",
+      "logout-link": "Cerrar sesión"
+    }
+  },
+  "home": {
+    "title": "Bienvenido a {name}",
+    "friends": "La mejor aplicación para saber la opinión de tus amigos sobre cualquier cosa.",
+    "polls": {
+      "create-message": "Sólo necesitas crear una {new-poll} y compartirla.",
+      "new-poll": "nueva encuesta",
+      "types-message": "Hay muchos {types}, desde el simple {registration} a tipos mas complejos.",
+      "poll-types": "tipos de encuesta"
+    },
+    "edit": "Una vez creada todo el mundo puede participar siguiendo el enlace simplemente.",
+    "no-login": {
+      "message": "Por defecto, {everyone}, permitiéndoles crear y responder encuestas rápidamente, pero estas {related}.",
+      "for-everyone": "cualquiera puede acceder a PollMe sin iniciar sesión",
+      "device-related": "solo estarán relacionadas con el dispositivo usado"
+    },
+    "login": {
+      "message": "Si te {create} una cuenta en PollMe, serás capaz de acceder a tus encuestas y respuestas {device} en el que {login}.",
+      "create-link": "creas",
+      "from-device": "desde cualquier dispositivo",
+      "login-link": "inicies sesión"
+    }
+  },
+  "poll": {
+    "fill": {
+      "author": "de {author-name}",
+      "share": {
+        "whatsapp": {
+          "button": "Compartir por",
+          "people": "{number} personas"
+        }
+      }
+    }
+  },
+  "polls": {
+    "view-poll": "Ver encuesta",
+    "no-login": {
+      "message": "RECUERDE, si no {login}, toda la actividad solo será accesible desde el dispositivo utilizado.",
+      "login-link": "inicia sesión"
+    },
+    "create-poll": "Nueva encuesta",
+    "activity-title": "Actividad reciente",
+    "polls-title": "Tus encuestas",
+    "no-polls": {
+      "title": "¡Aún no tienes encuestas!",
+      "description": "No te preocupes, puedes crear la primera pulsando el botón de abajo"
+    },
+    "new": {
+      "title": "Nueva encuesta",
+      "type-placeholder": "¿Que tipo de encuesta?",
+      "first-select-type": "Primero, selecciona qué tipo de encuesta quieres crear",
+      "form": {
+        "name-label": "Nombre:",
+        "name-placeholder": "El motivo de la encuesta",
+        "author-label": "Autor:",
+        "author-placeholder": "¿Quién pregunta?",
+        "description-label": "Descripción",
+        "description-placeholder": "Cuenta de que va la encuesta en pocas lineas",
+        "submit-button": "Crear"
+      }
+    },
+    "types": {
+      "1": {
+        "name": "Registro",
+        "description": "Una lista rápida de quién está interesado en el motivo de la encuesta.",
+        "fill": {
+          "people-in": "Gente dentro",
+          "no-answers": "¡Nadie se ha apuntado aún!",
+          "author-label": "¿Te apuntas?",
+          "author-placeholder": "Tu nombre",
+          "already-in": "¡Ya estás dentro!",
+          "get-in": "¡Dios si!",
+          "get-out": "Salir"
+        }
+      }
+    },
+    "not-found": {
+      "title": "Esta no es la encuesta que estas buscando...",
+      "description": "La encuesta con la clave '{key}' no existe, tal vez ha caducado o ha sido eliminada por el autor."
+    }
+  },
+  "user": {
+    "login-link": "Iniciar sesión",
+    "register-link": "Registrarse",
+    "login": {
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "El email de tu cuenta",
+        "required-error": "El correo electrónico es obligatorio.",
+        "valid-error": "Especifica una dirección de correo válida.",
+        "exists-error": "El email no se corresponde con ninguna cuenta registrada."
+      },
+      "password": {
+        "label": "Contraseña",
+        "required-error": "La contraseña es obligatoria.",
+        "min-length-error": "La contraseña debe ser de al menos {length} caracteres.",
+        "wrong-error": "La contraseña no es correcta."
+      },
+      "submit": "Entrar"
+    },
+    "register": {
+      "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido.",
+      "name": {
+        "label": "Nombre y Apellidos",
+        "placeholder": "Tu nombre completo",
+        "required-error": "El nombre es obligatorio.",
+        "length-error": "El nombre debe ser tener de {min} a {max} caracteres."
+      },
+      "email": {
+        "placeholder": "Tu email personal",
+        "exists-error": "Este correo ya está asociado a una cuenta existente."
+      },
+      "password": {
+        "placeholder": "Tu contraseña en PollMe"
+      },
+      "submit": "Crear cuenta"
+    },
+    "profile": {
+      "change-password": "Cambiar contraseña",
+      "required-error": "Este campo es obligatorio.",
+      "min-length-error": "El campo debe tener al menos {min} caracteres.",
+      "upload-avatar": "Subir",
+      "file-error": "La imagen no puede ocupar mas de {size}",
+      "current-password": {
+        "label": "Actual",
+        "placeholder": "Tu contraseña actual"
+      },
+      "new-password": {
+        "label": "Nueva",
+        "placeholder": "La contraseña deseada",
+        "not-same-as-current-error": "La nueva contraseña no puede ser igual a la actual."
+      },
+      "confirm-password": {
+        "label": "Confirmar",
+        "placeholder": "Repite la nueva contraseña",
+        "same-as-new-error": "Debe coincidir con la nueva contraseña."
+      },
+      "submit-button": "Guardar"
+    }
+  },
+  "not-found": {
+    "title": "Página no encontrada",
+    "description": "¡¡Un error 404 salvaje apareció!!",
+    "info": "Pero tranquilo, aún puedes ir a:",
+    "home-link": "Home",
+    "create-link": "Nueva"
+  },
+  "error": {
+    "title": "Ha ocurrido un error",
+    "description": "Algo fué mal en la aplicación por alguna razón",
+    "info": "Mantén la calma y echa un vistazo a estas posibles soluciones:",
+    "try-link": "Reintentar",
+    "reload-link": "Recargar"
+  },
+  "footer": {
+    "project-details": {
+      "message": "PollMe es {project-link} realizado con {love-icon} por {community-link} bajo la {license-link}",
+      "project": "un projecto de código abierto",
+      "community": "la comunidad",
+      "license": "licencia MIT"
+    },
+    "contribution": {
+      "message": "Puedes contribuir {issues-link} proponiendo nuevas funcionalidades",
+      "link": "aquí"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.tab-nav {
+  @apply .list-reset;
+  @apply .flex;
+  @apply .text-center;
+  @apply .border-b-2 .border-primary;
+  @apply .font-medium;
+
+  & li {
+    @apply .flex-1;
+
+    & a {
+      @apply .block;
+      @apply .p-4;
+
+      &:not(.router-link-exact-active) {
+        @apply .text-primary;
+      }
+
+      &.router-link-exact-active {
+        @apply .text-white;
+        @apply .bg-primary;
+      }
+    }
+  }
+}

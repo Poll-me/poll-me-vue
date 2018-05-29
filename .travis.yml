@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "8"
+jobs:
+  include:
+    - stage: lint
+      script: yarn lint
+    - stage: test
+      script: yarn unit
+    - stage: build
+      script: yarn build

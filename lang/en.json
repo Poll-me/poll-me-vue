@@ -1,0 +1,178 @@
+{
+  "header": {
+    "nav-menu": {
+      "home-link": "Home",
+      "new-link": "New poll",
+      "polls-link": "Your polls",
+      "profile-link": "Profile",
+      "login-link": "Log in",
+      "register-link": "Register",
+      "logout-link": "Log out"
+    }
+  },
+  "home": {
+    "title": "Wellcome to {name}",
+    "friends": "The best app to know your friends oppinion about everything you need.",
+    "polls": {
+      "create-message": "You only need to create a {new-poll} and share it with your friends.",
+      "new-poll": "new poll",
+      "types-message": "There are many {types}, from the simple {registration} to the more complex.",
+      "poll-types": "poll types"
+    },
+    "edit": "Everybody now can participate and give their opinion following the link.",
+    "no-login": {
+      "message": "By default, {everyone}, allowing create or answer polls quickly, but these are {related}.",
+      "for-everyone": "everyone can access PollMe without login",
+      "device-related": "only related to the device used"
+    },
+    "login": {
+      "message": "If you {create} a PollMe account, you will be able to access your polls and answers {device} you {login}.",
+      "create-link": "create",
+      "from-device": "from any device",
+      "login-link": "log in"
+    }
+  },
+  "poll": {
+    "fill": {
+      "author": "by {author-name}",
+      "share": {
+        "whatsapp": {
+          "button": "Share via",
+          "people": "{number} people"
+        }
+      }
+    }
+  },
+  "polls": {
+    "view-poll": "View poll",
+    "no-login": {
+      "message": "REMEMBER, if you do not {login} all the activity will only be accessible from the device used.",
+      "login-link": "log in"
+    },
+    "create-poll": "Create a new Poll",
+    "activity-title": "Recent activity",
+    "polls-title": "Your polls",
+    "no-polls": {
+      "title": "You have no polls yet!!",
+      "description": "Do not worry, you can create the first clicking the button below"
+    },
+    "new": {
+      "title": "New poll",
+      "type-placeholder": "What kind of poll?",
+      "first-select-type": "First, select what kind of poll you want to create",
+      "form": {
+        "name-label": "Name:",
+        "name-placeholder": "The poll topic",
+        "author-label": "Author:",
+        "author-placeholder": "Who is asking?",
+        "description-label": "Description",
+        "description-placeholder": "Tell about what to participate in",
+        "submit-button": "Create"
+      }
+    },
+    "types": {
+      "1": {
+        "name": "Registration",
+        "description": "Take a quick look at who is going to participate in the topic you describe.",
+        "fill": {
+          "people-in": "People IN",
+          "no-answers": "No one has enrolled yet!",
+          "author-label": "Are you in?",
+          "author-placeholder": "Your name",
+          "already-in": "You are already in!",
+          "get-in": "Hell yeah!",
+          "get-out": "Get out"
+        }
+      }
+    },
+    "not-found": {
+      "title": "This is not the poll you are looking for...",
+      "description": "The poll with key '{key}' does not exist, maybe it is expired or has been deleted by the author."
+    }
+  },
+  "user": {
+    "login-link": "Log in",
+    "register-link": "Register",
+    "login": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Your account email",
+        "required-error": "The email is mandatory.",
+        "valid-error": "Write a valid email.",
+        "exists-error": "This email does not match any registered user."
+      },
+      "password": {
+        "label": "Password",
+        "required-error": "The password is mandatory.",
+        "min-length-error": "The password should have at least {length} characters.",
+        "wrong-error": "The password is not correct."
+      },
+      "submit": "Sign in"
+    },
+    "register": {
+      "info": "With a PollMe account, you can access your polls from any device, have a profile and much more features that require a valid user.",
+      "name": {
+        "label": "Display name",
+        "placeholder": "Your complete name",
+        "required-error": "The name field is mandatory.",
+        "length-error": "The name should have {min} to {max} characters."
+      },
+      "email": {
+        "placeholder": "Your personal email",
+        "exists-error": "This email is already registered."
+      },
+      "password": {
+        "placeholder": "Your PollMe password"
+      },
+      "submit": "Create account"
+    },
+    "profile": {
+      "change-password": "Change password",
+      "required-error": "This field is mandatory.",
+      "min-length-error": "The field should have at least {min} characters.",
+      "upload-avatar": "Upload",
+      "file-error": "The image can not has a size over {size}",
+      "current-password": {
+        "label": "Current",
+        "placeholder": "Your password now"
+      },
+      "new-password": {
+        "label": "New",
+        "placeholder": "The new password",
+        "not-same-as-current-error": "The new password can not be the same as current."
+      },
+      "confirm-password": {
+        "label": "Confirm",
+        "placeholder": "Type new password again",
+        "same-as-new-error": "Must equal to the new password."
+      },
+      "submit-button": "Save"
+    }
+  },
+  "not-found": {
+    "title": "Page not found",
+    "description": "A wild 404 error appeared!!",
+    "info": "But keep calm, you still can go to:",
+    "home-link": "Home page",
+    "create-link": "New poll"
+  },
+  "error": {
+    "title": "An error occurred",
+    "description": "Something in the app went wrong for some reason",
+    "info": "Keep calm and take a look at this possible solutions:",
+    "try-link": "Try again",
+    "reload-link": "Reload"
+  },
+  "footer": {
+    "project-details": {
+      "message": "PollMe is an {project-link} made with {love-icon} by {community-link} under the {license-link}",
+      "project": "open source project",
+      "community": "the community",
+      "license": "MIT license"
+    },
+    "contribution": {
+      "message": "You can contribute by coding or propose new features {issues-link}",
+      "link": "here"
+    }
+  }
+}

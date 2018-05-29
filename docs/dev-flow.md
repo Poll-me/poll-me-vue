@@ -7,7 +7,7 @@ or a quick guide [here](http://danielkummer.github.io/git-flow-cheatsheet/).
 - [Main branches](#main-branches)
   - [Develop](#develop)
   - [Master](#master)
-- [Support branches](#support-branches)
+- [Dynamic branches](#dynamic-branches)
   - [Feature (`feature/`)](#feature-feature)
   - [Hotfix (`hotfix/`)](#hotfix-hotfix)
   - [Release (`release/`)](#release-release)
@@ -17,7 +17,7 @@ Well, this docs will explain the basis of the concept of **Git flow** applied
 to this project, the main concepts are:
 
 - We have 2 main branches (`develop` and `master`)
-- We use 4 different support branches identified by prefixes
+- We use 4 different dynamic branches identified by prefixes
 - We use **code review** (Merge requests) for **ALL** merge commits
 - We always publish the branches we are working on, _we never work alone_
 - The commit messages are very important, **DO NOT use generic messages** like
@@ -48,11 +48,11 @@ branches and are always tagged with a version number following the
 
 The success commit of this branch are automatically deployed at beta enviroment.
 
-## Support branches
+## Dynamic branches
 
 This kind of branches are the the way to make any changes on the project,
-depending the change you want to do you should create a type of support branch
-or another. All support branches are prefixed with the identifier of the branch
+depending the change you want to do you should create a type of dynamic branch
+or another. All dynamic branches are prefixed with the identifier of the branch
 kind.
 
 The branch name have to follow **CapitalCase convention**, for example:
@@ -81,11 +81,21 @@ The name of this branch must be the number of the intended version to release,
 for example, if the future version would be the `1.2.3` the release branch name
 would be `release/1.2.3`.
 
+### Support (`support/`)
+
+Branches with the target of give support for old versions of the app allowing
+to do hot fixes to the version that the branch supports.
+
+The name of this branch must be the number of the intended version to support,
+for example, if the past version is the `1.2.X` the support branch name
+would be `support/1.2`. Only allowing to integrate patches versions, every hotfix
+added will increase the patch version (`1.2.4` => `1.2.5`).
+
 ## Version flow
 
 The steps you must follow in order to create a new version of the project.
 
-1. \* Update the [CHANGELOG](CHANGELOG.md) with the revelant release changes
+1. \* Update the [CHANGELOG](/CHANGELOG.md) with the revelant release changes
 1. Update the project version in all the files that reference it
 1. Create a merge request to merge the release in master
 1. Accept the merge request when the build success

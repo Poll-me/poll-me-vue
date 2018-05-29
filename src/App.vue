@@ -1,23 +1,32 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <MainLayout>
+    <template slot="header">
+      <MainHeader />
+    </template>
     <router-view/>
-  </div>
+    <template slot="footer">
+      <MainFooter />
+    </template>
+  </MainLayout>
 </template>
 
 <script>
+import '@/assets/css/main.css';
+import { mapActions } from 'vuex';
+
+import coreComponents from './core';
+
 export default {
   name: 'App',
+  components: { ...coreComponents },
+  methods: mapActions(['changeLanguage']),
+
+  created() {
+    let userLang = navigator.language;
+    if (typeof userLang === 'string' && userLang.length > 0) {
+      userLang = userLang.slice(0, 2);
+      this.changeLanguage({ lang: userLang });
+    }
+  }
 };
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
