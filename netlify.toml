@@ -6,9 +6,9 @@
   FB_API_KEY = "AIzaSyBG_t00oVzmqiVhF57L9npCb4SqVqaABPI"
   FB_AUTH_DOMAIN = "pollme-dc0fc.firebaseapp.com"
   FB_DB_URL = "https://pollme-dc0fc.firebaseio.com"
-  FB_PROJECT_ID = "3299333018"
-  FB_STORAGE_BUCKET = "pollme-dc0fc"
-  FB_MSG_SENDER_ID = "pollme-dc0fc.appspot.com"
+  FB_PROJECT_ID = "pollme-dc0fc"
+  FB_STORAGE_BUCKET = "pollme-dc0fc.appspot.com"
+  FB_MSG_SENDER_ID = "3299333018"
 
 [[redirects]]
   from = "/*"
