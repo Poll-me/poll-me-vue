@@ -5,6 +5,10 @@
   &:focus {
     outline: none;
   }
+
+  &[disabled] {
+    @apply .opacity-75;
+  }
 }
 
 /**
