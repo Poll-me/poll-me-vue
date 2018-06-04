@@ -1,35 +1,38 @@
 .btn {
-  @apply .rounded;
+  @apply .bg-grey-dark;
   @apply .px-3 .py-2;
+  @apply .rounded;
+  @apply .text-white;
 
   &:focus {
     outline: none;
   }
-}
 
-/**
- *  PRIMARY
- */
+  &[disabled] {
+    @apply .opacity-75;
+  }
 
-.btn-primary {
-  @apply .bg-primary;
-  @apply .text-white;
-}
+  /**
+   *  PRIMARY
+   */
 
-/**
- *  SECONDARY
- */
+  &.btn-primary {
+    @apply .bg-primary;
+  }
 
-.btn-secondary {
-  @apply .bg-secondary;
-  @apply .text-white;
-}
+  /**
+   *  SECONDARY
+   */
 
-/**
- *  TERTIARY
- */
+  &.btn-secondary {
+    @apply .bg-secondary;
+  }
 
-.btn-tertiary {
-  @apply .bg-tertiary;
-  @apply .text-white;
+  /**
+   *  TERTIARY
+   */
+
+  &.btn-tertiary {
+    @apply .bg-tertiary;
+  }
 }

@@ -7,7 +7,7 @@
           :loading="updatingAvatar" :max-size="avatarMaxSize"
           @files-ready="updateAvatar" @not-valid-error="fileError = true" ></FileUploader>
         <button v-if="profile.photoUrl" @click="updateAvatar()" :disabled="updatingAvatar"
-          class="btn bg-grey-dark ml-2 text-white">
+          class="btn ml-2">
           <font-awesome-icon icon="trash-alt">
           </font-awesome-icon>
         </button>
@@ -101,9 +101,8 @@
           </div>
         </div>
       </div>
-      <button v-show="hasChanges" :class="{ 'opacity-75': $v.$invalid || loading }"
-        :disabled="$v.$invalid || loading"
-        type="submit" class="sticky pin-b py-4 bg-secondary text-center text-white text-xl">
+      <button v-show="hasChanges" :disabled="$v.$invalid || loading"
+        type="submit" class="sticky pin-b py-4 btn btn-secondary rounded-none text-center text-xl">
         <template v-if="!loading">
           <font-awesome-icon icon="edit" class="mr-1" ></font-awesome-icon>
           <span v-t="'user.profile.submit-button'"></span>

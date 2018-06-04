@@ -78,6 +78,7 @@
           "people-in": "Gente dentro",
           "no-answers": "¡Nadie se ha apuntado aún!",
           "author-label": "¿Te apuntas?",
+          "form-button": "Me apunto",
           "author-placeholder": "Tu nombre",
           "already-in": "¡Ya estás dentro!",
           "get-in": "¡Dios si!",
@@ -166,7 +167,7 @@
   "footer": {
     "project-details": {
       "message": "PollMe es {project-link} realizado con {love-icon} por {community-link} bajo la {license-link}",
-      "project": "un projecto de código abierto",
+      "project": "un proyecto de código abierto",
       "community": "la comunidad",
       "license": "licencia MIT"
     },

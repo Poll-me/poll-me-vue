@@ -49,8 +49,8 @@
           </p>
         </div>
       </div>
-      <button :class="{ 'opacity-75': $v.$invalid }" :disabled="$v.$invalid"
-        type="submit" class="sticky pin-b py-4 bg-secondary text-center text-white text-xl">
+      <button class="sticky pin-b py-4 btn btn-secondary rounded-none text-center text-xl"
+        type="submit" :disabled="$v.$invalid" >
         <font-awesome-icon icon="user-plus" class="mr-1" ></font-awesome-icon>
         <span v-t="'user.register.submit'"></span>
       </button>

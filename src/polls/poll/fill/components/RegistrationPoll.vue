@@ -11,14 +11,16 @@
           </button>
         </div>
         <form v-else @submit.prevent="submit" class="flex" ref="anonymous-vote-container">
-          <label for="name" v-t="`polls.types.${poll.type}.fill.author-label`"
-            class="text-white font-semibold flex-no-shrink pl-2 pr-4 flex items-center"></label>
           <div class="flex-1 text-grey-darker" >
             <input v-model.trim="name" @input="$v.name.$touch()"
               v-bind:class="{ 'border-red': $v.name.$error }"
               :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
               id="name" type="text" class="shadow-none border-transparent border-2">
           </div>
+          <button class="btn btn-primary ml-2" type="submit" :disabled="$v.$invalid">
+            <span v-t="`polls.types.${poll.type}.fill.form-button`"></span>
+            <font-awesome-icon icon="sign-in-alt" fixed-width></font-awesome-icon>
+          </button>
         </form>
       </template>
       <div v-else class="flex" ref="remove-vote-container">
