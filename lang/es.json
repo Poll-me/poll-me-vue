@@ -166,7 +166,7 @@
   "footer": {
     "project-details": {
       "message": "PollMe es {project-link} realizado con {love-icon} por {community-link} bajo la {license-link}",
-      "project": "un projecto de código abierto",
+      "project": "un proyecto de código abierto",
       "community": "la comunidad",
       "license": "licencia MIT"
     },
