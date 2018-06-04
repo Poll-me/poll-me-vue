@@ -1,10 +1,10 @@
-import fbApp, { fbUser } from '@/setup/firebase';
+import fbApp, { fbUser, fbAsync } from '@/setup/firebase';
 
 export default {
   async submitVote({ getters }, payload) {
     const authUser = await fbUser();
     const db = (await fbApp()).database();
-    const timestamp = new Date().getTime();
+    const timestamp = (await fbAsync()).database.ServerValue.TIMESTAMP;
     const vote = { ...payload, lastModified: timestamp };
     await db.ref('answers').child(getters.poll.key).child(authUser.uid).set(vote);
     await db.ref('userVotes').child(authUser.uid).child(getters.poll.key).set({
