@@ -1,6 +1,8 @@
 .btn {
-  @apply .rounded;
+  @apply .bg-grey-dark;
   @apply .px-3 .py-2;
+  @apply .rounded;
+  @apply .text-white;
 
   &:focus {
     outline: none;
@@ -9,31 +11,28 @@
   &[disabled] {
     @apply .opacity-75;
   }
-}
 
-/**
- *  PRIMARY
- */
+  /**
+   *  PRIMARY
+   */
 
-.btn-primary {
-  @apply .bg-primary;
-  @apply .text-white;
-}
+  &.btn-primary {
+    @apply .bg-primary;
+  }
 
-/**
- *  SECONDARY
- */
+  /**
+   *  SECONDARY
+   */
 
-.btn-secondary {
-  @apply .bg-secondary;
-  @apply .text-white;
-}
+  &.btn-secondary {
+    @apply .bg-secondary;
+  }
 
-/**
- *  TERTIARY
- */
+  /**
+   *  TERTIARY
+   */
 
-.btn-tertiary {
-  @apply .bg-tertiary;
-  @apply .text-white;
+  &.btn-tertiary {
+    @apply .bg-tertiary;
+  }
 }
