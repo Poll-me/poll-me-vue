@@ -57,6 +57,7 @@
       <span v-t="'polls.create-poll'"></span>
       <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
     </router-link>
+    <ModalDialog></ModalDialog>
   </div>
 </template>
 <script>
