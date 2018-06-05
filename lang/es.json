@@ -35,10 +35,10 @@
   "poll": {
     "fill": {
       "author": "de {author-name}",
+      "people": "{number} personas",
       "share": {
         "whatsapp": {
-          "button": "Compartir por",
-          "people": "{number} personas"
+          "button": "Compartir por"
         }
       }
     }

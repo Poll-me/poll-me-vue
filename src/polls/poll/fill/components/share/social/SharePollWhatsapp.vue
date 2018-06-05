@@ -29,7 +29,7 @@ export default class SharePollWhatsapp extends Vue {
     let title = `*${this.poll.name}*\n`;
     if (this.poll.answers.length > 1) {
       title +=
-        `_${this.$t('poll.fill.share.whatsapp.people', { number: this.poll.answers.length })}_\n`;
+        `_${this.$t('poll.fill.people', { number: this.poll.answers.length })}_\n`;
     }
     return title;
   }

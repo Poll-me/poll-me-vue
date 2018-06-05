@@ -33,7 +33,13 @@
       </div>
     </div>
     <template v-if="poll.answers.length > 0" >
-      <div class="text-center py-2" v-t="`polls.types.${poll.type}.fill.people-in`"></div>
+      <div class="text-center py-2">
+        <b v-t="`polls.types.${poll.type}.fill.people-in`"></b>
+        <span v-if="this.poll.answers.length > 1" class="italic">
+          (<span class="text-sm"
+            v-t="{ path: `poll.fill.people`, args: { number: this.poll.answers.length }}"></span>)
+        </span>
+      </div>
       <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
         <li v-for="ans in poll.answers" :key="ans.author"
           class="w-1/2 p-1" >
