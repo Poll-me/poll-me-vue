@@ -13,9 +13,9 @@
           <h2 class="text-lg font-medium" v-t="'polls.activity-title'"></h2>
           <ul class="list-reset font-medium leading-tight">
             <li v-for="vote in votes" :key="vote.key"
-              class="bg-primary rounded shadow mt-2">
+              class="btn btn-primary shadow mt-2">
               <router-link :to="{ name: 'fill-poll', params: { key: vote.key }}"
-                class="text-white px-3 py-2 flex items-center">
+                class="text-white flex items-center">
                 <div class="flex-1 truncate">{{ vote.name }}</div>
                 <font-awesome-icon icon="eye" class="ml-2" fixed-width ></font-awesome-icon>
               </router-link>
@@ -32,8 +32,8 @@
                 {{ poll.description }}
               </p>
               <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}"
-                v-t="'polls.view-poll'" class="bg-red hover:bg-red-dark
-                  text-white font-bold py-2 px-4 rounded block text-center mt-2" ></router-link>
+                v-t="'polls.view-poll'" class="btn btn-primary
+                  font-bold block text-center mt-2" ></router-link>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <router-link :to="{ name: 'new-poll' }"
-      class="sticky pin-b py-4 bg-secondary text-center text-white text-lg">
+      class="sticky pin-b py-4 btn btn-secondary text-center rounded-none text-lg">
       <span v-t="'polls.create-poll'"></span>
       <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
     </router-link>

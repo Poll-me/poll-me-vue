@@ -3,13 +3,19 @@
   @apply .px-3 .py-2;
   @apply .rounded;
   @apply .text-white;
+  @apply .cursor-pointer;
 
   &:focus {
     outline: none;
   }
 
+  &:hover:not([disabled]) {
+    @apply .bg-grey-darker;
+  }
+
   &[disabled] {
     @apply .opacity-75;
+    @apply .cursor-not-allowed .pointer-events-none;
   }
 
   /**
@@ -18,6 +24,10 @@
 
   &.btn-primary {
     @apply .bg-primary;
+
+    &:hover:not([disabled]) {
+      @apply .bg-primary-dark;
+    }
   }
 
   /**
@@ -26,6 +36,10 @@
 
   &.btn-secondary {
     @apply .bg-secondary;
+
+    &:hover:not([disabled]) {
+      @apply .bg-secondary-dark;
+    }
   }
 
   /**
@@ -34,5 +48,9 @@
 
   &.btn-tertiary {
     @apply .bg-tertiary;
+
+    &:hover:not([disabled]) {
+      @apply .bg-tertiary-dark;
+    }
   }
 }

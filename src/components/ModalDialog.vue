@@ -1,5 +1,5 @@
 <template>
-  <transition name="modal-dialog" :duration="{ enter: 300, leave: 150 }">
+  <transition name="modal-dialog" :duration="animationDuration">
     <div v-if="open" role="alertdialog"
       class="modal-dialog fixed pin z-50 flex items-center justify-center">
       <div class="modal-dialog-backdrop w-full h-full absolute bg-black opacity-75"
@@ -39,6 +39,8 @@ import Component from 'vue-class-component';
   }
 })
 export default class ModalDialog extends Vue {
+  animationDuration = { enter: 300, leave: 150 };
+
   close() {
     this.$emit('update:open', false);
   }
