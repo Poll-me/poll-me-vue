@@ -57,7 +57,7 @@
       <span v-t="'polls.create-poll'"></span>
       <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
     </router-link>
-    <ModalDialog></ModalDialog>
+    <ModalDialog :open="openDialog"></ModalDialog>
   </div>
 </template>
 <script>
@@ -75,6 +75,8 @@ const { mapGetters, mapActions } = createNamespacedHelpers('polls');
   methods: mapActions(['fetchPolls', 'fetchVotes'])
 })
 export default class UserPolls extends Vue {
+  openDialog = false
+
   mounted() {
     this.fetchPolls();
     this.fetchVotes();
