@@ -15,8 +15,8 @@
       <div class="mb-4">
         <label class="mb-2" for="password" v-t="'user.login.password.label'"></label>
         <input v-model.trim="password" @input="$v.password.$touch()"
-          :class="{ 'border-red': $v.password.$error }"
-          id="password" type="password" placeholder="********" required >
+          :class="{ 'border-red': $v.password.$error }" required
+          id="password" type="password" :placeholder="$t('user.login.password.placeholder')" >
         <p v-show="$v.password.$error" class="field-errors mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
           <span v-show="!$v.password.minLength"

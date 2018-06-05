@@ -104,6 +104,7 @@
       },
       "password": {
         "label": "Password",
+        "placeholder": "Your PollMe password",
         "required-error": "The password is mandatory.",
         "min-length-error": "The password should have at least {length} characters.",
         "wrong-error": "The password is not correct."
@@ -114,16 +115,13 @@
       "info": "With a PollMe account, you can access your polls from any device, have a profile and much more features that require a valid user.",
       "name": {
         "label": "Display name",
-        "placeholder": "Your complete name",
+        "placeholder": "Your name for PollMe",
         "required-error": "The name field is mandatory.",
         "length-error": "The name should have {min} to {max} characters."
       },
       "email": {
         "placeholder": "Your personal email",
         "exists-error": "This email is already registered."
-      },
-      "password": {
-        "placeholder": "Your PollMe password"
       },
       "submit": "Create account"
     },
