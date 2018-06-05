@@ -104,6 +104,7 @@
       },
       "password": {
         "label": "Contraseña",
+        "placeholder": "Tu contraseña en PollMe",
         "required-error": "La contraseña es obligatoria.",
         "min-length-error": "La contraseña debe ser de al menos {length} caracteres.",
         "wrong-error": "La contraseña no es correcta."
@@ -113,17 +114,14 @@
     "register": {
       "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido.",
       "name": {
-        "label": "Nombre y Apellidos",
-        "placeholder": "Tu nombre completo",
+        "label": "Nombre a mostrar",
+        "placeholder": "Tu nombre en PollMe",
         "required-error": "El nombre es obligatorio.",
         "length-error": "El nombre debe ser tener de {min} a {max} caracteres."
       },
       "email": {
         "placeholder": "Tu email personal",
         "exists-error": "Este correo ya está asociado a una cuenta existente."
-      },
-      "password": {
-        "placeholder": "Tu contraseña en PollMe"
       },
       "submit": "Crear cuenta"
     },
