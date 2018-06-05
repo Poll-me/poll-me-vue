@@ -162,6 +162,11 @@
     "try-link": "Try again",
     "reload-link": "Reload"
   },
+  "modal-dialog": {
+    "title": "Are you sure?",
+    "cancel": "Cancel",
+    "accept": "Accept"
+  },
   "footer": {
     "project-details": {
       "message": "PollMe is an {project-link} made with {love-icon} by {community-link} under the {license-link}",

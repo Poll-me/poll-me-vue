@@ -7,18 +7,18 @@
       <div class="modal-dialog-container container z-10">
         <div class="rounded overflow-hidden">
           <div class="bg-secondary text-white font-bold py-4 text-center">
-            <slot name="header">¿Are you sure?</slot>
+            <slot name="header">
+              <span v-t="'modal-dialog.title'"></span>
+            </slot>
           </div>
           <div class="bg-white p-4">
             <div class="bg-red-lightest ">
-              <slot>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer non turpis id quam elementum aliquam.</p>
-              </slot>
+              <slot></slot>
             </div>
             <div class="flex mt-4">
-              <button class="flex-1 btn" @click="close">Cancel</button>
-              <button class="flex-1 btn btn-primary ml-4" @click="accept">Accept</button>
+              <button class="flex-1 btn" v-t="'modal-dialog.cancel'" @click="close"></button>
+              <button class="flex-1 btn btn-primary ml-4" v-t="'modal-dialog.accept'"
+                @click="accept"></button>
             </div>
           </div>
         </div>

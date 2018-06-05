@@ -57,7 +57,12 @@
       <span v-t="'polls.create-poll'"></span>
       <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
     </router-link>
-    <ModalDialog :open.sync="openDialog"></ModalDialog>
+    <ModalDialog :open.sync="openDialog">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Integer non turpis id quam elementum aliquam.
+      </p>
+    </ModalDialog>
   </div>
 </template>
 <script>
