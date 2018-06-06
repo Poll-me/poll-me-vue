@@ -31,9 +31,14 @@
               <p class="text-grey-darker text-sm">
                 {{ poll.description }}
               </p>
-              <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}"
-                v-t="'polls.view-poll'" class="btn btn-primary
-                  font-bold block text-center mt-2" ></router-link>
+              <div class="flex mt-2">
+                <router-link :to="{ name: 'fill-poll', params: { key: poll.key }}"
+                  v-t="'polls.view-poll'" class="btn btn-primary
+                    font-bold flex-1 text-center" ></router-link>
+                <button class="btn ml-2" @click="askForPollDeletion(poll)">
+                  <font-awesome-icon icon="trash-alt"></font-awesome-icon>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -57,11 +62,10 @@
       <span v-t="'polls.create-poll'"></span>
       <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
     </router-link>
-    <ModalDialog :open.sync="openDialog">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Integer non turpis id quam elementum aliquam.
-      </p>
+    <ModalDialog :open.sync="openDeleteDialog" @confirm="deletePoll">
+      <i18n path="polls.delete-poll-confirm">
+        <b place="name" class="text-lg">"{{ pollToDelete.name }}"</b>
+      </i18n>
     </ModalDialog>
   </div>
 </template>
@@ -80,11 +84,21 @@ const { mapGetters, mapActions } = createNamespacedHelpers('polls');
   methods: mapActions(['fetchPolls', 'fetchVotes'])
 })
 export default class UserPolls extends Vue {
-  openDialog = false
+  openDeleteDialog = false;
+  pollToDelete = {};
 
   mounted() {
     this.fetchPolls();
     this.fetchVotes();
+  }
+
+  askForPollDeletion(poll) {
+    this.pollToDelete = poll;
+    this.openDeleteDialog = true;
+  }
+
+  deletePoll() {
+    console.log(this.pollToDelete);
   }
 }
 </script>

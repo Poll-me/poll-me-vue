@@ -52,6 +52,7 @@
     "create-poll": "Nueva encuesta",
     "activity-title": "Actividad reciente",
     "polls-title": "Tus encuestas",
+    "delete-poll-confirm": "La encuesta {name} y todas sus respuestas serán eliminadas.",
     "no-polls": {
       "title": "¡Aún no tienes encuestas!",
       "description": "No te preocupes, puedes crear la primera pulsando el botón de abajo"
