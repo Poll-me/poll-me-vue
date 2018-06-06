@@ -36,6 +36,7 @@
     "fill": {
       "author": "by {author-name}",
       "people": "{number} people",
+      "remove-vote-confirm": "The vote from {name} will be removed from the poll.",
       "share": {
         "whatsapp": {
           "button": "Share via"
@@ -52,6 +53,7 @@
     "create-poll": "Create a new Poll",
     "activity-title": "Recent activity",
     "polls-title": "Your polls",
+    "delete-poll-confirm": "The poll {name} and all his answers will be deleted and will not be accessible anymore.",
     "no-polls": {
       "title": "You have no polls yet!!",
       "description": "Do not worry, you can create the first clicking the button below"
@@ -161,6 +163,11 @@
     "info": "Keep calm and take a look at this possible solutions:",
     "try-link": "Try again",
     "reload-link": "Reload"
+  },
+  "modal-dialog": {
+    "title": "Are you sure?",
+    "cancel": "Cancel",
+    "accept": "Accept"
   },
   "footer": {
     "project-details": {

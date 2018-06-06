@@ -36,6 +36,7 @@
     "fill": {
       "author": "de {author-name}",
       "people": "{number} personas",
+      "remove-vote-confirm": "El voto de {name} sera eliminado de la encuesta.",
       "share": {
         "whatsapp": {
           "button": "Compartir por"
@@ -52,6 +53,7 @@
     "create-poll": "Nueva encuesta",
     "activity-title": "Actividad reciente",
     "polls-title": "Tus encuestas",
+    "delete-poll-confirm": "La encuesta {name} y todas sus respuestas serán eliminadas.",
     "no-polls": {
       "title": "¡Aún no tienes encuestas!",
       "description": "No te preocupes, puedes crear la primera pulsando el botón de abajo"
@@ -161,6 +163,11 @@
     "info": "Mantén la calma y echa un vistazo a estas posibles soluciones:",
     "try-link": "Reintentar",
     "reload-link": "Recargar"
+  },
+  "modal-dialog": {
+    "title": "¿Estás seguro?",
+    "cancel": "Cancelar",
+    "accept": "Aceptar"
   },
   "footer": {
     "project-details": {

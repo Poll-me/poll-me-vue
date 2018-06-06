@@ -2,6 +2,23 @@ import fbApp, { fbUser } from '@/setup/firebase';
 
 let pollsFetched = {};
 
+async function removePollUserVotes(key) {
+  const db = (await fbApp()).database();
+  const answersRef = db.ref('answers').child(key);
+  const usersVotes = (await answersRef.once('value')).val();
+  const deletionPromises = [];
+
+  if (usersVotes) {
+    const participants = Object.keys(usersVotes);
+
+    participants.forEach((user) => {
+      deletionPromises.push(db.ref('userVotes').child(user).child(key).remove());
+    });
+  }
+
+  return Promise.all(deletionPromises);
+}
+
 export default {
   async fetchPolls({ commit }) {
     const db = (await fbApp()).database();
@@ -27,5 +44,13 @@ export default {
 
       pollsFetched = { ref: pollsRef, user: authUser.uid };
     }
+  },
+
+  async removePoll(context, key) {
+    const db = (await fbApp()).database();
+
+    await removePollUserVotes(key);
+    await db.ref('answers').child(key).remove();
+    return db.ref('polls').child(key).remove();
   }
 };

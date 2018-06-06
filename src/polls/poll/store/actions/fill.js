@@ -13,10 +13,9 @@ export default {
     });
   },
 
-  async removeVote({ getters }) {
-    const authUser = await fbUser();
+  async removeVote({ getters }, user) {
     const db = (await fbApp()).database();
-    await db.ref('answers').child(getters.poll.key).child(authUser.uid).remove();
-    await db.ref('userVotes').child(authUser.uid).child(getters.poll.key).remove();
+    await db.ref('answers').child(getters.poll.key).child(user).remove();
+    return db.ref('userVotes').child(user).child(getters.poll.key).remove();
   }
 };

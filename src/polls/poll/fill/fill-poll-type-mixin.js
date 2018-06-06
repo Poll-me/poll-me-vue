@@ -22,12 +22,20 @@ const fillPollTypeMixinConfig = {
     },
     config: Object
   },
+  computed: {
+    isAuthor() {
+      return this.user === this.poll.user;
+    },
+    hasVoted() {
+      return this.poll.answers.some(ans => ans.user === this.user);
+    }
+  },
   methods: {
     vote(payload) {
       this.$emit('vote', payload);
     },
-    removeVote() {
-      this.$emit('remove-vote');
+    removeVote(user = this.user) {
+      this.$emit('remove-vote', user);
     }
   }
 };

@@ -26,7 +26,7 @@
       <div v-else class="flex" ref="remove-vote-container">
         <div v-t="`polls.types.${poll.type}.fill.already-in`"
           class="flex-1 text-white font-semibold px-1 flex items-center"></div>
-        <button class="btn btn-primary" @click="removeVote">
+        <button class="btn btn-primary" @click="removeVote()">
           <span v-t="`polls.types.${poll.type}.fill.get-out`"></span>
           <font-awesome-icon icon="sign-out-alt" fixed-width></font-awesome-icon>
         </button>
@@ -42,10 +42,14 @@
       </div>
       <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
         <li v-for="ans in poll.answers" :key="ans.author"
-          class="w-1/2 p-1" >
-          <div class="bg-tertiary shadow p-2 rounded h-full flex flex-col justify-center">
+          class="w-1/2 p-1 flex" >
+          <div class="bg-tertiary shadow p-2 rounded h-full flex-1 flex flex-col justify-center"
+            :class="{ 'rounded-r-none': isAuthor }">
             {{ ans.author }}
           </div>
+          <button v-if="isAuthor" class="btn rounded-l-none" @click="removeVote(ans.user)">
+            <font-awesome-icon icon="times" size="lg"></font-awesome-icon>
+          </button>
         </li>
       </ul>
     </template>
@@ -76,10 +80,6 @@ import FillPollType from '../fill-poll-type-mixin';
 })
 export default class RegistrationPoll extends FillPollType {
   name = '';
-
-  get hasVoted() {
-    return this.poll.answers.some(ans => ans.user === this.user);
-  }
 
   loggedVote() {
     this.vote({});

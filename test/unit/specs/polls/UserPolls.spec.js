@@ -28,7 +28,7 @@ describe('UserPolls.vue', () => {
       localVue,
       store,
       i18n: I18n,
-      stubs: ['router-link', 'router-view']
+      stubs: ['router-link', 'router-view', 'ModalDialog']
     });
   });
 
