@@ -36,6 +36,7 @@
     "fill": {
       "author": "de {author-name}",
       "people": "{number} personas",
+      "remove-vote-confirm": "El voto de {name} sera eliminado de la encuesta.",
       "share": {
         "whatsapp": {
           "button": "Compartir por"

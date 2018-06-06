@@ -19,6 +19,11 @@
     </div>
     <SharePollBar :poll="poll" :social="['whatsapp']"
       class="sticky pin-b shadow-t"></SharePollBar>
+    <ModalDialog :open.sync="openRemoveDialog" @confirm="removeVote(userToDeleteVote)">
+      <i18n path="poll.fill.remove-vote-confirm">
+        <b place="name" class="text-lg">"{{ authorToDeleteVote }}"</b>
+      </i18n>
+    </ModalDialog>
   </div>
 </template>
 <script>
@@ -39,14 +44,23 @@ const { mapActions, mapGetters, mapState } = createNamespacedHelpers('polls/poll
       isLogged: state => state.user.isLogged
     }),
     ...mapGetters(['poll']),
-    ...mapState(['key'])
+    ...mapState(['key', 'answersEntities'])
   },
   methods: mapActions(['submitVote', 'removeVote']),
   components: { SharePollBar }
 })
 export default class FillPoll extends Vue {
+  openRemoveDialog = false;
+  userToDeleteVote = '';
+
   get pollTypeComponent() {
     return pollTypeComponentsMap[this.poll.type];
+  }
+
+  get authorToDeleteVote() {
+    return this.answersEntities[this.userToDeleteVote] ?
+      this.answersEntities[this.userToDeleteVote].author :
+      '';
   }
 
   beforeRouteEnter(to, from, next) {
@@ -55,19 +69,21 @@ export default class FillPoll extends Vue {
     next();
   }
 
-  processVote(votePromise) {
-    this.loading = true;
-    votePromise.then(() => {
-      this.loading = false;
-    });
+  onVote(vote) {
+    this.submitVote(vote);
   }
 
-  onVote(vote) {
-    this.processVote(this.submitVote(vote));
+  askForVoteDeletion(user) {
+    this.userToDeleteVote = user;
+    this.openRemoveDialog = true;
   }
 
   onRemoveVote(user) {
-    this.processVote(this.removeVote(user));
+    if (this.user === user) {
+      this.removeVote(user);
+    } else {
+      this.askForVoteDeletion(user);
+    }
   }
 }
 </script>
