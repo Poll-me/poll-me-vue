@@ -66,8 +66,8 @@ export default class FillPoll extends Vue {
     this.processVote(this.submitVote(vote));
   }
 
-  onRemoveVote() {
-    this.processVote(this.removeVote());
+  onRemoveVote(user) {
+    this.processVote(this.removeVote(user));
   }
 }
 </script>
