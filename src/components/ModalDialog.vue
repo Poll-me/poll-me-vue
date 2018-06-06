@@ -16,7 +16,8 @@
               <slot></slot>
             </div>
             <div class="flex mt-4">
-              <button class="flex-1 btn btn-tertiary" v-t="'modal-dialog.cancel'" @click="close"></button>
+              <button class="flex-1 btn btn-tertiary" v-t="'modal-dialog.cancel'"
+                @click="close"></button>
               <button class="flex-1 btn btn-primary ml-4" v-t="'modal-dialog.accept'"
                 @click="accept"></button>
             </div>

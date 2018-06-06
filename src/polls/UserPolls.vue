@@ -81,7 +81,7 @@ const { mapGetters, mapActions } = createNamespacedHelpers('polls');
     ...mapRootState({ isLogged: state => state.user.isLogged }),
     ...mapGetters(['polls', 'votes'])
   },
-  methods: mapActions(['fetchPolls', 'fetchVotes'])
+  methods: mapActions(['fetchPolls', 'fetchVotes', 'removePoll'])
 })
 export default class UserPolls extends Vue {
   openDeleteDialog = false;
@@ -98,7 +98,7 @@ export default class UserPolls extends Vue {
   }
 
   deletePoll() {
-    console.log(this.pollToDelete);
+    this.removePoll(this.pollToDelete.key);
   }
 }
 </script>
