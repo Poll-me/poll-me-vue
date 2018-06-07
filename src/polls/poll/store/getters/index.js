@@ -5,7 +5,7 @@ export default {
         ...state.answersEntities[user],
         user
       }))
-      .sort((a, b) => a.timestamp - b.timestamp);
+      .reverse();
   },
 
   poll(state, { answers }) {

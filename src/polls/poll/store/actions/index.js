@@ -39,7 +39,7 @@ export default {
         fetchedAnswers.ref.off();
       }
 
-      const answersRef = db.ref('/answers').child(key);
+      const answersRef = db.ref('/answers').child(key).orderByChild('lastModified');
       answersRef.on('value', async (snapshot) => {
         const answers = snapshot.val() || {};
         const usersPromises = [];

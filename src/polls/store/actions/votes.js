@@ -11,7 +11,7 @@ export default {
         votesFetched.ref.off();
         commit('setVotes', {});
       }
-      const votesRef = db.ref('userVotes').child(authUser.uid);
+      const votesRef = db.ref('userVotes').child(authUser.uid).orderByChild('lastModified');
 
       votesRef.on('child_added', (snapshot) => {
         commit('addVote', { key: snapshot.key, value: snapshot.val() });
