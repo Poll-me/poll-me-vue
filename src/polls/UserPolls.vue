@@ -20,7 +20,7 @@
                 <font-awesome-icon icon="eye" class="ml-2" fixed-width ></font-awesome-icon>
               </router-link>
             </li>
-            <li class="shadow mt-2 text-sm">
+            <li v-show="votes.length > 3" class="shadow mt-2 text-sm">
               <button class="btn btn-tertiary outline w-full"
                 @click="showMoreVotes = !showMoreVotes">
                 <span class="font-bold"
