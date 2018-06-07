@@ -35,10 +35,13 @@
   "poll": {
     "fill": {
       "author": "by {author-name}",
+      "people": "{number} people",
+      "remove-vote-confirm": "The vote from {name} will be removed from the poll.",
       "share": {
+        "rest-people": "... and {number} people more",
+        "vote": "Vote here:",
         "whatsapp": {
-          "button": "Share via",
-          "people": "{number} people"
+          "button": "Share via"
         }
       }
     }
@@ -52,6 +55,9 @@
     "create-poll": "Create a new Poll",
     "activity-title": "Recent activity",
     "polls-title": "Your polls",
+    "delete-poll-confirm": "The poll {name} and all his answers will be deleted and will not be accessible anymore.",
+    "show-all": "Show all",
+    "show-less": "Show less",
     "no-polls": {
       "title": "You have no polls yet!!",
       "description": "Do not worry, you can create the first clicking the button below"
@@ -78,6 +84,7 @@
           "people-in": "People IN",
           "no-answers": "No one has enrolled yet!",
           "author-label": "Are you in?",
+          "form-button": "I am in",
           "author-placeholder": "Your name",
           "already-in": "You are already in!",
           "get-in": "Hell yeah!",
@@ -103,6 +110,7 @@
       },
       "password": {
         "label": "Password",
+        "placeholder": "Your PollMe password",
         "required-error": "The password is mandatory.",
         "min-length-error": "The password should have at least {length} characters.",
         "wrong-error": "The password is not correct."
@@ -113,16 +121,13 @@
       "info": "With a PollMe account, you can access your polls from any device, have a profile and much more features that require a valid user.",
       "name": {
         "label": "Display name",
-        "placeholder": "Your complete name",
+        "placeholder": "Your name for PollMe",
         "required-error": "The name field is mandatory.",
         "length-error": "The name should have {min} to {max} characters."
       },
       "email": {
         "placeholder": "Your personal email",
         "exists-error": "This email is already registered."
-      },
-      "password": {
-        "placeholder": "Your PollMe password"
       },
       "submit": "Create account"
     },
@@ -162,6 +167,11 @@
     "info": "Keep calm and take a look at this possible solutions:",
     "try-link": "Try again",
     "reload-link": "Reload"
+  },
+  "modal-dialog": {
+    "title": "Are you sure?",
+    "cancel": "Cancel",
+    "accept": "Accept"
   },
   "footer": {
     "project-details": {

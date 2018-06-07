@@ -1,35 +1,93 @@
 .btn {
-  @apply .rounded;
+  @apply .bg-grey-dark;
   @apply .px-3 .py-2;
+  @apply .rounded;
+  @apply .text-white;
+  @apply .cursor-pointer;
 
   &:focus {
     outline: none;
   }
-}
 
-/**
- *  PRIMARY
- */
+  &:active {
+    @apply .bg-grey-darker;
+  }
 
-.btn-primary {
-  @apply .bg-primary;
-  @apply .text-white;
-}
+  &[disabled] {
+    @apply .opacity-75;
+    @apply .cursor-not-allowed .pointer-events-none;
+  }
 
-/**
- *  SECONDARY
- */
+  &.outline {
+    @apply .border-2 .border-grey-darker;
 
-.btn-secondary {
-  @apply .bg-secondary;
-  @apply .text-white;
-}
+    &:not(:active) {
+      @apply .bg-white;
+      @apply .text-grey-dark;
+      @apply .border-grey-dark;
+    }
+  }
 
-/**
- *  TERTIARY
- */
+  /**
+   *  PRIMARY
+   */
 
-.btn-tertiary {
-  @apply .bg-tertiary;
-  @apply .text-white;
+  &.btn-primary {
+    @apply .bg-primary;
+
+    &:active {
+      @apply .bg-primary-dark;
+    }
+
+    &.outline {
+      @apply .border-primary-dark;
+
+      &:not(:active) {
+        @apply .text-primary;
+        @apply .border-primary;
+      }
+    }
+  }
+
+  /**
+   *  SECONDARY
+   */
+
+  &.btn-secondary {
+    @apply .bg-secondary;
+
+    &:active {
+      @apply .bg-secondary-dark;
+    }
+
+    &.outline {
+      @apply .border-secondary-dark;
+
+      &:not(:active) {
+        @apply .text-secondary;
+        @apply .border-secondary;
+      }
+    }
+  }
+
+  /**
+   *  TERTIARY
+   */
+
+  &.btn-tertiary {
+    @apply .bg-tertiary;
+
+    &:active {
+      @apply .bg-tertiary-dark;
+    }
+
+    &.outline {
+      @apply .border-tertiary-dark;
+
+      &:not(:active) {
+        @apply .text-tertiary;
+        @apply .border-tertiary;
+      }
+    }
+  }
 }

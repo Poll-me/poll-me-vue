@@ -32,9 +32,13 @@ import faEye from '@fortawesome/fontawesome-free-solid/faEye';
 import faArrowDown from '@fortawesome/fontawesome-free-solid/faArrowDown';
 import faUserPlus from '@fortawesome/fontawesome-free-solid/faUserPlus';
 import faTrashAlt from '@fortawesome/fontawesome-free-solid/faTrashAlt';
+import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp';
+import faChevronDown from '@fortawesome/fontawesome-free-solid/faChevronDown';
 
 fontawesome.library.add(
   faSpinner,
+  faChevronUp,
+  faChevronDown,
   faUpload,
   faLanguage,
   faHeart,

@@ -11,8 +11,12 @@ import globalComponents from './components';
 import router from './router';
 import store from './store';
 
-Vue.config.productionTip = false;
-Vue.config.errorHandler = () => router.push({ name: 'error' });
+const isProduction = process.env.NODE_ENV === 'production';
+
+Vue.config.productionTip = !isProduction;
+if (isProduction) {
+  Vue.config.errorHandler = () => router.push({ name: 'error' });
+}
 
 Object.keys(globalComponents).forEach(
   compName => Vue.component(compName, globalComponents[compName])

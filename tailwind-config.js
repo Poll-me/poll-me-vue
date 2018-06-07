@@ -46,7 +46,7 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   // 'primary-darkest': '#280C0C',
   // 'primary-darker': '#631E1D',
-  // 'primary-dark': '#9E2F2E',
+  'primary-dark': '#9E2F2E',
   'primary': '#d8403f',
   // 'primary-light': '#E27473',
   // 'primary-lighter': '#EDA8A7',
@@ -54,7 +54,7 @@ let colors = {
 
   // 'secondary-darkest': '#061D10',
   // 'secondary-darker': '#0F4827',
-  // 'secondary-dark': '#17733E',
+  'secondary-dark': '#17733E',
   'secondary': '#1f9d55',
   // 'secondary-light': '#5CB783',
   // 'secondary-lighter': '#99D2B1',
@@ -892,7 +892,7 @@ module.exports = {
     opacity: [],
     overflow: [],
     padding: [],
-    pointerEvents: false,
+    pointerEvents: [],
     position: [],
     resize: false,
     shadows: [],

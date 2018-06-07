@@ -35,10 +35,13 @@
   "poll": {
     "fill": {
       "author": "de {author-name}",
+      "people": "{number} personas",
+      "remove-vote-confirm": "El voto de {name} sera eliminado de la encuesta.",
       "share": {
+        "rest-people": "... y {number} personas más",
+        "vote": "Vota aquí:",
         "whatsapp": {
-          "button": "Compartir por",
-          "people": "{number} personas"
+          "button": "Compartir por"
         }
       }
     }
@@ -52,6 +55,9 @@
     "create-poll": "Nueva encuesta",
     "activity-title": "Actividad reciente",
     "polls-title": "Tus encuestas",
+    "delete-poll-confirm": "La encuesta {name} y todas sus respuestas serán eliminadas.",
+    "show-all": "Mostrar todo",
+    "show-less": "Mostrar menos",
     "no-polls": {
       "title": "¡Aún no tienes encuestas!",
       "description": "No te preocupes, puedes crear la primera pulsando el botón de abajo"
@@ -78,6 +84,7 @@
           "people-in": "Gente dentro",
           "no-answers": "¡Nadie se ha apuntado aún!",
           "author-label": "¿Te apuntas?",
+          "form-button": "Me apunto",
           "author-placeholder": "Tu nombre",
           "already-in": "¡Ya estás dentro!",
           "get-in": "¡Dios si!",
@@ -103,6 +110,7 @@
       },
       "password": {
         "label": "Contraseña",
+        "placeholder": "Tu contraseña en PollMe",
         "required-error": "La contraseña es obligatoria.",
         "min-length-error": "La contraseña debe ser de al menos {length} caracteres.",
         "wrong-error": "La contraseña no es correcta."
@@ -112,17 +120,14 @@
     "register": {
       "info": "Teniendo una cuenta en PollMe, podrás acceder a tus encuestas desde cualquier dispositivo, tener un perfil y muchas mas funcionalidades que requieren un usuario válido.",
       "name": {
-        "label": "Nombre y Apellidos",
-        "placeholder": "Tu nombre completo",
+        "label": "Nombre a mostrar",
+        "placeholder": "Tu nombre en PollMe",
         "required-error": "El nombre es obligatorio.",
         "length-error": "El nombre debe ser tener de {min} a {max} caracteres."
       },
       "email": {
         "placeholder": "Tu email personal",
         "exists-error": "Este correo ya está asociado a una cuenta existente."
-      },
-      "password": {
-        "placeholder": "Tu contraseña en PollMe"
       },
       "submit": "Crear cuenta"
     },
@@ -163,10 +168,15 @@
     "try-link": "Reintentar",
     "reload-link": "Recargar"
   },
+  "modal-dialog": {
+    "title": "¿Estás seguro?",
+    "cancel": "Cancelar",
+    "accept": "Aceptar"
+  },
   "footer": {
     "project-details": {
       "message": "PollMe es {project-link} realizado con {love-icon} por {community-link} bajo la {license-link}",
-      "project": "un projecto de código abierto",
+      "project": "un proyecto de código abierto",
       "community": "la comunidad",
       "license": "licencia MIT"
     },

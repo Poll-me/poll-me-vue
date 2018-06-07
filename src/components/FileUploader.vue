@@ -1,7 +1,6 @@
 <template>
   <div>
-    <button :class="{ 'opacity-75': loading }" @click="$refs.fileInput.click()"
-      class="btn btn-tertiary" :disabled="loading" >
+    <button class="btn btn-tertiary" :disabled="loading" @click="$refs.fileInput.click()" >
       <font-awesome-icon :icon="loading ? 'spinner' : 'upload'" :spin="loading" >
       </font-awesome-icon>
       <span v-show="!loading && text" class="ml-1">{{ text }}</span>

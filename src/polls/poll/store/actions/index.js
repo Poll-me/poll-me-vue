@@ -18,10 +18,12 @@ export default {
 
       const pollRef = db.ref('/polls').child(key);
       pollRef.on('value', async (snapshot) => {
-        let pollData = snapshot.val();
-        const user = await dispatch('getUserProfile', pollData.user, { root: true });
-        if (user) {
-          pollData = { ...pollData, author: user.displayName };
+        let pollData = snapshot.val() || {};
+        if (pollData.user) {
+          const user = await dispatch('getUserProfile', pollData.user, { root: true });
+          if (user) {
+            pollData = { ...pollData, author: user.displayName };
+          }
         }
         commit('setEntity', { poll: pollData });
       });

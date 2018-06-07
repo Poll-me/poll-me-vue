@@ -15,8 +15,8 @@
       <div class="mb-4">
         <label class="mb-2" for="password" v-t="'user.login.password.label'"></label>
         <input v-model.trim="password" @input="$v.password.$touch()"
-          :class="{ 'border-red': $v.password.$error }"
-          id="password" type="password" placeholder="********" required >
+          :class="{ 'border-red': $v.password.$error }" required
+          id="password" type="password" :placeholder="$t('user.login.password.placeholder')" >
         <p v-show="$v.password.$error" class="field-errors mt-3">
           <span v-show="!$v.password.required" v-t="'user.login.password.required-error'"></span>
           <span v-show="!$v.password.minLength"
@@ -29,8 +29,8 @@
         </p>
       </div>
     </div>
-    <button :class="{ 'opacity-75': $v.$invalid }" :disabled="$v.$invalid"
-      type="submit" class="sticky pin-b py-4 bg-secondary text-center text-white text-xl">
+    <button class="sticky pin-b py-4 btn btn-secondary rounded-none text-center text-xl"
+      type="submit" :disabled="$v.$invalid">
       <font-awesome-icon icon="sign-in-alt" class="mr-1" ></font-awesome-icon>
       <span v-t="'user.login.submit'"></span>
     </button>
