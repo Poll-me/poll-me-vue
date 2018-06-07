@@ -9,13 +9,23 @@
     outline: none;
   }
 
-  &:hover:not([disabled]) {
+  &:active {
     @apply .bg-grey-darker;
   }
 
   &[disabled] {
     @apply .opacity-75;
     @apply .cursor-not-allowed .pointer-events-none;
+  }
+
+  &.outline {
+    @apply .border-2 .border-grey-darker;
+
+    &:not(:active) {
+      @apply .bg-white;
+      @apply .text-grey-dark;
+      @apply .border-grey-dark;
+    }
   }
 
   /**
@@ -25,8 +35,17 @@
   &.btn-primary {
     @apply .bg-primary;
 
-    &:hover:not([disabled]) {
+    &:active {
       @apply .bg-primary-dark;
+    }
+
+    &.outline {
+      @apply .border-primary-dark;
+
+      &:not(:active) {
+        @apply .text-primary;
+        @apply .border-primary;
+      }
     }
   }
 
@@ -37,8 +56,17 @@
   &.btn-secondary {
     @apply .bg-secondary;
 
-    &:hover:not([disabled]) {
+    &:active {
       @apply .bg-secondary-dark;
+    }
+
+    &.outline {
+      @apply .border-secondary-dark;
+
+      &:not(:active) {
+        @apply .text-secondary;
+        @apply .border-secondary;
+      }
     }
   }
 
@@ -49,8 +77,17 @@
   &.btn-tertiary {
     @apply .bg-tertiary;
 
-    &:hover:not([disabled]) {
+    &:active {
       @apply .bg-tertiary-dark;
+    }
+
+    &.outline {
+      @apply .border-tertiary-dark;
+
+      &:not(:active) {
+        @apply .text-tertiary;
+        @apply .border-tertiary;
+      }
     }
   }
 }
