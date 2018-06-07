@@ -1,5 +1,7 @@
 # Change Log
 
+<!-- markdownlint-disable MD024 -->
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
@@ -7,7 +9,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## [0.1.1] - 2018-05-28
+## [0.2.0] - 2018-06-07
+
+### Added
+
+- Vote button on anonymous mode at registration type polls
+- `.outline` variation of CSS button component
+- A recount of participants on registration polls title at fill view
+- Add the poll description while sharing it through WhatsApp
+- Modal dialog component for asking the user to confirm actions
+- Delete buttons for polls and user votes (only proprietary)
+
+### Changed
+
+- Use an opacity and background feedback on disabled and active buttons
+- More clear name and password labels and placeholders
+- Order the activity polls and user votes by the last modified date
+- Show a reduced list of activity polls and user votes while sharing through WhatsApp
+- Add animations for user votes list changes at registration polls
+
+### Fixed
+
+- Use the firebase server timestamp value instead of trust user device clock
+- Fix a Spanish translation at the footer
+- Use environment var for set production tip and global error handler
+
+## [0.1.0] - 2018-05-28
 
 ### Added
 
@@ -30,5 +57,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - **Continuous deployment** (CD) using the **Netlify** service
 - **PWA** app configuration for allow the users install the app on their devices
 
-[Unreleased]: https://github.com/Poll-me/poll-me-vue/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/Poll-me/poll-me-vue/compare/v0.0.0...v0.1.1
+[Unreleased]: https://github.com/Poll-me/poll-me-vue/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Poll-me/poll-me-vue/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/Poll-me/poll-me-vue/compare/v0.0.0...v0.1.0
