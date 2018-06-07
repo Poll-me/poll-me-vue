@@ -38,6 +38,8 @@
       "people": "{number} personas",
       "remove-vote-confirm": "El voto de {name} sera eliminado de la encuesta.",
       "share": {
+        "rest-people": "... y {number} personas más",
+        "vote": "Vota aquí:",
         "whatsapp": {
           "button": "Compartir por"
         }
