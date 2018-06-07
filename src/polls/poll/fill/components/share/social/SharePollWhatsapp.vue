@@ -25,24 +25,38 @@ import Component from 'vue-class-component';
   }
 })
 export default class SharePollWhatsapp extends Vue {
-  get title() {
-    let title = `*${this.poll.name}*\n`;
+  answersLimit = 5;
+
+  get header() {
+    const title = `*${this.poll.name}*`;
+    const description = this.poll.description ? `_${this.poll.description}_\n` : '';
+    let participants = '';
     if (this.poll.answers.length > 1) {
-      title +=
-        `_${this.$t('poll.fill.people', { number: this.poll.answers.length })}_\n`;
+      participants =
+        ` _(${this.$t('poll.fill.people', { number: this.poll.answers.length })})_`;
     }
-    return title;
+
+    return `${title}${participants}\n${description}`;
   }
 
   get answers() {
-    return this.poll.answers.reduce(
+    const answersList = this.poll.answers.slice(0, this.answersLimit).reduce(
       (text, ans, i) => `${text}${i === 0 ? '\n' : ''}- ${ans.author}\n`,
       ''
     );
+    const restAnswersLength = this.poll.answers.length - this.answersLimit;
+    const restAnswers = restAnswersLength > 0 ?
+      `\n${this.$t('poll.fill.share.rest-people', { number: restAnswersLength })}\n` :
+      '';
+    return `${answersList}${restAnswers}`;
+  }
+
+  get footer() {
+    return `\n*${this.$t('poll.fill.share.vote')}*\n${this.url}`;
   }
 
   get shareText() {
-    return encodeURI(`${this.title}${this.answers}\n${this.url}`);
+    return encodeURI(`${this.header}${this.answers}${this.footer}`);
   }
 }
 </script>

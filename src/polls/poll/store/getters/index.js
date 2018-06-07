@@ -5,7 +5,7 @@ export default {
         ...state.answersEntities[user],
         user
       }))
-      .reverse();
+      .sort((a, b) => b.lastModified - a.lastModified);
   },
 
   poll(state, { answers }) {
