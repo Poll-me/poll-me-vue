@@ -15,7 +15,7 @@
   }
 
   & .modal-dialog-container {
-    animation: bounce-in .3s ease-out;
+    animation: modal-dialog-bounce-in .3s ease-out;
   }
 }
 
@@ -38,7 +38,7 @@
   }
 }
 
-@keyframes bounce-in {
+@keyframes modal-dialog-bounce-in {
   0% {
     transform: scale(0);
   }

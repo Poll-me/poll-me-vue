@@ -40,7 +40,8 @@
             v-t="{ path: `poll.fill.people`, args: { number: this.poll.answers.length }}"></span>)
         </span>
       </div>
-      <ul class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
+      <transition-group name="bounce" tag="ul"
+        class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
         <li v-for="ans in poll.answers" :key="ans.author"
           class="w-1/2 p-1 flex" >
           <div class="bg-tertiary shadow p-2 rounded h-full flex-1 flex flex-col justify-center"
@@ -51,7 +52,7 @@
             <font-awesome-icon icon="times" size="lg"></font-awesome-icon>
           </button>
         </li>
-      </ul>
+      </transition-group>
     </template>
     <div v-else key="no-answers-prompt"
       class="flex-1 flex flex-col">
