@@ -54,6 +54,8 @@
     "activity-title": "Recent activity",
     "polls-title": "Your polls",
     "delete-poll-confirm": "The poll {name} and all his answers will be deleted and will not be accessible anymore.",
+    "show-all": "Show all",
+    "show-less": "Show less",
     "no-polls": {
       "title": "You have no polls yet!!",
       "description": "Do not worry, you can create the first clicking the button below"

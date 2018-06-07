@@ -12,13 +12,22 @@
         <div v-if="votes.length > 0" class="mb-4">
           <h2 class="text-lg font-medium" v-t="'polls.activity-title'"></h2>
           <ul class="list-reset font-medium leading-tight">
-            <li v-for="vote in votes" :key="vote.key"
+            <li v-for="vote in votesList" :key="vote.key"
               class="btn btn-primary shadow mt-2">
               <router-link :to="{ name: 'fill-poll', params: { key: vote.key }}"
                 class="text-white flex items-center">
                 <div class="flex-1 truncate">{{ vote.name }}</div>
                 <font-awesome-icon icon="eye" class="ml-2" fixed-width ></font-awesome-icon>
               </router-link>
+            </li>
+            <li class="shadow mt-2 text-sm">
+              <button class="btn btn-tertiary outline w-full"
+                @click="showMoreVotes = !showMoreVotes">
+                <span class="font-bold"
+                  v-t="`polls.show-${showMoreVotes ? 'less' : 'all'}`"></span>
+                <font-awesome-icon fixed-width
+                  :icon="`chevron-${showMoreVotes ? 'up' : 'down'}`"></font-awesome-icon>
+              </button>
             </li>
           </ul>
         </div>
@@ -86,6 +95,11 @@ const { mapGetters, mapActions } = createNamespacedHelpers('polls');
 export default class UserPolls extends Vue {
   openDeleteDialog = false;
   pollToDelete = {};
+  showMoreVotes = false;
+
+  get votesList() {
+    return this.showMoreVotes ? this.votes : this.votes.slice(0, 3);
+  }
 
   mounted() {
     this.fetchPolls();
