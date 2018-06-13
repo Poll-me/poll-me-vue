@@ -18,6 +18,10 @@
     <transition name="slide-down">
       <NavMenu v-if="navMenuOpen" @logout="navMenuOpen = false"></NavMenu>
     </transition>
+    <transition name="fade">
+      <div v-if="navMenuOpen" class="fixed pin bg-black opacity-50"
+        @click="navMenuOpen = false"></div>
+    </transition>
   </div>
 </template>
 
