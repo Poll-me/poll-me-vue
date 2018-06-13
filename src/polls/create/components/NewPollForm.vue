@@ -47,10 +47,6 @@ import { VueWithValidations } from '@/utils';
     isLogged: {
       type: Boolean,
       required: true
-    },
-    type: {
-      required: true,
-      type: Number
     }
   },
   validations: {
