@@ -90,6 +90,16 @@
           "get-in": "¡Dios si!",
           "get-out": "Salir"
         }
+      },
+      "2": {
+        "name": "Sí / No",
+        "description": "Pregunte a la gente por su opinión o participación en lo que sea.",
+        "fill": {
+          "no-answers": "Nadie ha contestado aún!",
+          "author-label": "Quién eres?",
+          "author-placeholder": "Nombre a mostrar",
+          "already-answered": "Ya has contestado!"
+        }
       }
     },
     "not-found": {
