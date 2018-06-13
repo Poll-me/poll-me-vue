@@ -42,7 +42,7 @@
       </div>
       <transition-group name="bounce" tag="ul"
         class="list-reset flex flex-wrap -m-1 text-sm text-center text-white">
-        <li v-for="ans in poll.answers" :key="ans.author"
+        <li v-for="ans in poll.answers" :key="ans.user"
           class="w-1/2 p-1 flex" >
           <div class="bg-tertiary shadow p-2 rounded h-full flex-1 flex flex-col justify-center"
             :class="{ 'rounded-r-none': isAuthor }">
