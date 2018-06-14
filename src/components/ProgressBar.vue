@@ -1,7 +1,8 @@
 <template>
-  <div class="rounded-lg">
-    <div class="rounded-lg text-white h-8 flex items-center"
-      :class="`bg-${color}`"
+  <div class="rounded-lg overflow-hidden"
+    :class="bordered ? `border-2 border-${color}` : ''">
+    <div class="text-white h-8 flex items-center"
+      :class="`bg-${color}${!bordered ? ' rounded-lg' : ''}`"
       :style="{ width: `${roundedValue}%` }" >
       <div class="text-center truncate px-2 flex-1">{{ visibleValue }}</div>
     </div>
@@ -21,6 +22,10 @@ import Component from 'vue-class-component';
     color: {
       type: String,
       default: 'primary'
+    },
+    bordered: {
+      type: Boolean,
+      default: true
     }
   }
 })

@@ -53,8 +53,8 @@
           <div class="gr-2 gc-1 font-semibold pr-2">
             <span v-t="`polls.types.${poll.type}.no`"></span>:
           </div>
-          <ProgressBar class="gr-1 gc-2 py-2" :value="yesPercent" color="tertiary"></ProgressBar>
-          <ProgressBar class="gr-2 gc-2 py-2" :value="noPercent" color="tertiary"></ProgressBar>
+          <ProgressBar class="gr-1 gc-2 my-2" :value="yesPercent" color="tertiary"></ProgressBar>
+          <ProgressBar class="gr-2 gc-2 my-2" :value="noPercent" color="tertiary"></ProgressBar>
         </div>
       </div>
     </div>
