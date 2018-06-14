@@ -94,11 +94,14 @@
       "2": {
         "name": "Sí / No",
         "description": "Pregunte a la gente por su opinión o participación en lo que sea.",
+        "yes": "Sí",
+        "no": "No",
         "fill": {
           "no-answers": "Nadie ha contestado aún!",
           "author-label": "Quién eres?",
           "author-placeholder": "Nombre a mostrar",
-          "already-answered": "Ya has contestado!"
+          "already-answered": "Ya has contestado!",
+          "get-out": "Quitar voto"
         }
       }
     },

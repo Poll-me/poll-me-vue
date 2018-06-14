@@ -34,6 +34,8 @@ import faUserPlus from '@fortawesome/fontawesome-free-solid/faUserPlus';
 import faTrashAlt from '@fortawesome/fontawesome-free-solid/faTrashAlt';
 import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp';
 import faChevronDown from '@fortawesome/fontawesome-free-solid/faChevronDown';
+import faThumbsUp from '@fortawesome/fontawesome-free-solid/faThumbsUp';
+import faThumbsDown from '@fortawesome/fontawesome-free-solid/faThumbsDown';
 
 fontawesome.library.add(
   faSpinner,
@@ -62,7 +64,9 @@ fontawesome.library.add(
   faUserPlus,
   faTrashAlt,
   faWhatsapp,
-  faFrown
+  faFrown,
+  faThumbsUp,
+  faThumbsDown
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
