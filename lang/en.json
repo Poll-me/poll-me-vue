@@ -96,6 +96,7 @@
         "description": "Ask the people for their opinion or participation in whatever.",
         "yes": "Yes",
         "no": "No",
+        "results": "Results",
         "fill": {
           "no-answers": "No one has answered yet!",
           "author-label": "Who are you?",
