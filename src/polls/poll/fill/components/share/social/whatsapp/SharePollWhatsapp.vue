@@ -11,7 +11,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-import shareTextParser from './share-text-parser'
+import shareTextParser from './share-text-parser';
 
 @Component({
   props: {

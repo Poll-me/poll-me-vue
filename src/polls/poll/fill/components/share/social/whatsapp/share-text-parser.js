@@ -7,18 +7,18 @@ function getOptionPercent(answers, value) {
 
 function getPercentBar(percent) {
   const fillNumber = Math.round(percent / 10);
-  const fillChar = '=';
-  return `[${fillChar.repeat(fillNumber * 2)}${'  '.repeat((10 - fillNumber) * 2)}]`;
+  const fillChar = '⬛';
+  return `${fillChar.repeat(fillNumber)}${'⬜'.repeat(10 - fillNumber)}`;
 }
 
 function getOptionText(answers, option) {
   const percent = getOptionPercent(answers, option.value);
-  return `- *${option.label}* _(${percent}%)_\n${getPercentBar(percent)}`;
+  return `- *${option.label}* _(${percent}%)_\n${getPercentBar(percent)}\n`;
 }
 
 export default function () {
   const answers = this.poll.answers;
-  const votesLength = answers.legnth;
+  const answersLength = answers.legnth;
   let shareText = '';
 
   switch (this.poll.type) {
@@ -29,7 +29,7 @@ export default function () {
       ];
 
       shareText = options.reduce(
-        (text, option, i) => `${text}${i === 0 ? '\n' : ''}${getOptionText(answers, option)}\n`,
+        (text, option) => `${text}\n${getOptionText(answers, option)}`,
         ''
       );
       break;
@@ -40,7 +40,7 @@ export default function () {
         (text, ans, i) => `${text}${i === 0 ? '\n' : ''}- ${ans.author}\n`,
         ''
       );
-      const restAnswersLength = votesLength - this.answersLimit;
+      const restAnswersLength = answersLength - this.answersLimit;
       const restAnswers = restAnswersLength > 0 ?
         `\n${this.$t('poll.fill.share.rest-people', { number: restAnswersLength })}\n` :
         '';
