@@ -97,6 +97,8 @@
         "yes": "Yes",
         "no": "No",
         "results": "Results",
+        "show-votes": "Show votes",
+        "hide-votes": "Hide votes",
         "fill": {
           "no-answers": "No one has answered yet!",
           "author-label": "Who are you?",

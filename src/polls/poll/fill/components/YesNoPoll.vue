@@ -53,8 +53,47 @@
           <div class="gr-2 gc-1 font-semibold pr-2">
             <span v-t="`polls.types.${poll.type}.no`"></span>:
           </div>
-          <ProgressBar class="gr-1 gc-2 my-2" :value="yesPercent" color="tertiary"></ProgressBar>
-          <ProgressBar class="gr-2 gc-2 my-2" :value="noPercent" color="tertiary"></ProgressBar>
+          <ProgressBar class="gr-1 gc-2 my-2" :value="yesPercent" color="primary"></ProgressBar>
+          <ProgressBar class="gr-2 gc-2 my-2" :value="noPercent" color="primary"></ProgressBar>
+        </div>
+        <button class="btn btn-tertiary outline w-full mt-4"
+          @click="showVotes = !showVotes">
+          <span class="font-bold"
+            v-t="`polls.types.${poll.type}.${showVotes ? 'hide' : 'show'}-votes`"></span>
+          <font-awesome-icon fixed-width
+            :icon="`${showVotes ? 'chevron-up' : 'list-ul'}`"></font-awesome-icon>
+        </button>
+        <div v-if="showVotes" class="flex text-center">
+          <div class="flex-1">
+            <div class="font-semibold my-2" v-t="`polls.types.${poll.type}.yes`"></div>
+            <ul class="list-reset -m-1 text-sm text-white">
+              <li v-for="ans in yesVotes" :key="ans.user"
+                class="p-1 flex w-full" >
+                <div class="bg-tertiary shadow p-2 rounded flex-1 flex flex-col justify-center"
+                  :class="{ 'rounded-r-none': isAuthor }">
+                  {{ ans.author }}
+                </div>
+                <button v-if="isAuthor" class="btn rounded-l-none" @click="removeVote(ans.user)">
+                  <font-awesome-icon icon="times" size="lg"></font-awesome-icon>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="ml-4 flex-1">
+            <div class="font-semibold my-2" v-t="`polls.types.${poll.type}.no`"></div>
+            <ul class="list-reset -m-1 text-sm text-white">
+              <li v-for="ans in noVotes" :key="ans.user"
+                class="p-1 flex w-full" >
+                <div class="bg-tertiary shadow p-2 rounded flex-1 flex flex-col justify-center"
+                  :class="{ 'rounded-r-none': isAuthor }">
+                  {{ ans.author }}
+                </div>
+                <button v-if="isAuthor" class="btn rounded-l-none" @click="removeVote(ans.user)">
+                  <font-awesome-icon icon="times" size="lg"></font-awesome-icon>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -79,13 +118,22 @@ export default class YesNoPoll extends FillPollType {
   value = 45;
   yesOptionValue = 1;
   noOptionValue = 0;
+  showVotes = false;
+
+  get yesVotes() {
+    return this.poll.answers.filter(ans => ans.option === this.yesOptionValue);
+  }
+
+  get noVotes() {
+    return this.poll.answers.filter(ans => ans.option === this.noOptionValue);
+  }
 
   get yesPercent() {
-    return this.getOptionPercent(this.yesOptionValue);
+    return (this.yesVotes.length * 100) / this.totalVotes;
   }
 
   get noPercent() {
-    return this.getOptionPercent(this.noOptionValue);
+    return (this.noVotes.length * 100) / this.totalVotes;
   }
 
   get totalVotes() {
@@ -94,11 +142,6 @@ export default class YesNoPoll extends FillPollType {
 
   get isValid() {
     return this.isLogged || !this.$v.$invalid;
-  }
-
-  getOptionPercent(option) {
-    const optionVotes = this.poll.answers.filter(ans => ans.option === option).length;
-    return (optionVotes * 100) / this.totalVotes;
   }
 
   submit(option) {
