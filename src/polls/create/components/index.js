@@ -1,3 +1,5 @@
 import NewPollForm from './NewPollForm';
 
-export default NewPollForm;
+export default function () {
+  return NewPollForm;
+}

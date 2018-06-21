@@ -90,6 +90,22 @@
           "get-in": "Hell yeah!",
           "get-out": "Get out"
         }
+      },
+      "2": {
+        "name": "Yes / No",
+        "description": "Ask the people for their opinion or participation in whatever.",
+        "yes": "Yes",
+        "no": "No",
+        "results": "Results",
+        "show-votes": "Show votes",
+        "hide-votes": "Hide votes",
+        "fill": {
+          "no-answers": "No one has answered yet!",
+          "author-label": "Who are you?",
+          "author-placeholder": "The name to display",
+          "already-answered": "You are already answered!",
+          "get-out": "Remove vote"
+        }
       }
     },
     "not-found": {
