@@ -106,6 +106,20 @@
           "already-answered": "You are already answered!",
           "get-out": "Remove vote"
         }
+      },
+      "3": {
+        "name": "Selection",
+        "description": "List of two or more options from which people can choose.",
+        "results": "Results",
+        "show-votes": "Show votes",
+        "hide-votes": "Hide votes",
+        "fill": {
+          "no-answers": "No one has answered yet!",
+          "author-label": "Who are you?",
+          "author-placeholder": "The name to display",
+          "already-answered": "You are already answered!",
+          "get-out": "Remove vote"
+        }
       }
     },
     "not-found": {
