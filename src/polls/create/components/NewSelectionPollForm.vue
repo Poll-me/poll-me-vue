@@ -23,5 +23,5 @@ import Component from 'vue-class-component';
 import NewPollFormMixin from '../new-poll-form-mixin';
 
 @Component()
-export default class NewBasicPollForm extends NewPollFormMixin {}
+export default class NewSelectionPollForm extends NewPollFormMixin {}
 </script>

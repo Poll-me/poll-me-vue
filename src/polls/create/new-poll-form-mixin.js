@@ -51,6 +51,11 @@ const newPollFormMixinConfig = {
         ...this.getFormBaseData(),
         ...this.getFormData()
       };
+    },
+    submit() {
+      if (!this.$v.$invalid) {
+        this.$emit('submit', this.getSubmitData());
+      }
     }
   },
   validations: getBaseValidations()
