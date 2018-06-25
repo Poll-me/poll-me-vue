@@ -1,5 +1,5 @@
-import NewPollForm from './NewPollForm';
+import NewBasicPollForm from './NewBasicPollForm';
 
 export default function () {
-  return NewPollForm;
+  return NewBasicPollForm;
 }
