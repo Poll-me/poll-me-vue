@@ -29,6 +29,8 @@
                   args: { min: v.label.$params.minLength.min, max: v.label.$params.maxLength.max }
                 }">
               </span>
+              <span v-show="!v.label.unique"
+                v-t="`polls.types.${type}.options.label.unique-error`"></span>
             </p>
           </div>
         </div>
@@ -65,7 +67,8 @@ import NewPollFormMixin from '../new-poll-form-mixin';
         label: {
           required,
           minLength: minLength(2),
-          maxLength: maxLength(24)
+          maxLength: maxLength(24),
+          unique(val) { return this.options.filter(opt => opt.label === val).length === 1; }
         }
       }
     }

@@ -120,7 +120,8 @@
           "length-error": "Debe añadir al menos {min} opciones",
           "label": {
             "required-error": "La opción debe tener una descripción",
-            "length-error": "La opción debe tener de {min} a {max} caractéres"
+            "length-error": "La opción debe tener de {min} a {max} caractéres",
+            "unique-error": "La descripción debe ser única"
           }
         },
         "fill": {

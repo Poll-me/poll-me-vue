@@ -120,7 +120,8 @@
           "length-error": "Must add {min} options at least",
           "label": {
             "required-error": "The option must have a description",
-            "length-error": "The option must have from {min} to {max} characters"
+            "length-error": "The option must have from {min} to {max} characters",
+            "unique-error": "Option description must be unique"
           }
         },
         "fill": {
