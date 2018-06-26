@@ -8,18 +8,22 @@
         :hasDescription.sync="hasDescription"
         :description.sync="description"></NewPollFormBase>
 
-      <div class="pt-2">
-        <label v-t="`polls.types.${type}.options.title`"></label>
-        <div v-for="(v, index) in $v.options.$each.$iter" :key="index">
-          <div class="mt-2">
-            <input v-model.trim="v.label.$model"
+      <div>
+        <label class="py-2" v-t="`polls.types.${type}.options.title`"></label>
+        <div v-for="(v, index) in $v.options.$each.$iter" :key="v.$model.value">
+          <div class="mt-2 flex">
+            <input v-model.trim="v.label.$model" class="flex-1"
               :placeholder="getOptionPlaceholder(index)" />
-          </div>
-          <div class="error" v-if="!v.label.required">label is required.</div>
-          <div class="error" v-if="!v.label.minLength">
-            label must have at least {{ v.label.$params.minLength.min }} letters.
+            <button class="btn ml-2" @click="removeOption(v.$model.value)">
+              <font-awesome-icon icon="trash-alt"></font-awesome-icon>
+            </button>
           </div>
         </div>
+        <button class="btn btn-tertiary outline text-sm w-full mt-4"
+          @click="addOption">
+          <span v-t="`polls.types.${this.type}.options.add`"></span>
+          <font-awesome-icon icon="plus"></font-awesome-icon>
+        </button>
       </div>
     </div>
     <slot name="submit" :invalid="$v.$invalid"></slot>
@@ -49,9 +53,26 @@ import NewPollFormMixin from '../new-poll-form-mixin';
 export default class NewSelectionPollForm extends NewPollFormMixin {
   options = [];
 
+  addOption() {
+    this.$v.options.$touch();
+    this.options = [...this.options, { label: '', value: this.options.length + 1 }];
+  }
+
+  removeOption(value) {
+    this.options = this.options
+      .filter(opt => opt.value !== value)
+      .map((opt, index) => ({ ...opt, value: index + 1 }));
+  }
+
   getOptionPlaceholder(index) {
     const number = parseInt(index, 10) + 1;
     return this.$t(`polls.types.${this.type}.options.placeholder`, { number });
+  }
+
+  getFormData() {
+    return {
+      options: this.options
+    };
   }
 }
 </script>

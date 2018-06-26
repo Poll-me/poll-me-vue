@@ -114,6 +114,7 @@
         "show-votes": "Ver votos",
         "hide-votes": "Ocultar votos",
         "options": {
+          "add": "Añadir opción",
           "title": "Opciones",
           "placeholder": "Opción #{number}"
         },
