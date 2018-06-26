@@ -113,6 +113,10 @@
         "results": "Results",
         "show-votes": "Show votes",
         "hide-votes": "Hide votes",
+        "options": {
+          "title": "Options",
+          "placeholder": "Option #{number}"
+        },
         "fill": {
           "no-answers": "No one has answered yet!",
           "author-label": "Who are you?",

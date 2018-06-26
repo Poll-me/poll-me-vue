@@ -21,6 +21,10 @@ export function getBaseValidations() {
 const newPollFormMixinConfig = {
   components: { NewPollFormBase },
   props: {
+    type: {
+      type: Number,
+      required: true
+    },
     isLogged: {
       type: Boolean,
       required: true

@@ -28,6 +28,7 @@
         </div>
         <component
           :is="newPollComponent"
+          :type="typeIdNumber"
           :is-logged="user.isLogged"
           @submit="submit" >
           <button type="submit" class="sticky pin-b py-4 btn btn-secondary rounded-none"
