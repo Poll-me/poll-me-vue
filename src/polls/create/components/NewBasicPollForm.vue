@@ -8,13 +8,7 @@
         :hasDescription.sync="hasDescription"
         :description.sync="description"></NewPollFormBase>
     </div>
-    <button type="submit" class="sticky pin-b py-4 btn btn-secondary rounded-none"
-      :disabled="$v.$invalid" >
-      <div class="text-center text-xl">
-        <span v-t="'polls.new.form.submit-button'"></span>
-        <font-awesome-icon icon="plus" class="ml-1" ></font-awesome-icon>
-      </div>
-    </button>
+    <slot name="submit" :invalid="$v.$invalid"></slot>
   </form>
 </template>
 <script>
