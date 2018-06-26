@@ -93,9 +93,14 @@ export default class NewSelectionPollForm extends NewPollFormMixin {
     return this.$t(`polls.types.${this.type}.options.placeholder`, { number });
   }
 
+  getOptionsMap() {
+    return this.options.reduce((opts, opt) => ({ ...opts, [opt.value]: opt.label }), {});
+  }
+
   getFormData() {
+    const options = this.getOptionsMap();
     return {
-      options: this.options
+      options
     };
   }
 }
