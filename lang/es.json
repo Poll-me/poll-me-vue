@@ -116,7 +116,12 @@
         "options": {
           "add": "Añadir opción",
           "title": "Opciones",
-          "placeholder": "Opción #{number}"
+          "placeholder": "Opción #{number}",
+          "length-error": "Debe añadir al menos {min} opciones",
+          "label": {
+            "required-error": "La opción debe tener una descripción",
+            "length-error": "La opción debe tener de {min} a {max} caractéres"
+          }
         },
         "fill": {
           "no-answers": "Nadie ha contestado aún!",

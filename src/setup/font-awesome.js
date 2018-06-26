@@ -7,6 +7,7 @@ import faWhatsapp from '@fortawesome/fontawesome-free-brands/faWhatsapp';
 
 // Regular icons
 import faFrown from '@fortawesome/fontawesome-free-regular/faFrown';
+import faFileAlt from '@fortawesome/fontawesome-free-regular/faFileAlt';
 
 // Solid icons
 import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner';
@@ -68,7 +69,8 @@ fontawesome.library.add(
   faThumbsUp,
   faThumbsDown,
   faListUl,
-  faFrown
+  faFrown,
+  faFileAlt
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

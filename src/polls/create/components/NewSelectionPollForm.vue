@@ -11,14 +11,35 @@
       <div>
         <label class="py-2" v-t="`polls.types.${type}.options.title`"></label>
         <div v-for="(v, index) in $v.options.$each.$iter" :key="v.$model.value">
-          <div class="mt-2 flex">
-            <input v-model.trim="v.label.$model" class="flex-1"
-              :placeholder="getOptionPlaceholder(index)" />
-            <button class="btn ml-2" @click="removeOption(v.$model.value)">
-              <font-awesome-icon icon="trash-alt"></font-awesome-icon>
-            </button>
+          <div class="mt-2">
+            <div class="flex">
+              <input v-model.trim="v.label.$model" class="flex-1"
+                :class="{ 'border-red': v.label.$error }"
+                :placeholder="getOptionPlaceholder(index)" />
+              <button class="btn ml-2" @click="removeOption(v.$model.value)">
+                <font-awesome-icon icon="trash-alt"></font-awesome-icon>
+              </button>
+            </div>
+            <p v-show="v.label.$error" class="field-errors mt-2">
+              <span v-show="!v.label.required"
+                v-t="`polls.types.${type}.options.label.required-error`"></span>
+              <span v-show="!v.label.minLength || !v.label.maxLength"
+                v-t="{
+                  path: `polls.types.${type}.options.label.length-error`,
+                  args: { min: v.label.$params.minLength.min, max: v.label.$params.maxLength.max }
+                }">
+              </span>
+            </p>
           </div>
         </div>
+        <p v-show="$v.options.$error" class="field-errors mt-2">
+          <span v-show="!$v.options.minLength"
+            v-t="{
+              path: `polls.types.${type}.options.length-error`,
+              args: { min: $v.options.$params.minLength.min }
+            }">
+          </span>
+        </p>
         <button class="btn btn-tertiary outline text-sm w-full mt-4"
           @click="addOption">
           <span v-t="`polls.types.${this.type}.options.add`"></span>
@@ -44,7 +65,7 @@ import NewPollFormMixin from '../new-poll-form-mixin';
         label: {
           required,
           minLength: minLength(2),
-          maxLength: maxLength(20)
+          maxLength: maxLength(24)
         }
       }
     }
