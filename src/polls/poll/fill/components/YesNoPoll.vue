@@ -3,21 +3,21 @@
     <div v-if="!isLogged || hasVoted" class="bg-secondary rounded p-2 mb-4 shadow">
       <template v-if="!hasVoted" ref="vote-container">
         <form @submit.prevent="submit" class="flex">
-          <div v-t="`polls.types.${poll.type}.fill.author-label`"
+          <div v-t="`polls.fill.author-label`"
             class="text-white font-semibold pl-1 pr-3 flex items-center"></div>
           <div class="flex-1 text-grey-darker" >
             <input v-model.trim="name" @input="$v.name.$touch()"
               v-bind:class="{ 'border-red': $v.name.$error }"
-              :placeholder="$t(`polls.types.${poll.type}.fill.author-placeholder`)"
+              :placeholder="$t(`polls.fill.author-placeholder`)"
               id="name" type="text" class="shadow-none border-transparent border-2">
           </div>
         </form>
       </template>
       <div v-else class="flex" ref="remove-vote-container">
-        <div v-t="`polls.types.${poll.type}.fill.already-answered`"
+        <div v-t="`polls.fill.already-answered`"
           class="flex-1 text-white font-semibold px-1 flex items-center"></div>
         <button class="btn btn-primary" @click="removeVote()">
-          <span v-t="`polls.types.${poll.type}.fill.get-out`"></span>
+          <span v-t="`polls.fill.get-out`"></span>
           <font-awesome-icon icon="sign-out-alt" fixed-width></font-awesome-icon>
         </button>
       </div>
@@ -40,7 +40,7 @@
       </div>
       <div v-else ref="results-container">
         <div class="text-center pb-2">
-          <b v-t="`polls.types.${poll.type}.results`"></b>
+          <b v-t="`polls.fill.results`"></b>
           <span v-if="this.poll.answers.length > 1" class="italic">
             (<span class="text-sm"
               v-t="{ path: `poll.fill.people`, args: { number: this.poll.answers.length }}"></span>)
@@ -59,7 +59,7 @@
         <button class="btn btn-tertiary outline w-full mt-4"
           @click="showVotes = !showVotes">
           <span class="font-bold"
-            v-t="`polls.types.${poll.type}.${showVotes ? 'hide' : 'show'}-votes`"></span>
+            v-t="`polls.fill.${showVotes ? 'hide' : 'show'}-votes`"></span>
           <font-awesome-icon fixed-width
             :icon="`${showVotes ? 'chevron-up' : 'list-ul'}`"></font-awesome-icon>
         </button>
@@ -115,7 +115,6 @@ import FillPollType from '../fill-poll-type-mixin';
 })
 export default class YesNoPoll extends FillPollType {
   name = '';
-  value = 45;
   yesOptionValue = 1;
   noOptionValue = 0;
   showVotes = false;
