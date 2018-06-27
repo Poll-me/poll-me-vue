@@ -109,6 +109,7 @@
       "3": {
         "name": "Selection",
         "description": "List of two or more options from which people can choose.",
+        "choose": "Choose an option",
         "options": {
           "add": "Add option",
           "title": "Options",
