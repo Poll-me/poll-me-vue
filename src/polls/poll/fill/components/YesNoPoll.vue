@@ -2,7 +2,7 @@
   <div class="h-full flex flex-col">
     <div v-if="!isLogged || hasVoted" class="bg-secondary rounded p-2 mb-4 shadow">
       <template v-if="!hasVoted" ref="vote-container">
-        <form @submit.prevent="submit" class="flex">
+        <div class="flex">
           <div v-t="`polls.fill.author-label`"
             class="text-white font-semibold pl-1 pr-3 flex items-center"></div>
           <div class="flex-1 text-grey-darker" >
@@ -11,7 +11,7 @@
               :placeholder="$t(`polls.fill.author-placeholder`)"
               id="name" type="text" class="shadow-none border-transparent border-2">
           </div>
-        </form>
+        </div>
       </template>
       <div v-else class="flex" ref="remove-vote-container">
         <div v-t="`polls.fill.already-answered`"

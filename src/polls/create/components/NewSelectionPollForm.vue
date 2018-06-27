@@ -79,13 +79,13 @@ export default class NewSelectionPollForm extends NewPollFormMixin {
 
   addOption() {
     this.$v.options.$touch();
-    this.options = [...this.options, { label: '', value: this.options.length + 1 }];
+    this.options = [...this.options, { label: '', value: this.options.length }];
   }
 
   removeOption(value) {
     this.options = this.options
       .filter(opt => opt.value !== value)
-      .map((opt, index) => ({ ...opt, value: index + 1 }));
+      .map((opt, index) => ({ ...opt, value: index }));
   }
 
   getOptionPlaceholder(index) {
