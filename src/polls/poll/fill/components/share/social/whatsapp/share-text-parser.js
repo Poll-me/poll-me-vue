@@ -35,6 +35,16 @@ export default function () {
       break;
     }
 
+    case pollTypes.SELECTION: {
+      const options = this.poll.options.map((label, value) => ({ label, value }));
+
+      shareText = options.reduce(
+        (text, option) => `${text}\n${getOptionText(answers, option)}`,
+        ''
+      );
+      break;
+    }
+
     default: {
       const answersList = answers.slice(0, this.answersLimit).reduce(
         (text, ans, i) => `${text}${i === 0 ? '\n' : ''}- ${ans.author}\n`,
