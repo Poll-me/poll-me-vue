@@ -76,6 +76,15 @@
         "submit-button": "Crear"
       }
     },
+    "fill": {
+      "author-label": "Quién eres?",
+      "author-placeholder": "Nombre a mostrar",
+      "already-answered": "Ya has contestado!",
+      "get-out": "Quitar voto",
+      "results": "Resultados",
+      "show-votes": "Ver votos",
+      "hide-votes": "Ocultar votos"
+    },
     "types": {
       "1": {
         "name": "Registro",
@@ -95,16 +104,22 @@
         "name": "Sí / No",
         "description": "Pregunte a la gente por su opinión o participación en lo que sea.",
         "yes": "Sí",
-        "no": "No",
-        "results": "Resultados",
-        "show-votes": "Ver votos",
-        "hide-votes": "Ocultar votos",
-        "fill": {
-          "no-answers": "Nadie ha contestado aún!",
-          "author-label": "Quién eres?",
-          "author-placeholder": "Nombre a mostrar",
-          "already-answered": "Ya has contestado!",
-          "get-out": "Quitar voto"
+        "no": "No"
+      },
+      "3": {
+        "name": "Selección",
+        "description": "Lista de dos o más opciones de entre las cuales la gente elige una o más.",
+        "choose": "Elige una opción",
+        "options": {
+          "add": "Añadir opción",
+          "title": "Opciones",
+          "placeholder": "Opción #{number}",
+          "length-error": "Debe añadir al menos {min} opciones",
+          "label": {
+            "required-error": "La opción debe tener una descripción",
+            "length-error": "La opción debe tener de {min} a {max} caractéres",
+            "unique-error": "La descripción debe ser única"
+          }
         }
       }
     },

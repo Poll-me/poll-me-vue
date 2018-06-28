@@ -10,7 +10,8 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'new-poll' }" v-t="'header.nav-menu.new-link'">
+          <router-link class="partial-match" v-t="'header.nav-menu.new-link'"
+           :to="{ name: 'new-poll' }">
           </router-link>
         </li>
         <template v-if="isLogged">

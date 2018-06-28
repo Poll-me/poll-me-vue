@@ -23,20 +23,16 @@
       </div>
     </div>
     <div class="flex-1">
-      <div v-if="!hasVoted" class="h-full flex items-center justify-around"
-        ref="vote-container">
-        <button class="btn btn-tertiary p-4 rounded-lg"
-          :title="$t(`polls.types.${poll.type}.yes`)"
-          :disabled="!isValid"
-          @click="submit(yesOptionValue)" >
-          <font-awesome-icon icon="thumbs-up" size="3x" flip="horizontal" ></font-awesome-icon>
-        </button>
-        <button class="btn btn-tertiary p-4 rounded-lg"
-          :title="$t(`polls.types.${poll.type}.no`)"
-          :disabled="!isValid"
-          @click="submit(noOptionValue)" >
-          <font-awesome-icon icon="thumbs-down" size="3x" ></font-awesome-icon>
-        </button>
+      <div v-if="!hasVoted" ref="vote-container">
+        <label class="text-base text-center pb-2" v-t="`polls.types.${poll.type}.choose`"></label>
+        <ul class="list-reset">
+          <li v-for="(label, value) in poll.options" :key="value" class="mt-2">
+            <button
+              class="btn btn-tertiary w-full text-left"
+              @click="submit(value)"
+              >#{{ value + 1 }} - {{ label }}</button>
+          </li>
+        </ul>
       </div>
       <div v-else ref="results-container">
         <div class="text-center pb-2">
@@ -45,15 +41,15 @@
             (<span v-t="{ path: `poll.fill.people`, args: { number: totalVotes }}"></span>)
           </i>
         </div>
-        <div class="results-grid">
-          <div class="gr-1 gc-1 font-medium text-grey-bg-grey-darker pr-2">
-            <span v-t="`polls.types.${poll.type}.yes`"></span>:
+        <div class="">
+          <div v-for="optionVotes in optionsVotes" :key="optionVotes.label" class="mt-2">
+            <div class="mb-2">
+              <span class="font-medium text-grey-bg-grey-darker">{{ optionVotes.label }}</span>
+              <i class="text-sm">({{ optionVotes.count }})</i>
+            </div>
+            <ProgressBar color="primary"
+              :value="optionVotes.percentage"></ProgressBar>
           </div>
-          <div class="gr-2 gc-1 font-medium text-grey-bg-grey-darker pr-2">
-            <span v-t="`polls.types.${poll.type}.no`"></span>:
-          </div>
-          <ProgressBar class="gr-1 gc-2 my-2" :value="yesPercent" color="primary"></ProgressBar>
-          <ProgressBar class="gr-2 gc-2 my-2" :value="noPercent" color="primary"></ProgressBar>
         </div>
         <button class="btn btn-tertiary outline w-full mt-4"
           @click="showVotes = !showVotes">
@@ -62,26 +58,11 @@
           <font-awesome-icon fixed-width
             :icon="`${showVotes ? 'chevron-up' : 'list-ul'}`"></font-awesome-icon>
         </button>
-        <div v-if="showVotes" class="flex text-center">
-          <div class="flex-1">
-            <div class="font-semibold my-2" v-t="`polls.types.${poll.type}.yes`"></div>
+        <div v-if="showVotes" class="flex flex-wrap text-center -m-2">
+          <div v-for="optionVotes in optionsWithVotes" :key="optionVotes.label" class="w-1/2 p-2">
+            <div class="font-medium my-2 truncate" >{{ optionVotes.label }}</div>
             <ul class="list-reset -m-1 text-sm text-white">
-              <li v-for="ans in yesVotes" :key="ans.user"
-                class="p-1 flex w-full" >
-                <div class="bg-tertiary shadow p-2 rounded flex-1 flex flex-col justify-center"
-                  :class="{ 'rounded-r-none': isAuthor }">
-                  {{ ans.author }}
-                </div>
-                <button v-if="isAuthor" class="btn rounded-l-none" @click="removeVote(ans.user)">
-                  <font-awesome-icon icon="times" size="lg"></font-awesome-icon>
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div class="ml-4 flex-1">
-            <div class="font-semibold my-2" v-t="`polls.types.${poll.type}.no`"></div>
-            <ul class="list-reset -m-1 text-sm text-white">
-              <li v-for="ans in noVotes" :key="ans.user"
+              <li v-for="ans in optionVotes.votes" :key="ans.user"
                 class="p-1 flex w-full" >
                 <div class="bg-tertiary shadow p-2 rounded flex-1 flex flex-col justify-center"
                   :class="{ 'rounded-r-none': isAuthor }">
@@ -112,26 +93,21 @@ import FillPollType from '../fill-poll-type-mixin';
     }
   }
 })
-export default class YesNoPoll extends FillPollType {
+export default class SelectionPoll extends FillPollType {
   name = '';
-  yesOptionValue = 1;
-  noOptionValue = 0;
   showVotes = false;
 
-  get yesVotes() {
-    return this.poll.answers.filter(ans => ans.option === this.yesOptionValue);
+  get optionsVotes() {
+    return this.poll.options.map((label, value) => {
+      const votes = this.poll.answers.filter(ans => ans.option === value);
+      const count = votes.length;
+      const percentage = (count * 100) / this.totalVotes;
+      return { label, votes, count, percentage };
+    });
   }
 
-  get noVotes() {
-    return this.poll.answers.filter(ans => ans.option === this.noOptionValue);
-  }
-
-  get yesPercent() {
-    return (this.yesVotes.length * 100) / this.totalVotes;
-  }
-
-  get noPercent() {
-    return (this.noVotes.length * 100) / this.totalVotes;
+  get optionsWithVotes() {
+    return this.optionsVotes.filter(optVotes => optVotes.count > 0);
   }
 
   get totalVotes() {
@@ -154,22 +130,3 @@ export default class YesNoPoll extends FillPollType {
   }
 }
 </script>
-<style scoped>
-.results-grid {
-  display: grid;
-  grid-template-columns: min-content;
-  align-items: center;
-}
-.gr-1 {
-  grid-row: 1;
-}
-.gr-2 {
-  grid-row: 2;
-}
-.gc-1 {
-  grid-column: 1;
-}
-.gc-2 {
-  grid-column: 2;
-}
-</style>

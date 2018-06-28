@@ -28,8 +28,18 @@
         </div>
         <component
           :is="newPollComponent"
+          :type="typeIdNumber"
           :is-logged="user.isLogged"
-          @submit="submit" ></component>
+          @submit="submit" >
+          <button type="submit" class="sticky pin-b py-4 btn btn-secondary rounded-none"
+            slot="submit" slot-scope="submitScope"
+            :disabled="submitScope.invalid" >
+            <div class="text-center text-xl">
+              <span v-t="'polls.new.form.submit-button'"></span>
+              <font-awesome-icon :icon="['far', 'file-alt']" class="ml-1" ></font-awesome-icon>
+            </div>
+          </button>
+        </component>
       </template>
       <div v-else class="container flex-1 flex items-center text-center" >
         <div class="flex-1">
