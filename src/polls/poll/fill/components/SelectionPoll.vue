@@ -37,10 +37,9 @@
       <div v-else ref="results-container">
         <div class="text-center pb-2">
           <span class="text-lg font-medium" v-t="`polls.fill.results`"></span>
-          <span v-if="this.poll.answers.length > 1" class="italic">
-            (<span class="text-sm"
-              v-t="{ path: `poll.fill.people`, args: { number: this.poll.answers.length }}"></span>)
-          </span>
+          <i v-if="totalVotes > 1" class="text-sm">
+            (<span v-t="{ path: `poll.fill.people`, args: { number: totalVotes }}"></span>)
+          </i>
         </div>
         <div class="">
           <div v-for="optionVotes in optionsVotes" :key="optionVotes.label" class="mt-2">

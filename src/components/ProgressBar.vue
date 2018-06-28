@@ -1,7 +1,7 @@
 <template>
   <div class="rounded-lg overflow-hidden"
     :class="bordered ? `border-2 border-${color}` : ''">
-    <div class="text-white h-8 flex items-center"
+    <div class="bar-fill-bg text-white h-8 flex items-center"
       :class="`bg-${color}${!bordered ? ' rounded-lg' : ''}`"
       :style="{ width: `${roundedValue}%` }" >
       <div class="text-center truncate px-2 flex-1">{{ visibleValue }}</div>
@@ -42,3 +42,8 @@ export default class ProgressBar extends Vue {
   }
 }
 </script>
+<style scoped>
+.bar-fill-bg {
+  transition: width .3s;
+}
+</style>

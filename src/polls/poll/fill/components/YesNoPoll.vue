@@ -40,17 +40,16 @@
       </div>
       <div v-else ref="results-container">
         <div class="text-center pb-2">
-          <b v-t="`polls.fill.results`"></b>
-          <span v-if="this.poll.answers.length > 1" class="italic">
-            (<span class="text-sm"
-              v-t="{ path: `poll.fill.people`, args: { number: this.poll.answers.length }}"></span>)
-          </span>
+          <span class="text-lg font-medium" v-t="`polls.fill.results`"></span>
+          <i v-if="totalVotes > 1" class="text-sm">
+            (<span v-t="{ path: `poll.fill.people`, args: { number: totalVotes }}"></span>)
+          </i>
         </div>
         <div class="results-grid">
-          <div class="gr-1 gc-1 font-semibold pr-2">
+          <div class="gr-1 gc-1 font-medium text-grey-bg-grey-darker pr-2">
             <span v-t="`polls.types.${poll.type}.yes`"></span>:
           </div>
-          <div class="gr-2 gc-1 font-semibold pr-2">
+          <div class="gr-2 gc-1 font-medium text-grey-bg-grey-darker pr-2">
             <span v-t="`polls.types.${poll.type}.no`"></span>:
           </div>
           <ProgressBar class="gr-1 gc-2 my-2" :value="yesPercent" color="primary"></ProgressBar>
