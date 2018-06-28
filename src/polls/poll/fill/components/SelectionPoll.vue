@@ -36,21 +36,21 @@
       </div>
       <div v-else ref="results-container">
         <div class="text-center pb-2">
-          <b v-t="`polls.fill.results`"></b>
+          <span class="text-lg font-medium" v-t="`polls.fill.results`"></span>
           <span v-if="this.poll.answers.length > 1" class="italic">
             (<span class="text-sm"
               v-t="{ path: `poll.fill.people`, args: { number: this.poll.answers.length }}"></span>)
           </span>
         </div>
-        <div class="results-grid">
-          <div class="gr-1 gc-1 font-semibold pr-2">
-            <span v-t="`polls.types.${poll.type}.yes`"></span>:
+        <div class="">
+          <div v-for="(label, value) in poll.options" :key="value" class="mt-2">
+            <div class="mb-2">
+              <span class="font-medium text-grey-bg-grey-darker">{{ label }}</span>
+              <i class="text-sm">({{ getOptionVotes(value).length }})</i>
+            </div>
+            <ProgressBar color="primary"
+              :value="getOptionPercentage(value)"></ProgressBar>
           </div>
-          <div class="gr-2 gc-1 font-semibold pr-2">
-            <span v-t="`polls.types.${poll.type}.no`"></span>:
-          </div>
-          <ProgressBar class="gr-1 gc-2 my-2" :value="yesPercent" color="primary"></ProgressBar>
-          <ProgressBar class="gr-2 gc-2 my-2" :value="noPercent" color="primary"></ProgressBar>
         </div>
         <button class="btn btn-tertiary outline w-full mt-4"
           @click="showVotes = !showVotes">
@@ -121,6 +121,14 @@ export default class SelectionPoll extends FillPollType {
     return this.isLogged || !this.$v.$invalid;
   }
 
+  getOptionVotes(option) {
+    return this.poll.answers.filter(ans => ans.option === option);
+  }
+
+  getOptionPercentage(option) {
+    return (this.getOptionVotes(option).length * 100) / this.totalVotes;
+  }
+
   submit(option) {
     const vote = { option };
     if (!this.isLogged) {
@@ -133,22 +141,3 @@ export default class SelectionPoll extends FillPollType {
   }
 }
 </script>
-<style scoped>
-.results-grid {
-  display: grid;
-  grid-template-columns: min-content;
-  align-items: center;
-}
-.gr-1 {
-  grid-row: 1;
-}
-.gr-2 {
-  grid-row: 2;
-}
-.gc-1 {
-  grid-column: 1;
-}
-.gc-2 {
-  grid-column: 2;
-}
-</style>
