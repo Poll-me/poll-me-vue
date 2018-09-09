@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="container py-4 flex-1 flex flex-col">
-      <div class="text-grey-darker">{{ poll.description }}</div>
+      <div class="text-grey-darker whitespace-pre-line">{{ poll.description }}</div>
       <div class="pt-4 flex-1">
         <component :is="pollTypeComponent" :user="user" :isLogged="isLogged" :poll="poll"
           @vote="onVote" @remove-vote="onRemoveVote" ></component>

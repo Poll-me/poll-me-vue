@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2018-09-09
+
+### Added
+
+- Add a clickable backdrop while showing the nav menu
+- Add a progress bar component to display percentage data
+- Create mixins and components for shared logic at creation poll components
+- Add a Yes/No poll-type as a quick selection poll type
+- Add a Selection poll type
+
+### Fixed
+
+- Parse the multiline polls descriptions correctly when sharing through WhatsApp
+
 ## [0.2.0] - 2018-06-07
 
 ### Added
@@ -57,6 +71,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - **Continuous deployment** (CD) using the **Netlify** service
 - **PWA** app configuration for allow the users install the app on their devices
 
-[Unreleased]: https://github.com/Poll-me/poll-me-vue/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/Poll-me/poll-me-vue/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/Poll-me/poll-me-vue/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/Poll-me/poll-me-vue/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Poll-me/poll-me-vue/compare/v0.0.0...v0.1.0

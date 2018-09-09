@@ -8,8 +8,9 @@ export default [
     component: () => import(/* webpackChunkName: "polls-chunk" */ '../UserPolls')
   },
   {
-    path: 'new',
+    path: 'new/:typeId?',
     name: 'new-poll',
+    props: true,
     component: () => import(/* webpackChunkName: "polls-chunk" */ '../create')
   },
   {

@@ -11,6 +11,8 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
+import shareTextParser from './share-text-parser';
+
 @Component({
   props: {
     poll: {
@@ -27,28 +29,23 @@ import Component from 'vue-class-component';
 export default class SharePollWhatsapp extends Vue {
   answersLimit = 5;
 
+  get description() {
+    return this.poll.description ? `_${this.poll.description.replace(/\n/g, '_\n_')}_\n` : '';
+  }
+
   get header() {
     const title = `*${this.poll.name}*`;
-    const description = this.poll.description ? `_${this.poll.description}_\n` : '';
     let participants = '';
     if (this.poll.answers.length > 1) {
       participants =
         ` _(${this.$t('poll.fill.people', { number: this.poll.answers.length })})_`;
     }
 
-    return `${title}${participants}\n${description}`;
+    return `${title}${participants}\n${this.description}`;
   }
 
   get answers() {
-    const answersList = this.poll.answers.slice(0, this.answersLimit).reduce(
-      (text, ans, i) => `${text}${i === 0 ? '\n' : ''}- ${ans.author}\n`,
-      ''
-    );
-    const restAnswersLength = this.poll.answers.length - this.answersLimit;
-    const restAnswers = restAnswersLength > 0 ?
-      `\n${this.$t('poll.fill.share.rest-people', { number: restAnswersLength })}\n` :
-      '';
-    return `${answersList}${restAnswers}`;
+    return shareTextParser.call(this);
   }
 
   get footer() {

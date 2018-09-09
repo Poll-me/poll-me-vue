@@ -1,4 +1,4 @@
-import SharePollWhatsapp from './SharePollWhatsapp';
+import SharePollWhatsapp from './whatsapp/SharePollWhatsapp';
 
 export default {
   SharePollWhatsapp

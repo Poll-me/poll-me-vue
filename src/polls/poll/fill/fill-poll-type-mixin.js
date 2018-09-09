@@ -5,8 +5,7 @@ const fillPollTypeMixinConfig = {
   props: {
     poll: {
       required: true,
-      type: Object,
-      validator: poll => poll.type === 1
+      type: Object
     },
     isLogged: {
       required: true,

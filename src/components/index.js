@@ -1,5 +1,6 @@
 import FileUploader from './FileUploader';
-import UserAvatar from './UserAvatar';
 import ModalDialog from './ModalDialog';
+import ProgressBar from './ProgressBar';
+import UserAvatar from './UserAvatar';
 
-export default { FileUploader, UserAvatar, ModalDialog };
+export default { FileUploader, ModalDialog, ProgressBar, UserAvatar };
